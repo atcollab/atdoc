@@ -1,0 +1,130 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[]{graphicx}
+\usepackage{rotating}
+\usepackage{hyperref}
+
+\usepackage{color}
+\usepackage{listings}
+
+\def\ave#1{{\langle #1\rangle}}
+\def\half{{1\over 2}}
+
+\lstset{language=Fortran,
+        keywordstyle=\color{blue}\textbf,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941},
+	breaklines=true,
+	showstringspaces=false,
+	frame=trBL, basicstyle=\scriptsize %\small %\tiny %\footnotesize
+       }
+
+
+%opening
+\title{Quantum Diffusion Element in AT}
+\author{B. Nash, N. Carmignani}
+
+\begin{document}
+%\lstset{language=[95]Fortran}
+\maketitle
+
+\begin{abstract}
+This document explains the implementation of a quantum diffusion element in the Accelerator Toolbox.
+\end{abstract}
+
+\section{Motivation}
+For the collective effects modeling for the ESRF upgrade phase II, one needs a tracking code that includes
+impedance effects.  As a first step towards this goal, we implement a quantum diffusion element in AT.
+This will allow single particle tracking to reach the correct zero current equilibrium distribution.  The effects of
+the impedance can then be seen as current dependent perturbations to this.
+
+\section{Theory} 
+
+An electron moves around the ring under the influence of the magnetic fields.  One may describe this by
+a Hamiltonian and the resulting dynamics are symplectic.  In addition to this motion, there is also the effect
+from the synchrotron radiation.  This synchrotron radiation has two effects, a damping effect and a diffusion 
+effect.
+
+In the case of linear motion about the closed orbit, the damping effect shows up in the one turn map matrix, $M$,
+with the effect that it is no longer symplectic.  The eigenvalues now take the form:
+\begin{equation}
+\lambda_a = e^{i\mu_a +\chi_a} \ \ \ a=1,2,3
+\end{equation}
+where $\mu_a$ are the tunes and are real in the case of a stable ring.  The $\chi_a$ are the damping decrements and are
+real quantities giving the damping times in units of $T_0$ the revolution time.
+
+The diffusion results locally from where the radiation occurs.  There is a local diffusion matrix and a global diffusion matrix.
+The global diffusion matrix is related to the local diffusion matrix via (see B. Nash thesis)
+\begin{equation}\label{global_D}
+\bar D(s) = \int_s^{s+C} ds' T_{s'\rightarrow s+C} D(s') T^T_{s'\rightarrow s+C}
+\end{equation}
+where $ T_{s'\rightarrow s+C}$ is the transfer matrix between $s'$ and $s+C$.
+The local diffusion matrix is given as
+\begin{equation}
+D(s) = \pmatrix{0&0&0&0&0\cr 0&0&0&0&0\cr 0&0&0&0&0\cr 0&0&0&0&0\cr 0&0&0&0&0\cr 0&0&0&0&d(s)}
+\end{equation}
+with
+\begin{equation}
+d(s) = \frac{55}{48\sqrt{3}}\alpha_0 \frac{\gamma^5}{|\rho(s)|^3}\left( \frac{\hbar}{mc}\right)^2
+\end{equation}
+We note that locally the diffusion is only in the energy, but due to dispersion (causing mainly the horizontal diffusion and emittance) 
+and coupling it will be transformed into diffusion in the other planes as well.  
+
+Given the global diffusion coefficient, the equation for the evolution of the second moment matrix over one turn is
+\begin{equation}
+\Sigma_2 = M\Sigma_1 M^T +\bar D
+\end{equation}
+where we recall that $M$ here contains the radiation damping effect.  Solving for equilibrium means that the second moments
+must satisfy
+\begin{equation}
+\Sigma = M\Sigma M^T +\bar D
+\end{equation}
+
+This is the deterministic equation for the moments, but we may also want to include the quantum diffusion in a non-deterministic
+way, and also to combine it with other effects.  In this case, we may use these results to define a random kick each electron receives
+on each turn.  Assuming the processes considered happen over many turns, we assume the lumping the effects into one kick will give the 
+correct dynamics.
+
+To determine the kick given to each electron, we want $\bar D$ to be the covariance matrix for the kick.  Thus, we simply give a kick that is random
+but has $\bar D$ as covariance.  This may be accomplished by performing a Cholesky decomposition on $\bar D$.  This means, we find the matrix $L$ such that
+\begin{equation}
+\bar D = L^T L
+\end{equation}
+Choosing a random vector, each of which elements are Gaussian distributed, with covariance 1, multiplying this vector by $L^T$, we 
+get the appropriate kick vector.
+
+\section{Implementation in AT}
+
+We implement a quantum diffusion element modeling the effect on single electrons of the random fluctuations
+from the photon emission.
+
+To do this, we create a new element pass method called 'QuantDiffPass'.  An example element is
+\begin{verbatim}
+qdelem = 
+
+       FamName: 'qdelem'
+    PassMethod: 'QuantDiffPass'
+         Lmatp: [6x6 double]
+\end{verbatim}
+
+In this element, FamName is the name of the element, QuantDiffPass refers to the pass method which we describe below, and Lmatp is
+the transpose of the Cholesky decomposition of the global diffusion matrix $\bar D$.
+
+To create this element, we have created an element constructor called atQuantDiff.  This function takes a ring structure and the name of the element as arguments.  It then computes the diffusion matrix for the ring, applies the Cholesky decomposition, and then creates the element above.
+The diffusion matrix is computed using functions already written for AT.  In particular, we use findmpoleraddiffmatrix which computes the local diffusion matrix in multipole elements.  These local diffusion matrices are accumulated with the transfer matrix via equation (\ref{global_D}).  This was already implemented in the function ohmienvelope, but we have extracted the component for the global diffusion coefficient, since this is all that is needed.  The results of applying this quantum diffusion element on many particles over several damping time, should reproduce a distribution with second moments equivalent to the solution given by the ohmienvelope function.
+
+In the case of an ideal lattice with no coupling or vertical dispersion, the vertical diffusion is 0, and the diffusion matrix is not positive definite which would cause the Cholesky decomposition to fail.  In this case, we remove the vertical direction, and do the decomposition just on the horizontal and longitudinal (4-D phase space).  We then insert zero's to add the vertical dimension back so the matrix $L$ is 6x6.
+
+\section{QuantDiffPass Pass method}
+The pass method produces 6 random numbers, Gaussian distributed, with $\sigma=1$.  Let these numbers be $r_i$ $i=1\dots 6$.
+Let $\vec Z_0$ be the incoming phase space point.  The output of the pass method is then simply
+\begin{equation}
+\vec Z_1 = \vec Z_0 + L^T \vec r
+\end{equation}
+We set the seed according to the computer clock in the case that we call this for the first turn.  For the following turns, we do not reset the
+seed.  This allows for different seeds when the pass method is parallelized. 
+
+\section{Testing and verification of element}
+We test the quantum diffusion element by creating an initial distribution of particles, and tracking with this element turned on over several damping times.
+
+\end{document}
