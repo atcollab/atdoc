@@ -1,0 +1,60 @@
+\label{quadplot}\documentclass[acus]{article}
+
+
+
+\usepackage{booktabs} 
+\usepackage{longtable}
+\usepackage{subfig}
+\usepackage{graphicx}
+
+\newcommand{\mfun}[1]{{\bf{#1}}}
+\newcommand{\cfun}[1]{{\texttt{#1}}}
+\newcommand{\passmethod}[1]{{\texttt{#1}}}
+\newcommand{\class}[1]{{\it{#1}}}
+\newcommand{\fn}[1]{{\it{#1}}}
+
+\begin{document}
+
+\title{AT Developer Primer}
+\maketitle
+\begin{abstract}
+We explain the structure of the AT code, oriented towards someone wanting to implement a new pass method.
+\end{abstract}
+
+\section{Overview}
+The AT is a toolbox of Matlab functions that can tracks electrons through different magnetic elements. 
+One uses Matlab for the various operations one wants to do, but for speed reasons, the underlying
+tracking engine is written in compiled C.  To develop a new element or pass method for an existing pass
+method, one must thus understand this interface between C and Matlab.
+
+\section{Ringpass and Linepass} 
+The two functions used for tracking 
+in AT are \mfun{ringpass} and \mfun{linepass}.  \mfun{linepass} takes a lattice structure
+and electron coordinates and tracks through the structure.  \mfun{ringpass} does the same, but also takes
+ an input for the number of turns, and tracks through the lattice repeatedly, for this many turns.
+
+\mfun{ringpass} is a Matlab function that accepts the lattice and initial conditions and passes them to \cfun{atpass}.  
+\cfun{atpass} is a C function with a Mex Function interface to Matlab.
+\section{atpass}
+The function \cfun{atpass} reads in the lattice and then does the tracking through each element.  Each element has a field
+called 'PassMethod' which specifies the integration routine.  This file must exist as a compiled C function.  \cfun{atpass} calls the
+pass method via the function 'passFunction' .
+\begin{verbatim}
+ExportMode int* passFunction(const mxArray *ElemData, int *FieldNumbers,
+                             double *r_in, int num_particles, int mode)
+\end{verbatim}
+
+\section{Structure of a pass method}
+Each integrator is C code.  It has several functions by which it may be accessed.  There is a 
+MexFunction, a PassFunction, and a TrackFunction.
+First we describe the MexFunction.
+\subsection{MexFunction}
+
+
+
+\begin{thebibliography}{4}
+
+\end{thebibliography}
+
+\end{document}
+
