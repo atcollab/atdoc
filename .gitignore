@@ -1,0 +1,4 @@
+#LATEX intermediate files
+*.aux
+*.log
+*.synctex.gz
