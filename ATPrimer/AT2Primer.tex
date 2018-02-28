@@ -1,7 +1,5 @@
 \documentclass[acus]{article}
 
-
-
 \usepackage{booktabs} 
 \usepackage{longtable}
 \usepackage{subfig}
@@ -11,6 +9,10 @@
 \newcommand{\passmethod}[1]{{\texttt{#1}}}
 \newcommand{\class}[1]{{\it{#1}}}
 
+%Path to pictures
+\graphicspath{{./images/}}
+\author{To be completed (ESRF), Update: L.~Nadolski (SOLEIL)}
+%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \title{Primer for AT 2.0}
@@ -20,9 +22,11 @@ We guide the reader through the basic operations of AT 2.0, starting with lattic
 with tracking and optics and beam size computation.
 \end{abstract}
 
-
+%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-AT is a toolbox of functions in Matlab for charged particle beam simulation.  It was created by Andrei Terebilo in the late 1990's.
+%%%%%%%%%%%%%%%%%%%%%%
+
+The Accelerator Toolbox (AT) is a toolbox of functions in Matlab for charged particle beam simulation.  It was created by Andrei Terebilo in the late 1990's.
 The original papers \cite{AT1,AT2} still serve as a good introduction to AT.  The AT described in those papers is AT1.3, the latest
 version produced by Terebilo.  The next version of AT is considered AT2.0.
 Here we provide examples showing some of the changes from AT1.3, but also serving as an introduction for someone just starting
@@ -38,27 +42,29 @@ The momenta are defined as
 p_x = x' P_z  \ \ p_y =  y' P_z
 \end{equation}
 with $P_z = P_0 (1+\delta)$.  $P_0$ is the reference momentum.  $\tau$ is the time lag relative to
-the ideal particle.  In terms of a reference time, it is actually negative: the particles ahead of
+the ideal particle.  In terms of   time, it is actually negative: the particles ahead of
 the reference particle arrive early.
 
+%%%%%%%%%%%%%%%%%%%%%%
 \section{Creation of Elements and Lattices}
+%%%%%%%%%%%%%%%%%%%%%%
+
 A lattice in AT is a Matlab cell array containing the lattice elements (can be a row or a column).
 These elements may be created using element creation functions.  These functions output element structures.  For example, a quadrupole may be created with the function \mfun{atquadrupole}
 \begin{verbatim}
->> QF=atquadrupole('QF',0.5,1.2,'QuadMPoleFringePass');
+>> QF=atquadrupole('QF',0.5,1.2,'StrMPoleSymplectic4Pass');
 \end{verbatim}
 Observing the resulting structure, we see
 \begin{verbatim}
 QF = 
-
-        FamName: 'QF'
-     PassMethod: 'QuadMPoleFringePass'
-         Length: 0.5000
+    FamName: 'QF'
+     PassMethod: 'StrMPoleSymplectic4Pass'
+         Length: 0.500000000000000
           Class: 'Quadrupole'
-              K: 1.2000
-       PolynomB: [0 1.2000]
-       MaxOrder: 1
+              K: 1.200000000000000
+       PolynomB: [0 1.200000000000000]
        PolynomA: [0 0]
+       MaxOrder: 1
     NumIntSteps: 10
 \end{verbatim}
 We note that the family name of this quadrupole is 'QF' and the pass method is \passmethod{QuadMPoleFringePass}.  The fields following are 
@@ -106,12 +112,11 @@ The energy of a lattice may be retrieved with the function \mfun{atenergy}.  Thu
 >> atenergy(FODO)
 
 ans =
-
    3.0000e+09
 \end{verbatim}
 Another way to set the energy of a lattice uses the function \mfun{atsetenergy}.  This puts an 
-energy field in all elements and set its to the requested value.  The energy element is required
-in the RF cavities and also in the other magnets such as dipoles and quadrupoles in the case that
+energy field in all elements and set it to the requested value.  The energy element is required
+in the RF cavities and also in other magnets such as dipoles and quadrupoles in the case that
 classical radiation effects are included.
 
 We have now created a valid AT lattice, using drifts, dipoles, 
@@ -125,29 +130,28 @@ For completeness, we list all of the AT element creation functions:
 \mfun{atrfcavity}, \mfun{atringparam}, \mfun{atsbend}, \mfun{atsextupole}, \mfun{atsolenoid},
 \mfun{atthinmultipole}, \mfun{atwiggler}.
 
-
+%%%%%%%%%%%%%%%%%%%%%%
 \section{Lattice Querying and Manipulation}\label{lattice_query_manip}
+%%%%%%%%%%%%%%%%%%%%%%
 There are many parameters in a storage ring lattice.  We need tools to view these parameters and 
 to change them.  
 
 We have seen how to concatenate elements to form a lattice.  To extract elements, there are two
 approaches, one may use either indices giving the explicit element numbers, or one can use a logical 
-mask. Thus, to extract the 4th element of our FODO lattice, (a focusing quadrupole, 'QF'), one may
-either write 'FODO{4}'. Likewise, we may also construct a logical mask with
+mask. Thus, to extract the 4th element of our FODOCell lattice, (a focusing quadrupole, 'QF'), one may
+either write 'FODOcell\{4\}'. Likewise, we may also construct a logical mask with
 \begin{verbatim}
 >> mask=false(1,length(FODOcell));
 >> mask(4)=true;
 \end{verbatim}
-The command 'FODO(mask)' will also give the same 'QF' element.
+The command 'FODOCell(mask)' will also give the same 'QF' element.
 
 Next, we describe three important functions for working with AT lattices: \mfun{atgetcells},
 \mfun{atgetfieldvalues}, and \mfun{atsetfieldvalues}\footnote{These functions replace the functions
 \mfun{findcells}, \mfun{getcellstruct}, and \mfun{setcellstruct} from AT1.3.  These latter functions 
 are still supported with backwards compatibility, but are deprecated.}.
 \mfun{atgetcells} allows one to find the indices of elements in the lattice searching for 
-various criteria.  The second two allow extraction and setting of element parameters.
-
-
+various criteria.  The second to allow extraction and setting of element parameters.
 
 As a first example of \mfun{atgetcells} let us extract the indices of all of the QF's as follows
 \begin{verbatim}
@@ -156,7 +160,6 @@ As a first example of \mfun{atgetcells} let us extract the indices of all of the
 which results in
 \begin{verbatim}
 QFIndices =
-
      0
      0
      0
@@ -168,19 +171,17 @@ QFIndices =
      0
 \end{verbatim}
 where we see the 'QF' at element 4.  To convert this logical mask to an index, use the \mfun{find}
-command
+command.
 \begin{verbatim}
 >> find(QFIndices)
-
 ans =
-
      4
 \end{verbatim}
 
 A new feature added to AT 2.0 is element classes.  These are \class{Drift}, \class{Bend}, \class{Quadrupole}, \class{Sextupole}, \class{Octupole}, \class{Multipole}, \class{ThinMultipole}, 
 \class{Wiggler}, \class{KickMap}, \class{RFCavity}, \class{QuantDiff}, \class{Monitor}, \class{Corrector}, \class{Solenoid}, 
 \class{Matrix66}, \class{RingParam}.
-This allows us to get the indices for all of the quadrupoles with the command
+This allows us to get the indices for all of the quadrupoles with the command.
  \begin{verbatim}
 >> QuadIndices = atgetcells(FODO,'Class','Quadrupole')
 \end{verbatim}
@@ -189,7 +190,6 @@ with the result
 >> find(QuadIndices)
 
 ans =
-
      5
      9
     14
@@ -213,7 +213,7 @@ to see other ways this function can be used, including the use of matching
 regular expressions.
 
 The \mfun{atgetfieldvalues} command may be used to extract the fields with the elements.  For example the quadrupole strengths may be 
-retrieved using the command
+retrieved using the command.
  \begin{verbatim}
 >> Kvals=atgetfieldvalues(FODO,QuadIndices,'PolynomB',{1,2});
 \end{verbatim}
@@ -235,7 +235,7 @@ position of each quadrupole.  This may be done with the function \mfun{findspos}
 \end{verbatim}
 The quadrupole strengths of 'FODO' and 'FODOerr' may now be plotted with
 \begin{verbatim}
->> plot(quadspos,Kvals,'*r',quadspos,Kvalsb,'*b');
+>> plot(quadspos,Kvals,'*r',quadspos,Kvalserr,'*b');
 \end{verbatim}
 The plot is shown in Figure \ref{quadplot}.
 \begin{figure}[htb]
@@ -276,7 +276,6 @@ Examining the variable Z200, we find
 \begin{verbatim}
 >> whos Z200
   Name      Size             Bytes  Class     Attributes
-
   Z200      6x600            28800  double
 \end{verbatim}
 The structure of this matrix is that the first three columns are the results of tracking
@@ -307,7 +306,7 @@ conditions are tracked.
 Now that particles can be tracked through the lattice, we can use the
 tracking to understand different properties of the lattice.  First, we
 would like to understand the linear properties such as Twiss
-paramers, tunes, chromaticities, etc.
+parameters, tunes, chromaticities, etc.
 These can all be calculated with the function atlinopt.
 \begin{verbatim}
 >> [param,t,c]=atlinopt(FODO,0,1);
@@ -325,14 +324,10 @@ vertical tunes and the c gives the chromaticity.  Examining first the
 tunes and chromaticities, we find
 \begin{verbatim}
 >> t,c
-
 t =
-
     0.2867    0.6990
 
-
 c =
-
    -1.8248   -1.7404
 \end{verbatim}
 which tells us the tunes are $\nu_x = 0.2867$ and $\nu_y = 0.6990$ and the 
@@ -349,7 +344,6 @@ Calling this on the FODO lattice, we find
 >> findm44(FODO,0)
 
 ans =
-
     0.3140    1.1838         0         0
    -0.4988    1.3040         0         0
          0         0   -2.2637   -6.2810
@@ -439,12 +433,10 @@ After changing the tunes and fixing the chromaticities, we find
 \begin{verbatim}
 >> [paramS,tS,cS]=atlinopt(FODOSext,0,1);tS,cS
 tS =
-
     0.1500    0.7500
 
 
 cS =
-
     0.4996    0.4993
 \end{verbatim}
 
@@ -462,7 +454,6 @@ Examining 'paramAll', we find
 paramAll = 
 
 1x261 struct array with fields:
-
     ElemIndex
     SPos
     ClosedOrbit
@@ -504,7 +495,6 @@ The result is shown in Figure \ref{FODOBetaPlot}.
 \label{FODOBetaPlot}
 \end{figure}
 
-
 We may also plot the lattice parameters using a dedicated function called \mfun{atplot}
 with the command
 \begin{verbatim}
@@ -519,7 +509,7 @@ They have been computed at more positions, but slicing the magnets in the atplot
 \centering
 \includegraphics[scale=0.5]{FODOATPlot.pdf}
 \caption{Plot result of \mfun{atplot} on the FODO lattice showing beta functions and dispersion,
-smoothed via element slicing and also including magnet represenation.}
+smoothed via element slicing and also including magnet representation.}
 \label{FODOATPlot}
 \end{figure}
 
@@ -573,17 +563,16 @@ with the results
 We see that our FODO lattice has an emittance of 33.66 nm, an energy spread of $3.3\times 10^{-4}$
 and a bunch length of 12.1 mm.
 
-
 \begin{thebibliography}{4}
 
 \bibitem{AT1}
-A. Terebilo \emph{Accelerator Toolbox for Matlab}, SLAC-PUB 8732 (May 2001)
+A.~Terebilo \emph{Accelerator Toolbox for Matlab}, SLAC-PUB 8732 (May 2001)
 \bibitem{AT2}
-A. Terebilo, \emph{Accelerator Modeling with Matlab Accelerator Toolbox}, PAC 2001 Proceedings
+A.~Terebilo, \emph{Accelerator Modelling with Matlab Accelerator Toolbox}, PAC 2001 Proceedings
 \bibitem{ATIpac}
-B. Nash et. al. \emph{New Functionality for Beam Dynamics in Accelerator Toolbox}, IPAC 2015
+B.~Nash \textit{et al.}, \emph{New Functionality for Beam Dynamics in Accelerator Toolbox}, IPAC 2015
 \bibitem{SaganRubinCoupling} 
-D. Sagan, D. Rubin, \emph{Linear Analysis of Coupled Lattices}, Phys. Rev. Special Topics - Accelerators and Beams, Vol 2,(1999)
+D.~Sagan, D.~Rubin, \emph{Linear Analysis of Coupled Lattices}, Phys. Rev. Special Topics - Accelerators and Beams, Vol 2,(1999)
 
 \end{thebibliography}
 
