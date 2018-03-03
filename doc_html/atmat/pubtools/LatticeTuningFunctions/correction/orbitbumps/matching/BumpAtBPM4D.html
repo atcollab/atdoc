@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of BumpAtBPM4D</title>
+  <meta name="keywords" content="BumpAtBPM4D">
+  <meta name="description" content="function roff=BumpAtBPM(...">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../../menu.html atmat --><!-- ../../../../menu.html pubtools --><!-- ../../../menu.html LatticeTuningFunctions --><!-- ../../menu.html correction --><!-- # orbitbumps --><!-- menu.html matching --><h1>BumpAtBPM4D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../../up.png"></a></h2>
+<div class="box"><strong>function roff=BumpAtBPM(...</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../../up.png"></a></h2>
+<div class="box"><strong>function [rbump,hs,vs]=BumpAtBPM4D(ring0,inCOD,bumph,bumpv,indBPMbump,indHCor,indVCor,doplot) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../../atcollab.png)"><pre class="comment"> function roff=BumpAtBPM(...
+     ring0,...     1) AT lattice structure
+     inCOD,...     2) initial 6x1 coordinate guess (unused)
+     bumph,...     3) hor. bump value at indBPMbump
+     bumpv,...     4) ver. bump value at indBPMbump
+     indBPMbump,...5) bump position
+     indHCor,....  6) 3x1 correctors to generate bump. last is used for COD=0
+     indVCor,....  7) 3x1 correctors to generate bump. last is used for COD=0
+     doplot)      %8) output figure
+
+ ex:
+      % order of correctors does not metter as far as the bpm is within
+      the three correctors. last corrector index is used to match the
+      postion and angle back to zero
+      roff=BumpAtBPM(ring0,0.0,1e-3,50,[4 78 90],[89 34 1]);
+
+      % to match bump at first bpm, use last corrector,
+      roff=BumpAtBPM(ring0,1e-3,1e-7,1,indHCor([end,1,2]),indVCor([end,1,2]));
+ 
+see also: atmatch</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../../matlabicon.gif)">
+<li><a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>	atVarBuilder   create a simple variable structure for use with atmatch</li><li><a href="../../../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>	ATLINCONSTRAINT Generate a constraint on linear optics for atmatch</li><li><a href="../../../../../../atmat/atmatch/atmatch.html" class="code" title="function [NewRing,penalty,dmin]=atmatch(Ring,Variables,Constraints,Tolerance,Calls,verbose,varargin)">atmatch</a>	function [...</li><li><a href="../../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>	FINDSPOS returns longitudinal positions of accelerator lattice elements.</li><li><a href="../../../../../../atmat/lattice/findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">findcells</a>	FINDCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="../../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>	findorbit4Err Gets 4x4 closed orbit with BPM errors</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../../matlabicon.gif)">
+<li><a href="testorbitbump.html" class="code" title="">testorbitbump</a>	test matching orbit bump</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [rbump,hs,vs]=BumpAtBPM4D(ring0,inCOD,bumph,bumpv,indBPMbump,indHCor,indVCor,doplot)</a>
+0002 <span class="comment">% function roff=BumpAtBPM(...</span>
+0003 <span class="comment">%     ring0,...     1) AT lattice structure</span>
+0004 <span class="comment">%     inCOD,...     2) initial 6x1 coordinate guess (unused)</span>
+0005 <span class="comment">%     bumph,...     3) hor. bump value at indBPMbump</span>
+0006 <span class="comment">%     bumpv,...     4) ver. bump value at indBPMbump</span>
+0007 <span class="comment">%     indBPMbump,...5) bump position</span>
+0008 <span class="comment">%     indHCor,....  6) 3x1 correctors to generate bump. last is used for COD=0</span>
+0009 <span class="comment">%     indVCor,....  7) 3x1 correctors to generate bump. last is used for COD=0</span>
+0010 <span class="comment">%     doplot)      %8) output figure</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">% ex:</span>
+0013 <span class="comment">%      % order of correctors does not metter as far as the bpm is within</span>
+0014 <span class="comment">%      the three correctors. last corrector index is used to match the</span>
+0015 <span class="comment">%      postion and angle back to zero</span>
+0016 <span class="comment">%      roff=BumpAtBPM(ring0,0.0,1e-3,50,[4 78 90],[89 34 1]);</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">%      % to match bump at first bpm, use last corrector,</span>
+0019 <span class="comment">%      roff=BumpAtBPM(ring0,1e-3,1e-7,1,indHCor([end,1,2]),indVCor([end,1,2]));</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">%see also: atmatch</span>
+0022 <span class="keyword">if</span> nargin&lt;8
+0023     doplot=false;
+0024 <span class="keyword">end</span>
+0025 
+0026 h1=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indHCor(1),{<span class="string">'PolynomB'</span>,{1,1}});
+0027 h2=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indHCor(2),{<span class="string">'PolynomB'</span>,{1,1}});
+0028 h3=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indHCor(3),{<span class="string">'PolynomB'</span>,{1,1}});
+0029 v1=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indVCor(1),{<span class="string">'PolynomA'</span>,{1,1}});
+0030 v2=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indVCor(2),{<span class="string">'PolynomA'</span>,{1,1}});
+0031 v3=<a href="../../../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(ring0,indVCor(3),{<span class="string">'PolynomA'</span>,{1,1}});
+0032 VariabH=[h1 h2 h3];
+0033 VariabV=[v1 v2 v3];
+0034 
+0035 <span class="comment">% 4D orbit</span>
+0036 LinConstr1h=<a href="../../../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(<span class="keyword">...</span>
+0037     indBPMbump,<span class="keyword">...</span>
+0038     {{<span class="string">'ClosedOrbit'</span>,{1}}},<span class="keyword">...</span>
+0039     bumph,<span class="keyword">...</span>
+0040     bumph,<span class="keyword">...</span>
+0041     1e-6);
+0042 
+0043 LinConstr2h=<a href="../../../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(<span class="keyword">...</span>
+0044     indHCor(end)+1,<span class="keyword">...</span>
+0045     {{<span class="string">'ClosedOrbit'</span>,{1}},{<span class="string">'ClosedOrbit'</span>,{2}}},<span class="keyword">...</span>
+0046     [0,0],<span class="keyword">...</span>
+0047     [0,0],<span class="keyword">...</span>
+0048     [1e-6 1e-6]);
+0049 
+0050 LinConstr1v=<a href="../../../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(<span class="keyword">...</span>
+0051     indBPMbump,<span class="keyword">...</span>
+0052     {{<span class="string">'ClosedOrbit'</span>,{3}}},<span class="keyword">...</span>
+0053     bumpv,<span class="keyword">...</span>
+0054     bumpv,<span class="keyword">...</span>
+0055     1e-6);
+0056 
+0057 LinConstr2v=<a href="../../../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(<span class="keyword">...</span>
+0058     indVCor(end)+1,<span class="keyword">...</span>
+0059     {{<span class="string">'ClosedOrbit'</span>,{3}},{<span class="string">'ClosedOrbit'</span>,{4}}},<span class="keyword">...</span>
+0060     [0,0],<span class="keyword">...</span>
+0061     [0,0],<span class="keyword">...</span>
+0062     [1e-6 1e-6]);
+0063 ConstrH=[LinConstr1h,LinConstr2h];
+0064 ConstrV=[LinConstr1v,LinConstr2v];
+0065 
+0066 
+0067 rbump=ring0;
+0068 rbump=<a href="../../../../../../atmat/atmatch/atmatch.html" class="code" title="function [NewRing,penalty,dmin]=atmatch(Ring,Variables,Constraints,Tolerance,Calls,verbose,varargin)">atmatch</a>(rbump,VariabH,ConstrH,10^-10,50,3,@lsqnonlin);<span class="comment">%,'fminsearch');%</span>
+0069 rbump=<a href="../../../../../../atmat/atmatch/atmatch.html" class="code" title="function [NewRing,penalty,dmin]=atmatch(Ring,Variables,Constraints,Tolerance,Calls,verbose,varargin)">atmatch</a>(rbump,VariabV,ConstrV,10^-10,50,0,@lsqnonlin);<span class="comment">%,'fminsearch');%</span>
+0070 
+0071 <span class="keyword">if</span> doplot
+0072 ib=<a href="../../../../../../atmat/lattice/findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">findcells</a>(ring0,<span class="string">'Class'</span>,<span class="string">'Monitor'</span>);
+0073 
+0074     figure;
+0075     o0=<a href="../../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(ring0,0,ib);
+0076     o=<a href="../../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rbump,0,ib);
+0077     s=<a href="../../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>(ring0,ib);
+0078     plot(s,(o-o0)');
+0079     legend(<span class="string">'x'</span>,<span class="string">'xp'</span>,<span class="string">'y'</span>,<span class="string">'yp'</span>);
+0080     xlabel(<span class="string">'s [m]'</span>);
+0081     ylabel(<span class="string">'4D coordinates'</span>)
+0082     
+0083 <span class="keyword">end</span>
+0084 
+0085 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

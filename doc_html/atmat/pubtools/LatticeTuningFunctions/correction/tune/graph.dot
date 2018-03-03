@@ -1,0 +1,9 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  fittunedelta2fam -> atmatchtunedelta;
+  testfittunedelta2fam -> fittunedelta2fam;
+
+  atmatchtunedelta [URL="atmatchtunedelta.html"];
+  fittunedelta2fam [URL="fittunedelta2fam.html"];
+  testfittunedelta2fam [URL="testfittunedelta2fam.html"];
+}

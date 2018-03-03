@@ -1,0 +1,8 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  intlat -> intelem;
+
+  Contents [URL="Contents.html"];
+  intelem [URL="intelem.html"];
+  intlat [URL="intlat.html"];
+}

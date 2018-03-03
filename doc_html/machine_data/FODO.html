@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of FODO</title>
+  <meta name="keywords" content="FODO">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html machine_data --><h1>FODO
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function ring=FODO() </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atphysics/LongitudinalDynamics/atsetcavity.html" class="code" title="function newring = atsetcavity(ring,rfv,radflag,HarmNumber)">atsetcavity</a>	ATSECAVITY Sets the synchronous phase of the cavity assuming radiation</li><li><a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>	ATDRIFT Creates a drift space element with Class 'Drift'</li><li><a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>	ATQUADRUPOLE Creates a quadrupole element with Class 'Quadrupole'</li><li><a href="../atmat/lattice/element_creation/atrfcavity.html" class="code" title="function elem=atrfcavity(fname,varargin)">atrfcavity</a>	ATRFCAVITY Creates an rfcavity element with Class 'RFCavity'</li><li><a href="../atmat/lattice/element_creation/atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>	ATSBEND Creates a sector bending magnet element with class 'Bend'</li><li><a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>	ATSEXTUPOLE Creates a sextupole element with class 'Sextupole'</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atdemos/tracking/generateTrackData.html" class="code" title="">generateTrackData</a>	give some initial coordinates.  Track through sample lattices.</li><li><a href="../atmat/atdemos/tracking/testTracking.html" class="code" title="function out = testTracking">testTracking</a>	test results of tracking against values previously computed</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function ring=FODO()</a>
+0002 QF=<a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QF'</span>,0.5,1.2,<span class="string">'PassMethod'</span>,<span class="string">'QuadMPoleFringePass'</span>,<span class="string">'Energy'</span>,3e9);
+0003 QD=<a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QD'</span>,0.5,-1.2,<span class="string">'PassMethod'</span>,<span class="string">'QuadMPoleFringePass'</span>,<span class="string">'Energy'</span>,3e9);
+0004 Bend=<a href="../atmat/lattice/element_creation/atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>(<span class="string">'Bend'</span>,1,2*pi/40,<span class="string">'PassMethod'</span>,<span class="string">'BndMPoleSymplectic4Pass'</span>,<span class="string">'Energy'</span>,3e9);
+0005 RFC=<a href="../atmat/lattice/element_creation/atrfcavity.html" class="code" title="function elem=atrfcavity(fname,varargin)">atrfcavity</a>(<span class="string">'RFCav'</span>);
+0006 Dr=<a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'Dr'</span>,0.5);
+0007 HalfDr=<a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'Dr'</span>,0.25);
+0008 <span class="comment">% p1Dr=atdrift('Dr',0.1);</span>
+0009 p2Dr=<a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'Dr'</span>,0.2);
+0010 <span class="comment">% p3Dr=atdrift('Dr',0.3);</span>
+0011 SF=<a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>(<span class="string">'SF'</span>,0.1,1);
+0012 SD=<a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>(<span class="string">'SD'</span>,0.1,-1);
+0013 cell=[{HalfDr};{Bend};{p2Dr};{SF};{p2Dr};{QF};{Dr};{Bend};{p2Dr};{SD};{p2Dr};{QD};{HalfDr}];
+0014 
+0015 ring=repmat(cell,20,1);
+0016 ring=[{RFC};ring];
+0017 ring=<a href="../atmat/atphysics/LongitudinalDynamics/atsetcavity.html" class="code" title="function newring = atsetcavity(ring,rfv,radflag,HarmNumber)">atsetcavity</a>(ring,5e5,0,100);
+0018 
+0019 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

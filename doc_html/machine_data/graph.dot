@@ -1,0 +1,16 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+
+  Contents [URL="Contents.html"];
+  FODO [URL="FODO.html"];
+  australian_synchrotron [URL="australian_synchrotron.html"];
+  dba [URL="dba.html"];
+  esrf [URL="esrf.html"];
+  soleil [URL="soleil.html"];
+  sp3v81f [URL="sp3v81f.html"];
+  spear2 [URL="spear2.html"];
+  spear2rad [URL="spear2rad.html"];
+  spear2resp [URL="spear2resp.html"];
+  spear3 [URL="spear3.html"];
+  thomx [URL="thomx.html"];
+}

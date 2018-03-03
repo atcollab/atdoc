@@ -1,0 +1,27 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atcavityoff -> atdisplay;
+  atcavityon -> atdisplay;
+  athelp -> atroot;
+  atm2html -> atroot;
+  atmexall -> atroot;
+  atmexall -> atupdateContents;
+  atupdateContents -> atroot;
+  atupdateContents -> updateContents;
+  updateContents -> getContents;
+
+  Contents [URL="Contents.html"];
+  at [URL="at.html"];
+  atcavityoff [URL="atcavityoff.html"];
+  atcavityon [URL="atcavityon.html"];
+  atdiag [URL="atdiag.html"];
+  atdisplay [URL="atdisplay.html"];
+  athelp [URL="athelp.html"];
+  atm2html [URL="atm2html.html"];
+  atmexall [URL="atmexall.html"];
+  atpath [URL="atpath.html"];
+  atroot [URL="atroot.html"];
+  atupdateContents [URL="atupdateContents.html"];
+  getContents [URL="getContents.html"];
+  updateContents [URL="updateContents.html"];
+}

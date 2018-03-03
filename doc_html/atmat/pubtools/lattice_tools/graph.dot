@@ -1,0 +1,14 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  setsextall -> setsext;
+  sext_sens_scan -> atreadbeta;
+  sext_sens_scan -> scalesext;
+
+  atreadbeta [URL="atreadbeta.html"];
+  atrotatelattice [URL="atrotatelattice.html"];
+  atsetglobval [URL="atsetglobval.html"];
+  scalesext [URL="scalesext.html"];
+  setsext [URL="setsext.html"];
+  setsextall [URL="setsextall.html"];
+  sext_sens_scan [URL="sext_sens_scan.html"];
+}

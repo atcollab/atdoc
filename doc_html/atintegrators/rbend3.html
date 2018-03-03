@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of rbend3</title>
+  <meta name="keywords" content="rbend3">
+  <meta name="description" content="RBEND3 Creates a rectangular bend with different fringe fields at entrance">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>rbend3
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>RBEND3 Creates a rectangular bend with different fringe fields at entrance</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function Elem=rbend3(fname,L,A,A1,A2,K, gap, FF1, FF2, method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">RBEND3 Creates a rectangular bend with different fringe fields at entrance 
+and exit in old AT versions (Obsolete)
+
+  INPUTS
+  1. fname   - family name
+  2. L       - Length of the arc for an on-energy particle [m]
+  3. A        - Total bending angle [rad]
+  4. A1        - Entrance angle in [rad] (A/2 - for rectangular bends)
+  5. A2        - Exit angle in[rad] (A/2 - for rectangular bends)
+  6. K        - Quadrupole K-value for combined funtion bends
+  7. FF1     - Entrance fringe field
+  8. FF2     - Exit fringe field
+  9. gap     - Dipole fringe field
+  10. method  - Name of the function to use for tracking
+ 
+  OUTPUTS
+  1. Elem - Returns assigned address in the FAMLIST that is uniquely identifies
+        the family
+
+  NOTES
+  1. Deprecated function, use atrbend instead
+  2. Model for BndMPoleSymplectic4Pass (Rad) can be selected with extra
+            fields
+
+       FringeBendEntrance/FringeBendExit = 0,1,2,3
+       Version 0 no dipole fringe fields
+       Version 1 legacy version Brown First Order (K. Brown. A First and Second Order 
+                  Matrix Theory for the Design of Beam Transport Systems and Charged 
+                  Particle Spectrometers. Internal report, SLAC-75, 1982)
+       Version 2 SOLEIL close to second order of Brown (J. Bengtsson and M. Meddahi. 
+                 Modeling of Beam Dynamics and Comparison with Measurements for 
+                 the Advanced Light Source. London, UK, 1994.)
+       Version 3 THOMX (Dipole Fringe Field Effects in the ThomX Ring, J. Zhang and 
+                 A. Loulergue, Proceedings of IPAC2013, Shanghai, China)
+
+       FringeQuadEntrance/FringeQuadExit = 0,1,2
+       Version 0 no quadrupole fringe fields
+       Version 1 Lee-Whiting Formula
+       Version 2 Linear quadrupole fringe field using the 5 integrant a la
+                 Elegant          
+
+  See also <a href="rbend.html" class="code" title="function Elem=rbend(fname,L,A,A1,A2,K,method)">rbend</a>, <a href="rbend2.html" class="code" title="function Elem=rbend2(fname,L,A,A1,A2,K,gap, method)">rbend2</a>, atrbend, atsbend</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>	ATRBEND Creates a rectangular bending magnet element with class 'Bend'</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function Elem=rbend3(fname,L,A,A1,A2,K, gap, FF1, FF2, method)</a>
+0002 <span class="comment">%RBEND3 Creates a rectangular bend with different fringe fields at entrance</span>
+0003 <span class="comment">%and exit in old AT versions (Obsolete)</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">%  INPUTS</span>
+0006 <span class="comment">%  1. fname   - family name</span>
+0007 <span class="comment">%  2. L       - Length of the arc for an on-energy particle [m]</span>
+0008 <span class="comment">%  3. A        - Total bending angle [rad]</span>
+0009 <span class="comment">%  4. A1        - Entrance angle in [rad] (A/2 - for rectangular bends)</span>
+0010 <span class="comment">%  5. A2        - Exit angle in[rad] (A/2 - for rectangular bends)</span>
+0011 <span class="comment">%  6. K        - Quadrupole K-value for combined funtion bends</span>
+0012 <span class="comment">%  7. FF1     - Entrance fringe field</span>
+0013 <span class="comment">%  8. FF2     - Exit fringe field</span>
+0014 <span class="comment">%  9. gap     - Dipole fringe field</span>
+0015 <span class="comment">%  10. method  - Name of the function to use for tracking</span>
+0016 <span class="comment">%</span>
+0017 <span class="comment">%  OUTPUTS</span>
+0018 <span class="comment">%  1. Elem - Returns assigned address in the FAMLIST that is uniquely identifies</span>
+0019 <span class="comment">%        the family</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">%  NOTES</span>
+0022 <span class="comment">%  1. Deprecated function, use atrbend instead</span>
+0023 <span class="comment">%  2. Model for BndMPoleSymplectic4Pass (Rad) can be selected with extra</span>
+0024 <span class="comment">%            fields</span>
+0025 <span class="comment">%</span>
+0026 <span class="comment">%       FringeBendEntrance/FringeBendExit = 0,1,2,3</span>
+0027 <span class="comment">%       Version 0 no dipole fringe fields</span>
+0028 <span class="comment">%       Version 1 legacy version Brown First Order (K. Brown. A First and Second Order</span>
+0029 <span class="comment">%                  Matrix Theory for the Design of Beam Transport Systems and Charged</span>
+0030 <span class="comment">%                  Particle Spectrometers. Internal report, SLAC-75, 1982)</span>
+0031 <span class="comment">%       Version 2 SOLEIL close to second order of Brown (J. Bengtsson and M. Meddahi.</span>
+0032 <span class="comment">%                 Modeling of Beam Dynamics and Comparison with Measurements for</span>
+0033 <span class="comment">%                 the Advanced Light Source. London, UK, 1994.)</span>
+0034 <span class="comment">%       Version 3 THOMX (Dipole Fringe Field Effects in the ThomX Ring, J. Zhang and</span>
+0035 <span class="comment">%                 A. Loulergue, Proceedings of IPAC2013, Shanghai, China)</span>
+0036 <span class="comment">%</span>
+0037 <span class="comment">%       FringeQuadEntrance/FringeQuadExit = 0,1,2</span>
+0038 <span class="comment">%       Version 0 no quadrupole fringe fields</span>
+0039 <span class="comment">%       Version 1 Lee-Whiting Formula</span>
+0040 <span class="comment">%       Version 2 Linear quadrupole fringe field using the 5 integrant a la</span>
+0041 <span class="comment">%                 Elegant</span>
+0042 <span class="comment">%</span>
+0043 <span class="comment">%  See also rbend, rbend2, atrbend, atsbend</span>
+0044 
+0045 <span class="comment">%</span>
+0046 <span class="comment">% Added by Laurent S. Nadolski, SOLEIL, 03/04</span>
+0047 
+0048 ElemData                = <a href="../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>(fname,L,A,K,method);
+0049 ElemData.EntranceAngle  = A1;  <span class="comment">%for backwards compatibility</span>
+0050 ElemData.ExitAngle      = A2;
+0051 ElemData.FullGap           = gap;
+0052 ElemData.FringeInt1        = 0.5*FF1; <span class="comment">% same convention as in Tracy II</span>
+0053 ElemData.FringeInt2        = 0.5*FF2; <span class="comment">% same convention as in Tracy II</span>
+0054 
+0055 ElemData.FringeBendEntrance    = 2;
+0056 ElemData.FringeBendExit     = 2;
+0057 ElemData.FringeQuadEntrance = 0;
+0058 ElemData.FringeQuadExit     = 0; 
+0059 
+0060 <span class="keyword">global</span> FAMLIST
+0061 Elem = length(FAMLIST)+1; <span class="comment">% number of declare families including this one</span>
+0062 FAMLIST{Elem}.FamName  = fname;
+0063 FAMLIST{Elem}.NumKids  = 0;
+0064 FAMLIST{Elem}.KidsList = [];
+0065 FAMLIST{Elem}.ElemData = ElemData;</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

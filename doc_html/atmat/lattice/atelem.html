@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of atelem</title>
+  <meta name="keywords" content="atelem">
+  <meta name="description" content="ATELEM makes a new AT element structure from another element,">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html atmat --><!-- menu.html lattice --><h1>atelem
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>ATELEM makes a new AT element structure from another element,</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function elemstruct = atelem(elem,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment">ATELEM makes a new AT element structure from another element,
+ standard AT type, or a template on file. Existing fields are overridden
+ with new values. New fields are added and initialized.
+
+ NEWELEM = ATELEM(ELEM,'Field1','Value1','Field2', 'Value2', ...)
+  ELEM can be 1) another element structure
+              2) One of the standard AT types
+                 'drift'
+                 'quadrupole'
+                 'sextupole'
+                 'bend','rbend','sbend'
+                 'marker'
+                 'corrector'
+                  ...</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../atmat/lattice/element_creation/atcorrector.html" class="code" title="function elem=atcorrector(fname,varargin)">atcorrector</a>	ATCORRECTOR Creates a drift space element with class 'Corrector'</li><li><a href="../../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>	ATDRIFT Creates a drift space element with Class 'Drift'</li><li><a href="../../atmat/lattice/element_creation/atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>	ATMARKER Creates a marker space element</li><li><a href="../../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>	ATQUADRUPOLE Creates a quadrupole element with Class 'Quadrupole'</li><li><a href="../../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>	ATRBEND Creates a rectangular bending magnet element with class 'Bend'</li><li><a href="../../atmat/lattice/element_creation/atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>	ATSBEND Creates a sector bending magnet element with class 'Bend'</li><li><a href="../../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>	ATSEXTUPOLE Creates a sextupole element with class 'Sextupole'</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="insertindrift.html" class="code" title="function ELEMSEQ = insertindrift(DRIFT0, ELEM1, POS1, varargin)">insertindrift</a>	INSERTINDRIFT inserts one or more elements into a drift element</li><li><a href="../../atmat/pubtools/lattice_tools/atreadbeta.html" class="code" title="function [superp,periods]=atreadbeta(filename,cavipass,bendpass,quadpass)">atreadbeta</a>	ATREADBETA				reads a BETA file</li><li><a href="../../machine_data/spear3.html" class="code" title="function varargout = spear3(varargin)">spear3</a>	SPEAR3 Load the SPEAR3 lattice structure</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function elemstruct = atelem(elem,varargin)</a>
+0002 <span class="comment">%ATELEM makes a new AT element structure from another element,</span>
+0003 <span class="comment">% standard AT type, or a template on file. Existing fields are overridden</span>
+0004 <span class="comment">% with new values. New fields are added and initialized.</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">% NEWELEM = ATELEM(ELEM,'Field1','Value1','Field2', 'Value2', ...)</span>
+0007 <span class="comment">%  ELEM can be 1) another element structure</span>
+0008 <span class="comment">%              2) One of the standard AT types</span>
+0009 <span class="comment">%                 'drift'</span>
+0010 <span class="comment">%                 'quadrupole'</span>
+0011 <span class="comment">%                 'sextupole'</span>
+0012 <span class="comment">%                 'bend','rbend','sbend'</span>
+0013 <span class="comment">%                 'marker'</span>
+0014 <span class="comment">%                 'corrector'</span>
+0015 <span class="comment">%                  ...</span>
+0016 
+0017 <span class="keyword">if</span> isstruct(elem)
+0018     elemstruct = elem;
+0019     <span class="keyword">for</span> k=1:2:length(varargin)
+0020         NextField = (varargin{k});
+0021         <span class="keyword">if</span> ischar(NextField)
+0022             elemstruct.(NextField) = varargin{k+1};
+0023         <span class="keyword">else</span>
+0024             error(<span class="string">'Field and value input arguments must come in pairs'</span>);
+0025         <span class="keyword">end</span>
+0026     <span class="keyword">end</span>
+0027 <span class="keyword">elseif</span> ischar(elem)
+0028     <span class="keyword">switch</span> lower(elem(1:4)) <span class="comment">% Generic</span>
+0029         <span class="keyword">case</span> <span class="string">'drif'</span>
+0030             elemstruct=<a href="../../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">''</span>,varargin{:});
+0031         <span class="keyword">case</span> <span class="string">'quad'</span>
+0032             elemstruct=<a href="../../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">''</span>,varargin{:});
+0033         <span class="keyword">case</span> <span class="string">'sext'</span>
+0034             elemstruct=<a href="../../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>(<span class="string">''</span>,varargin{:});
+0035         <span class="keyword">case</span> <span class="string">'mark'</span>
+0036             elemstruct=<a href="../../atmat/lattice/element_creation/atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>(<span class="string">''</span>,varargin{:});
+0037         <span class="keyword">case</span> {<span class="string">'bend'</span>,<span class="string">'sben'</span>}
+0038             elemstruct=<a href="../../atmat/lattice/element_creation/atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>(<span class="string">''</span>,varargin{:});
+0039         <span class="keyword">case</span> <span class="string">'rben'</span>
+0040             elemstruct=<a href="../../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>(<span class="string">''</span>,varargin{:});
+0041         <span class="keyword">case</span> <span class="string">'corr'</span>
+0042             elemstruct=<a href="../../atmat/lattice/element_creation/atcorrector.html" class="code" title="function elem=atcorrector(fname,varargin)">atcorrector</a>(<span class="string">''</span>,varargin{:});
+0043         <span class="keyword">otherwise</span> <span class="comment">% function that returns an at element structure</span>
+0044             error(<span class="string">'AT:atelem:UnknownType'</span>,[<span class="string">'Unknown element type: '</span> elem]);
+0045     <span class="keyword">end</span>
+0046 <span class="keyword">else</span>
+0047     error(<span class="string">'First argument must be an AT element or a string keyword'</span>)
+0048 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

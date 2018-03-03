@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of findcells</title>
+  <meta name="keywords" content="findcells">
+  <meta name="description" content="FINDCELLS performs a search on MATLAB cell arrays of structures">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html atmat --><!-- menu.html lattice --><h1>findcells
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>FINDCELLS performs a search on MATLAB cell arrays of structures</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function index = findcells(CELLARRAY, field, varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment">FINDCELLS performs a search on MATLAB cell arrays of structures
+   
+ INDEX = FINDCELLS(CELLARRAY, 'field') 
+   returns indexes of elements that have a field named 'field'   
+
+ INDEX = FINDCELLS(CELLARRAY, 'field', VALUE) 
+   returns indexes of elements whose field 'field'
+   is equal to VALUE1, VALUE2, ... or VALUEN. Where VALUE can either be
+   character strings or a number. If its a character string REGULAR
+   expressions can be used.
+
+ Example:
+   findcells(THERING,'Length',0, 0.2);  % will match elements of
+                                          lengths 0 and 0.2
+   findcells(THERING,'FamName','SFA','SDA');
+
+ See also <a href="atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">ATGETCELLS</a>, <a href="getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">GETCELLSTRUCT</a>, <a href="setcellstruct.html" class="code" title="function CELLARRAY = setcellstruct(CELLARRAY,field,index,values,varargin)">SETCELLSTRUCT</a>, REGEXPI</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>	ATGETCELLS performs a search on MATLAB cell arrays of structures</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../atmat/atdemos/IDModeling/add_ID.html" class="code" title="function [ ringID ] = add_ID( ring, IDelem )">add_ID</a>	add_ID adds IDelem at the beginning and subtracts the length from</li><li><a href="../../atmat/atdemos/atmatchExamples/ExampleATMATCH/VaryQuadFam.html" class="code" title="function R=VaryQuadFam(R,K1val,fam)">VaryQuadFam</a>	</li><li><a href="../../atmat/atdemos/atmatchExamples/ExampleATMATCH/runtotest_atmatch.html" class="code" title="">runtotest_atmatch</a>	macro match dba test lattice beta functions and dispersion using</li><li><a href="../../atmat/atdemos/atmatchExamples/bump/run_BumpFit.html" class="code" title="">run_BumpFit</a>	fit a bump using correctors</li><li><a href="../../atmat/atdemos/gui/demoknob.html" class="code" title="">demoknob</a>	DEMOKNOB illustrates the use of MATLAB GUI controls with AT</li><li><a href="../../atmat/atdemos/opticsAndBeamSizes/linoptdemo.html" class="code" title="">linoptdemo</a>	LINOPTDEMO script illustrates the use of LINOPT</li><li><a href="../../atmat/atdemos/opticsAndBeamSizes/ohmienvelopedemo.html" class="code" title="">ohmienvelopedemo</a>	OHMIENVELOPEDEMO illustrates the use of OHMIENVELOPE function</li><li><a href="../../atmat/atdemos/responseMatrix/findrespmdemo.html" class="code" title="">findrespmdemo</a>	FINDRESPMDEMO response matrix demo</li><li><a href="../../atmat/atdemos/trackWithImpedance/makeFastRingWithBBR.html" class="code" title="">makeFastRingWithBBR</a>	SI units</li><li><a href="../../atmat/atgui/intelem.html" class="code" title="function h0 = intelem(varargin)">intelem</a>	INTELEM Interactive element editor.</li><li><a href="../../atmat/atphysics/LongitudinalDynamics/atsetcavity.html" class="code" title="function newring = atsetcavity(ring,rfv,radflag,HarmNumber)">atsetcavity</a>	ATSECAVITY Sets the synchronous phase of the cavity assuming radiation</li><li><a href="../../atmat/atphysics/LongitudinalDynamics/cavityoff.html" class="code" title="">cavityoff</a>	CAVITYOFF turns cavities OFF</li><li><a href="../../atmat/atphysics/LongitudinalDynamics/cavityon.html" class="code" title="function varargout = cavityon(varargin)">cavityon</a>	CAVITYON turns Cavities ON</li><li><a href="../../atmat/atphysics/NonLinearDynamics/computeRDT.html" class="code" title="function RDT=computeRDT(ring, index, varargin)">computeRDT</a>	COMPUTERDT Computes Hamiltonian resonance driving terms (RDTs)</li><li><a href="../../atmat/atphysics/ParameterSummaryFunctions/atsummary.html" class="code" title="function varargout = atsummary(varargin)">atsummary</a>	ATSUMMARY - Prints out the paramters of the current AT lattice</li><li><a href="../../atmat/atphysics/ParameterSummaryFunctions/ringpara.html" class="code" title="function rp = ringpara(THERING,varargin)">ringpara</a>	RINGPARA Calculates various ring parameters</li><li><a href="../../atmat/atphysics/Radiation/radiationoff.html" class="code" title="">radiationoff</a>	RADIATIONOFF turns classical radiation  OFF</li><li><a href="../../atmat/atphysics/Radiation/radiationon.html" class="code" title="">radiationon</a>	RADIATIONON turns classical radiation  ON</li><li><a href="../../atmat/atphysics/TouschekPiwinski/TouschekPiwinskiLifeTime.html" class="code" title="function [Tl,contributionsTL]=TouschekPiwinskiLifeTime(r,dpp,Ib,varargin)">TouschekPiwinskiLifeTime</a>	function [Tl,contributionsTL]=TouschekPiwinskiLifeTime(r,dpp,Ib)</li><li><a href="../../atmat/atphysics/TouschekPiwinski/simpletestToucheckLT.html" class="code" title="">simpletestToucheckLT</a>	simple example of use of toucheck lifetime formula:</li><li><a href="../../atmat/atphysics/TuneAndChromaticity/fitchrom2.html" class="code" title="function varargout =  fitchrom2(newchrom, sextfam1, sextfam2, varargin);">fitchrom2</a>	FITCHROM2 fits chromaticity  of THERING using 2 sextupole families</li><li><a href="../../atmat/atphysics/TuneAndChromaticity/fittune2.html" class="code" title="function [dK, Jinv] =  fittune2(newtunes, quadfam1, quadfam2, varargin);">fittune2</a>	FITTUNE2 fits linear tunes of THERING using 2 quadrupole families</li><li><a href="../../atmat/atplot/plotfunctions/plCorrectorStrength.html" class="code" title="function plotdata=plCorrectorStrength(lindata,ring,dpp,varargin) %#ok<INUSD>">plCorrectorStrength</a>	DEFAULTPLOT    Default plotting function for ATPLOT</li><li><a href="../../atmat/atplot/plotfunctions/plEmitContrib.html" class="code" title="function plotdata=plEmitContrib(lindata,ring,dpp,varargin)">plEmitContrib</a>	plots H/rho³ at every dipole</li><li><a href="../../atmat/atplot/plotfunctions/plPolynomBComp.html" class="code" title="function plotdata=plPolynomBComp(lindata,ring,~,varargin)">plPolynomBComp</a>	PLPOLYNOMBCOMP PlotBn coefficient with normalization</li><li><a href="../../atmat/atplot/plotfunctions/plPolynomBSxtOct.html" class="code" title="function plotdata=plPolynomBSxtOct(lindata,ring,~,varargin)">plPolynomBSxtOct</a>	PLPOLYNOMBSXTOCT Plots Bn for sextupole and octupole magnets</li><li><a href="../../atmat/atplot/plotfunctions/plotB0curlyh.html" class="code" title="function plotdata=plotB0curlyh(lindata,ring,dpp,varargin)">plotB0curlyh</a>	</li><li><a href="../../atmat/atplot/plotfunctions/plotRDT.html" class="code" title="function plotdata = plotRDT(lindata,ring,dpp, varargin)">plotRDT</a>	</li><li><a href="../../atmat/lattice/Converters/AT2G4BL/ATtoG4BL.html" class="code" title="">ATtoG4BL</a>	function [outtext]=ATtoG4BL(P_0,particle,folder)</li><li><a href="../../atmat/lattice/Paramgroup/atparamgroup.html" class="code" title="">atparamgroup</a>	PARAMETER GROUP in AT is a general way</li><li><a href="../../atmat/lattice/Paramgroup/mkparamgroup.html" class="code" title="function P = mkparamgroup(LATTICE,varargin)">mkparamgroup</a>	MKPARAMGROUP simplifies creation of AT parameter groups</li><li><a href="atmakefielderrstruct.html" class="code" title="function ferrs = atmakefielderrstruct(ring,class,nval,Bval,Aval,radius,rnd)">atmakefielderrstruct</a>	MAKERNDFIELDERRS will create a field error data structure</li><li><a href="atsetRFCavity.html" class="code" title="function newring = atsetRFCavity(ring, rfv, radflag, HarmNumber, DeltaFreq )">atsetRFCavity</a>	ATSETRFCAVITY - sets the RF Cavity with the passmethod RFCavityPass.</li><li><a href="combinebypassmethod.html" class="code" title="function [NEWLATTICE, SHIFTEDKEEPINDEX, SHIFTEDREFINDEX] = combinebypassmethod(LATTICE,METHOD,KEEPINDEX,REFINDEX)">combinebypassmethod</a>	COMBINEBYPASSMETHOD combines adjacent elements that have the same specified pass method</li><li><a href="combinelinear45.html" class="code" title="function [NEWLATTICE, SHIFTEDKEEPINDEX, SHIFTEDREFINDEX] = combinelinear45(LATTICE,KEEPINDEX,REFINDEX)">combinelinear45</a>	COMBINELINEAR45 combines adjacent  elements that use 4-by-5 PassMethods</li><li><a href="findtags.html" class="code" title="function index = findtags(CELLARRAY, MATCHSTR)">findtags</a>	FINDTAGS looks for string matches in 'Tag' field of AT lattice elements</li><li><a href="settags.html" class="code" title="function LATTICE = settags(LATTICE,INDEX,tag,varargin)">settags</a>	SETTAGS sets the 'Tag' field in AT lattice elements</li><li><a href="../../atmat/pubtools/Aperture/plotAperture.html" class="code" title="function plotdata=plotAperture(~,ring,~,varargin)">plotAperture</a>	PLOTAPERTURE Plots x and y aperture.</li><li><a href="../../atmat/pubtools/Aperture/plotERAperture.html" class="code" title="function plotdata=plotERAperture(~,ring,~,varargin)">plotERAperture</a>	PLOTERAPERTURE Plots RApertures EApertures aperture.</li><li><a href="../../atmat/pubtools/Aperture/plotRAperture.html" class="code" title="function plotdata=plotRAperture(~,ring,~,varargin)">plotRAperture</a>	PLOTRAPERTURE Plots Rectangular aperture</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/correction/RFcavity/atsetRFCavityErr.html" class="code" title="function [newring, inCOD]= atsetRFCavityErr( ring, rfv, radflag, HarmNumber, inCOD, DeltaFreq )">atsetRFCavityErr</a>	ATSETRFCAVITY sets the RF Cavity with the passmethod RFCavityPass.</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/correction/orbitbumps/matching/BumpAtBPM4D.html" class="code" title="function [rbump,hs,vs]=BumpAtBPM4D(ring0,inCOD,bumph,bumpv,indBPMbump,indHCor,indVCor,doplot)">BumpAtBPM4D</a>	function roff=BumpAtBPM(...</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/correction/tune/fittunedelta2fam.html" class="code" title="function rerr=fittunedelta2fam(rerr,r0)">fittunedelta2fam</a>	rerr=fittunedelta2fam(rerr,r0)</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/LargeErrList/testerr.html" class="code" title="">testerr</a>	</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/LargeWaveList/testcor.html" class="code" title="">testcor</a>	</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/SetLargeErrorList.html" class="code" title="function rerr=SetLargeErrorList(r0,seed,Nsig,factorerr,errnumber)">SetLargeErrorList</a>	SETLARGEERRORLIST Sets given error list</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/atset_s_shift.html" class="code" title="function rerr=atset_s_shift(r,pos,DS)">atset_s_shift</a>	ATSET_S_SHIFT Implements DS longitudinal position drift</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errordisplayfunctions/GetMisalignments.html" class="code" title="function [X,Y,T]=GetMisalignments(THERING,varargin)">GetMisalignments</a>	this function retrives 3 vectors, for x and y misalignments and tilts</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/GetExistingErrors.html" class="code" title="function [X,Y,S,T,R,P,bpmerrors]=GetExistingErrors(THERING,varargin)">GetExistingErrors</a>	this function retrives 6 vectors, for x, y,s misalignments,</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/UniformGirderErrors.html" class="code" title="function [ring,mag_groups]=UniformGirderErrors(ring,mag_groups)">UniformGirderErrors</a>	function ring=UniformGirderErrors(ring)</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/getMagGroupsFromMagNum.html" class="code" title="function maggroups=getMagGroupsFromMagNum(r)">getMagGroupsFromMagNum</a>	GETMAGGROUPSFROMMAGNUM - Gets magnet from a Magnet group</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/setBpmOffsetOnDipoleRef.html" class="code" title="function rerr=setBpmOffsetOnDipoleRef(rerr)">setBpmOffsetOnDipoleRef</a>	% set bpm on curve defined by dipole misalignments</li><li><a href="../../atmat/pubtools/calc_Touschek.html" class="code" title="function tauT = calc_Touschek(THERING,Ib,varargin)">calc_Touschek</a>	tauT = calc_Touschek(THERING, Ib)</li><li><a href="../../atmat/pubtools/calc_dppAperture.html" class="code" title="function [deltap,deltam, indextab] = calc_dppAperture(THERING, varargin)">calc_dppAperture</a>	calculate the momentum aperture at each location of the ring due to</li><li><a href="../../atmat/pubtools/lattice_tools/scalesext.html" class="code" title="function newring=scalesext(ring,sextfam,scale)">scalesext</a>	newring=scalesext(ring,sextfam,scale)</li><li><a href="../../atmat/pubtools/lattice_tools/setsext.html" class="code" title="function newring=setsext(ring,sextfam,val)">setsext</a>	newring=setsext(ring,fam,val);</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function index = findcells(CELLARRAY, field, varargin)</a>
+0002 <span class="comment">%FINDCELLS performs a search on MATLAB cell arrays of structures</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% INDEX = FINDCELLS(CELLARRAY, 'field')</span>
+0005 <span class="comment">%   returns indexes of elements that have a field named 'field'</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% INDEX = FINDCELLS(CELLARRAY, 'field', VALUE)</span>
+0008 <span class="comment">%   returns indexes of elements whose field 'field'</span>
+0009 <span class="comment">%   is equal to VALUE1, VALUE2, ... or VALUEN. Where VALUE can either be</span>
+0010 <span class="comment">%   character strings or a number. If its a character string REGULAR</span>
+0011 <span class="comment">%   expressions can be used.</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">% Example:</span>
+0014 <span class="comment">%   findcells(THERING,'Length',0, 0.2);  % will match elements of</span>
+0015 <span class="comment">%                                          lengths 0 and 0.2</span>
+0016 <span class="comment">%   findcells(THERING,'FamName','SFA','SDA');</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">% See also ATGETCELLS, GETCELLSTRUCT, SETCELLSTRUCT, REGEXPI</span>
+0019 
+0020 index=reshape(find(<a href="atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>(CELLARRAY,field,varargin{:})),1,[]);</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

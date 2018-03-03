@@ -1,0 +1,18 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  BunchLength -> nus;
+  atBunchLength -> BunchLength;
+  atRFacc -> RFacc;
+  atRFacc -> mcf;
+
+  BunchLength [URL="BunchLength.html"];
+  RFacc [URL="RFacc.html"];
+  atBunchLength [URL="atBunchLength.html"];
+  atRFacc [URL="atRFacc.html"];
+  atsetcavity [URL="atsetcavity.html"];
+  cavityoff [URL="cavityoff.html"];
+  cavityon [URL="cavityon.html"];
+  mcf [URL="mcf.html"];
+  nus [URL="nus.html"];
+  phis [URL="phis.html"];
+}

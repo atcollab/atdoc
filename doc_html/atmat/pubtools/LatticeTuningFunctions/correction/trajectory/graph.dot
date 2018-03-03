@@ -1,0 +1,12 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atfirstturntrajectory -> MatchLast2CorForFirstBPM;
+  atfirstturntrajectory -> Scan2x2DinCOD;
+  testtrajectorycorrection -> atfirstturntrajectory;
+
+  MatchLast2CorForFirstBPM [URL="MatchLast2CorForFirstBPM.html"];
+  Scan2x2DinCOD [URL="Scan2x2DinCOD.html"];
+  atfirstturntrajectory [URL="atfirstturntrajectory.html"];
+  testorbitaftertrajectory [URL="testorbitaftertrajectory.html"];
+  testtrajectorycorrection [URL="testtrajectorycorrection.html"];
+}

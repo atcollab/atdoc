@@ -1,0 +1,10 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atparamgroup -> setparamgroup;
+
+  atparamgroup [URL="atparamgroup.html"];
+  mkparamgroup [URL="mkparamgroup.html"];
+  restoreparamgroup [URL="restoreparamgroup.html"];
+  saveparamgroup [URL="saveparamgroup.html"];
+  setparamgroup [URL="setparamgroup.html"];
+}

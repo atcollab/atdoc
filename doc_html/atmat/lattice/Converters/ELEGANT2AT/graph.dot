@@ -1,0 +1,9 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  ele2at_run_me -> elegant2at;
+  elegant2at -> ParseAtributesELEGANT_2_AT;
+
+  ParseAtributesELEGANT_2_AT [URL="ParseAtributesELEGANT_2_AT.html"];
+  ele2at_run_me [URL="ele2at_run_me.html"];
+  elegant2at [URL="elegant2at.html"];
+}

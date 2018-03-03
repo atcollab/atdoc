@@ -1,0 +1,9 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  testorbitbump -> BumpAtBPM;
+  testorbitbump -> BumpAtBPM4D;
+
+  BumpAtBPM [URL="BumpAtBPM.html"];
+  BumpAtBPM4D [URL="BumpAtBPM4D.html"];
+  testorbitbump [URL="testorbitbump.html"];
+}

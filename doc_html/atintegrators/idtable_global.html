@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of idtable_global</title>
+  <meta name="keywords" content="idtable_global">
+  <meta name="description" content="IDTABLE Creates a RADIA-Map based element">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>idtable_global
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>IDTABLE Creates a RADIA-Map based element</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [z, L] = idtable_global(fname, Nslice, filename, Energy, method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">IDTABLE Creates a RADIA-Map based element
+ idtable(fname, Nslice, filename, Energy, method)
+
+ FamName    family name
+ Nslice    number of slices (1 means the wiggler is represented by a
+           single kick in the center of the device).
+ filename    name of file with wiggler tracking tables.
+ Energy    Energy of the machine, needed for scaling
+ method    name of the function to use for tracking. Use 'WigTablePass'
+
+ The tracking table is described in
+ P. Elleaume, &quot;A new approach to the electron beam dynamics in undulators
+ and wigglers&quot;, EPAC92.
+
+ returns assigned address in the FAMLIST that is uniquely identifies
+ the family</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="mhdrload_bis.html" class="code" title="function [header_mat, data_mat] = mhdrload_bis(file)">mhdrload_bis</a>	MHDRLOAD_BIS Loads data from an ASCII file containing multiple text</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [z, L] = idtable_global(fname, Nslice, filename, Energy, method)</a>
+0002 <span class="comment">%IDTABLE Creates a RADIA-Map based element</span>
+0003 <span class="comment">% idtable(fname, Nslice, filename, Energy, method)</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% FamName    family name</span>
+0006 <span class="comment">% Nslice    number of slices (1 means the wiggler is represented by a</span>
+0007 <span class="comment">%           single kick in the center of the device).</span>
+0008 <span class="comment">% filename    name of file with wiggler tracking tables.</span>
+0009 <span class="comment">% Energy    Energy of the machine, needed for scaling</span>
+0010 <span class="comment">% method    name of the function to use for tracking. Use 'WigTablePass'</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">% The tracking table is described in</span>
+0013 <span class="comment">% P. Elleaume, &quot;A new approach to the electron beam dynamics in undulators</span>
+0014 <span class="comment">% and wigglers&quot;, EPAC92.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% returns assigned address in the FAMLIST that is uniquely identifies</span>
+0017 <span class="comment">% the family</span>
+0018 
+0019 <span class="comment">%---------------------------------------------------------------------------</span>
+0020 <span class="comment">% Modification Log:</span>
+0021 <span class="comment">% -----------------</span>
+0022 <span class="comment">% 13-09-2007:  Created by M. Munoz, based in J. Safranek code.</span>
+0023 <span class="comment">% 17-11-2008:  Modificated by Z. Marti</span>
+0024 <span class="comment">%---------------------------------------------------------------------------</span>
+0025 
+0026 ElemData.FamName        = fname;  <span class="comment">% add check for identical family names</span>
+0027 
+0028 ElemData.Nslice          = Nslice;
+0029 ElemData.MaxOrder        = 3;
+0030 ElemData.NumIntSteps     = 10;
+0031 ElemData.R1             = diag(ones(6,1));
+0032 ElemData.R2             = diag(ones(6,1));
+0033 ElemData.T1             = zeros(1,6);
+0034 ElemData.T2             = zeros(1,6);
+0035 ElemData.PassMethod     = method;
+0036 
+0037 
+0038 factor=1/((Energy/0.299792458)^2);
+0039 factor1=-1/((Energy/0.299792458));
+0040     
+0041 <span class="comment">% Read the file</span>
+0042 D=importdata(filename);
+0043 <span class="keyword">if</span> isfield(D,<span class="string">'Kick1x'</span>)
+0044     x=(D.x)';
+0045     y=(D.y)';
+0046     xkick1=factor1*D.Kick1x;
+0047     ykick1=factor1*D.Kick1y;
+0048     xkick=factor*D.Kick2x;
+0049     ykick=factor*D.Kick2y;
+0050     L=D.Len;
+0051     nn=size(xkick1);
+0052     Ny=nn(1);
+0053     Nx=nn(2);
+0054 <span class="comment">%     ElemData.MultiKick= 1;</span>
+0055 <span class="comment">%     ElemData.nkicks= nn(3);</span>
+0056 <span class="keyword">else</span>
+0057     [~, data_mat]=<a href="mhdrload_bis.html" class="code" title="function [header_mat, data_mat] = mhdrload_bis(file)">mhdrload_bis</a>(filename);
+0058     L=data_mat(:,:,1);
+0059     Nx=data_mat(:,:,2);
+0060     Ny=data_mat(:,:,3);
+0061     A = importdata(filename,<span class="string">' '</span>,10);
+0062     x=A.data;
+0063     x=x(1,1:Nx);
+0064     A = importdata(filename,<span class="string">' '</span>,11);
+0065     txkick=A.data;
+0066     y=txkick(1:Ny,1);
+0067     txkick=txkick(:,2:end);
+0068     A=importdata(filename,<span class="string">' '</span>,11+Ny+3);
+0069     tykick=A.data;
+0070     tykick=tykick(:,2:end);
+0071     A=importdata(filename,<span class="string">' '</span>,11+2*Ny+2*3);
+0072     <span class="keyword">if</span> isstruct(A)
+0073         txkick1=A.data;
+0074         txkick1=txkick1(:,2:end);
+0075     <span class="keyword">else</span>
+0076         txkick1=0*txkick;
+0077     <span class="keyword">end</span>
+0078     A=importdata(filename,<span class="string">' '</span>,11+3*Ny+3*3);
+0079     <span class="keyword">if</span> isstruct(A)
+0080         tykick1=A.data;
+0081         tykick1=tykick1(:,2:end);
+0082     <span class="keyword">else</span>
+0083         tykick1=0*tykick;
+0084     <span class="keyword">end</span>
+0085 
+0086     xkick=factor*txkick;
+0087     ykick=factor*tykick;
+0088     
+0089     xkick1=factor1*txkick1;
+0090     ykick1=factor1*tykick1;
+0091     
+0092     <span class="comment">% Sort arrays in ascending order (needed for &quot;IdTablePass.c&quot;)</span>
+0093     [y, indy]=sort(y);
+0094     [x, indx]=sort(x);
+0095     x=x';
+0096     xkick=xkick(indy,indx);
+0097     ykick=ykick(indy,indx);
+0098     
+0099 <span class="keyword">end</span>
+0100 
+0101 ElemData.Length= L;
+0102 ElemData.NumX = Ny;
+0103 ElemData.NumY = Nx;
+0104 ElemData.xtable = x;
+0105 ElemData.ytable = y;
+0106 ElemData.xkick = xkick;
+0107 ElemData.ykick = ykick;
+0108 ElemData.xkick1 = xkick1;
+0109 ElemData.ykick1 = ykick1;
+0110 ElemData.PolynomA= [0 0 0 0];     
+0111 ElemData.PolynomB= [0 0 0 0];
+0112 
+0113 <span class="comment">% figure;</span>
+0114 <span class="comment">% h1=subplot(1,2,1);</span>
+0115 <span class="comment">% pcolor(x,y,1000*xkick);</span>
+0116 <span class="comment">% xlabel('x (m)');</span>
+0117 <span class="comment">% ylabel('y (m)');</span>
+0118 <span class="comment">% shading interp;</span>
+0119 <span class="comment">% title ('X Kick Map (mrad)');</span>
+0120 <span class="comment">% caxis([min([min(min(1000*xkick)) min(min(1000*ykick))]) max([max(max(1000*xkick)) max(max(1000*ykick))])]);</span>
+0121 <span class="comment">% h2=subplot(1,2,2);</span>
+0122 <span class="comment">% pcolor(x,y,1000*ykick);</span>
+0123 <span class="comment">% xlabel('x (m)');</span>
+0124 <span class="comment">% ylabel('y (m)');</span>
+0125 <span class="comment">% shading interp;</span>
+0126 <span class="comment">% title ('Y Kick Map (mrad)');</span>
+0127 <span class="comment">% caxis([min([min(min(1000*xkick)) min(min(1000*ykick))]) max([max(max(1000*xkick)) max(max(1000*ykick))])]);</span>
+0128 <span class="comment">% hp=colorbar('SouthOutside');</span>
+0129 <span class="comment">% p1 = get(h1,'position'); p2 = get(h2,'position'); p0 = get(hp,'position');</span>
+0130 <span class="comment">% set(h1,'position',[p1(1) p2(2) p1(3) p2(4)]);</span>
+0131 <span class="comment">% set(hp,'position',[p1(1) p0(2)-0.06 p2(1)-p1(1)+p2(3) p0(4)/1.6]);</span>
+0132 <span class="comment">% set(h2,'position',p2);</span>
+0133 <span class="comment">% SetPlotSize(20,10);</span>
+0134 <span class="comment">% print('-djpeg ','KickMap');</span>
+0135 
+0136 <span class="keyword">global</span> FAMLIST
+0137 z = length(FAMLIST)+1; <span class="comment">% number of declare families including this one</span>
+0138 FAMLIST{z}.FamName = fname;
+0139 FAMLIST{z}.NumKids = 0;
+0140 FAMLIST{z}.KidsList= [];
+0141 FAMLIST{z}.ElemData= ElemData;</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

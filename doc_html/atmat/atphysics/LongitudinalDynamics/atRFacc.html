@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of atRFacc</title>
+  <meta name="keywords" content="atRFacc">
+  <meta name="description" content="ATRFACC Computes RF acceptance of the ring">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html atphysics --><!-- menu.html LongitudinalDynamics --><h1>atRFacc
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>ATRFACC Computes RF acceptance of the ring</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>function delta_max_rf = atRFacc(ring) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">ATRFACC Computes RF acceptance of the ring
+ delta_max_rf = atRFacc(ring)
+   The functions computes the RF acceptance of the ring
+   ring is tha at lattice without radiation
+   delta_max_rf is the RF acceptance
+   
+  See also <a href="RFacc.html" class="code" title="function delta_max_rf = RFacc(Vrf,U0,E0,h,alpha)">RFacc</a></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="RFacc.html" class="code" title="function delta_max_rf = RFacc(Vrf,U0,E0,h,alpha)">RFacc</a>	RFACC Computes the RF acceptance with linear formula</li><li><a href="mcf.html" class="code" title="function a = mcf(RING,dp0)">mcf</a>	MCF momentum compaction factor</li><li><a href="../../../atmat/atphysics/Radiation/atenergy.html" class="code" title="function [energy,nbper,voltage,harmnumber,U0]=atenergy(ring)">atenergy</a>	ATENERGY Gets the lattice energy</li><li><a href="../../../atmat/atphysics/Radiation/atgetU0.html" class="code" title="function U0 = atgetU0(ring)">atgetU0</a>	ATGETU0 Computes Energy loss per turn in eV .</li><li><a href="../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>	ATGETCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>	ATGETFIELDVALUES retrieves the field values AT cell array of elements</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function delta_max_rf = atRFacc(ring)</a>
+0002 <span class="comment">%ATRFACC Computes RF acceptance of the ring</span>
+0003 <span class="comment">% delta_max_rf = atRFacc(ring)</span>
+0004 <span class="comment">%   The functions computes the RF acceptance of the ring</span>
+0005 <span class="comment">%   ring is tha at lattice without radiation</span>
+0006 <span class="comment">%   delta_max_rf is the RF acceptance</span>
+0007 <span class="comment">%</span>
+0008 <span class="comment">%  See also RFacc</span>
+0009 
+0010 U0=<a href="../../../atmat/atphysics/Radiation/atgetU0.html" class="code" title="function U0 = atgetU0(ring)">atgetU0</a>(ring);
+0011 E0=<a href="../../../atmat/atphysics/Radiation/atenergy.html" class="code" title="function [energy,nbper,voltage,harmnumber,U0]=atenergy(ring)">atenergy</a>(ring);
+0012 alpha=<a href="mcf.html" class="code" title="function a = mcf(RING,dp0)">mcf</a>(ring,0);
+0013 maskcav=<a href="../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>(ring,<span class="string">'Class'</span>,<span class="string">'RFCavity'</span>);
+0014 Voltage=<a href="../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>(ring,maskcav,<span class="string">'Voltage'</span>);
+0015 hnum=<a href="../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>(ring,maskcav,<span class="string">'HarmNumber'</span>);
+0016 h=hnum(1);
+0017 Vrf=sum(Voltage);
+0018 delta_max_rf=<a href="RFacc.html" class="code" title="function delta_max_rf = RFacc(Vrf,U0,E0,h,alpha)">RFacc</a>(Vrf,U0,E0,h,alpha);
+0019 
+0020</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of rfcavity</title>
+  <meta name="keywords" content="rfcavity">
+  <meta name="description" content="RFCAVITY Creates a RF cavity in older AT version">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>rfcavity
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>RFCAVITY Creates a RF cavity in older AT version</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function z = rfcavity(fname,L,V,F,H,method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">RFCAVITY Creates a RF cavity in older AT version
+RFCAVITY('FAMILYNAME',Length [m],Voltage[V], Frequency[Hz], Harmonic Number,'METHOD')
+    creates a new family in the FAMLIST - a structure with fields
+        FamName            family name
+        Length            length[m]
+        Voltage            peak voltage (V)
+        Frequency        RF frequency [Hz] 
+         HarmNumber        Harmonic Number
+        PassMethod        name of the function on disk to use for tracking
+ returns assigned address in the FAMLIST that uniquely identifies
+ the family</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/lattice/element_creation/atrfcavity.html" class="code" title="function elem=atrfcavity(fname,varargin)">atrfcavity</a>	ATRFCAVITY Creates an rfcavity element with Class 'RFCavity'</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../machine_data/sp3v81f.html" class="code" title="function sp3v81f">sp3v81f</a>	All the dipole and quadrupole lengths are effective lengths</li><li><a href="../machine_data/spear2rad.html" class="code" title="function spear2rad">spear2rad</a>	SPEAR2RAD example lattice definition file with CAVITY and CLASSICAL radiation</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function z = rfcavity(fname,L,V,F,H,method)</a>
+0002 <span class="comment">%RFCAVITY Creates a RF cavity in older AT version</span>
+0003 <span class="comment">%RFCAVITY('FAMILYNAME',Length [m],Voltage[V], Frequency[Hz], Harmonic Number,'METHOD')</span>
+0004 <span class="comment">%    creates a new family in the FAMLIST - a structure with fields</span>
+0005 <span class="comment">%        FamName            family name</span>
+0006 <span class="comment">%        Length            length[m]</span>
+0007 <span class="comment">%        Voltage            peak voltage (V)</span>
+0008 <span class="comment">%        Frequency        RF frequency [Hz]</span>
+0009 <span class="comment">%         HarmNumber        Harmonic Number</span>
+0010 <span class="comment">%        PassMethod        name of the function on disk to use for tracking</span>
+0011 <span class="comment">% returns assigned address in the FAMLIST that uniquely identifies</span>
+0012 <span class="comment">% the family</span>
+0013 
+0014 ElemData = <a href="../atmat/lattice/element_creation/atrfcavity.html" class="code" title="function elem=atrfcavity(fname,varargin)">atrfcavity</a>(fname,L,V,F,H,[],method);
+0015 
+0016 <span class="keyword">global</span> FAMLIST
+0017 z = length(FAMLIST)+1; <span class="comment">% number of declare families including this one</span>
+0018 FAMLIST{z}.FamName = fname;
+0019 FAMLIST{z}.NumKids = 0;
+0020 FAMLIST{z}.KidsList= [];
+0021 FAMLIST{z}.ElemData= ElemData;
+0022 
+0023</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  linepass -> atpass;
+  ringpass -> atpass;
+
+  Contents [URL="Contents.html"];
+  atpass [URL="atpass.html"];
+  linepass [URL="linepass.html"];
+  ringpass [URL="ringpass.html"];
+}

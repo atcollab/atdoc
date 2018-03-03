@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of plotRAperture</title>
+  <meta name="keywords" content="plotRAperture">
+  <meta name="description" content="PLOTRAPERTURE Plots Rectangular aperture">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html pubtools --><!-- menu.html Aperture --><h1>plotRAperture
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>PLOTRAPERTURE Plots Rectangular aperture</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>function plotdata=plotRAperture(~,ring,~,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">PLOTRAPERTURE Plots Rectangular aperture
+function plotdata=plotAperture(lindata,ring,dpp,varargin) %#ok&lt;INUSD&gt;
+
+ Plots x and y aperture.
+ 
+ use with atplot(atlattice,@plotAperture);</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="../../../atmat/lattice/findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">findcells</a>	FINDCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="../../../atmat/lattice/getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>	GETCELLSTRUCT retrieves the field values MATLAB cell array of structures</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function plotdata=plotRAperture(~,ring,~,varargin) </a>
+0002 <span class="comment">%PLOTRAPERTURE Plots Rectangular aperture</span>
+0003 <span class="comment">%function plotdata=plotAperture(lindata,ring,dpp,varargin) %#ok&lt;INUSD&gt;</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Plots x and y aperture.</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% use with atplot(atlattice,@plotAperture);</span>
+0008 <span class="comment">%</span>
+0009 
+0010 apind=<a href="../../../atmat/lattice/findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">findcells</a>(ring,<span class="string">'RApertures'</span>);
+0011 
+0012 xm=<a href="../../../atmat/lattice/getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>(ring,<span class="string">'RApertures'</span>,apind,1);
+0013 ym=<a href="../../../atmat/lattice/getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>(ring,<span class="string">'RApertures'</span>,apind,3);
+0014 xp=<a href="../../../atmat/lattice/getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>(ring,<span class="string">'RApertures'</span>,apind,2);
+0015 yp=<a href="../../../atmat/lattice/getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>(ring,<span class="string">'RApertures'</span>,apind,4);
+0016 
+0017 Xp=[nan(size(ring)); nan];
+0018 Xm=Xp;
+0019 Yp=Xp;
+0020 Ym=Xp;
+0021 
+0022 Xp(apind)=xp;
+0023 Xm(apind)=xm;
+0024 Yp(apind)=yp;
+0025 Ym(apind)=ym;
+0026 
+0027 plotdata(1).values=[Xp Xm Yp Ym]*1e3;<span class="comment">%</span>
+0028 plotdata(1).labels={<span class="string">'x aperture'</span>,<span class="string">'x aperture'</span>,<span class="string">'y aperture'</span>,<span class="string">'y aperture'</span>};
+0029 plotdata(1).axislabel=<span class="string">'x or y aperture [mm]'</span>;
+0030 <span class="comment">%</span>
+0031 <span class="comment">% plotdata(2).values=[Yp Ym]*1e2;%</span>
+0032 <span class="comment">% plotdata(2).labels={'y aperture','y aperture'};</span>
+0033 <span class="comment">% plotdata(2).axislabel='y aperture [cm]';</span>
+0034 <span class="comment">%</span>
+0035 
+0036 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

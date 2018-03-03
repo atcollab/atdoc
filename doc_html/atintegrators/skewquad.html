@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of skewquad</title>
+  <meta name="keywords" content="skewquad">
+  <meta name="description" content="SKEWQUAD Creates a skewquad element (alias to multipole) in old AT version (Obsolete)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>skewquad
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>SKEWQUAD Creates a skewquad element (alias to multipole) in old AT version (Obsolete)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function z = skewquad(fname,L , Qs , method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">SKEWQUAD Creates a skewquad element (alias to multipole) in old AT version (Obsolete)
+
+skewquad(Fname, L, Qs, method)
+  INPUTS
+  1. FAMNAME - Family name
+  2. LENGTH  - Length in meters [m]
+  3. Qs      - Skew quad strength [m-2]
+  4. method  - Integration passsmethod
+
+  OPTIONS (order does not matter)
+    R1                6 x 6 rotation matrix at the entrance
+     R2                6 x 6 rotation matrix at the entrance
+     T1                6 x 1 translation at entrance 
+     T2                6 x 1 translation at exit
+     NumIntSteps    Number of integration steps
+     MaxOrder       Max Order for multipole (1 up to quadrupole)
+
+  OUTPUTS
+  1. ELEM - Structure with the AT element
+
+  EXAMPLES 
+  1.  atskewquad(Fname, L, Qs, method)
+
+  NOTES
+  1. Obsolete: consider using atskewquad instead
+
+  See also atdrift, atquadrupole, atsextupole, atsbend, atrbend,
+          atmultipole, atthinmultipole, atmarker, atcorrector atskewquad</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="multipole.html" class="code" title="function z=multipole(fname,L,PolynomA,PolynomB,method)">multipole</a>	MULTIPOLE Creates a thick multipole element in old AT versions (Obsolete)</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function z = skewquad(fname,L , Qs , method)</a>
+0002 <span class="comment">%SKEWQUAD Creates a skewquad element (alias to multipole) in old AT version (Obsolete)</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">%skewquad(Fname, L, Qs, method)</span>
+0005 <span class="comment">%  INPUTS</span>
+0006 <span class="comment">%  1. FAMNAME - Family name</span>
+0007 <span class="comment">%  2. LENGTH  - Length in meters [m]</span>
+0008 <span class="comment">%  3. Qs      - Skew quad strength [m-2]</span>
+0009 <span class="comment">%  4. method  - Integration passsmethod</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">%  OPTIONS (order does not matter)</span>
+0012 <span class="comment">%    R1                6 x 6 rotation matrix at the entrance</span>
+0013 <span class="comment">%     R2                6 x 6 rotation matrix at the entrance</span>
+0014 <span class="comment">%     T1                6 x 1 translation at entrance</span>
+0015 <span class="comment">%     T2                6 x 1 translation at exit</span>
+0016 <span class="comment">%     NumIntSteps    Number of integration steps</span>
+0017 <span class="comment">%     MaxOrder       Max Order for multipole (1 up to quadrupole)</span>
+0018 <span class="comment">%</span>
+0019 <span class="comment">%  OUTPUTS</span>
+0020 <span class="comment">%  1. ELEM - Structure with the AT element</span>
+0021 <span class="comment">%</span>
+0022 <span class="comment">%  EXAMPLES</span>
+0023 <span class="comment">%  1.  atskewquad(Fname, L, Qs, method)</span>
+0024 <span class="comment">%</span>
+0025 <span class="comment">%  NOTES</span>
+0026 <span class="comment">%  1. Obsolete: consider using atskewquad instead</span>
+0027 <span class="comment">%</span>
+0028 <span class="comment">%  See also atdrift, atquadrupole, atsextupole, atsbend, atrbend,</span>
+0029 <span class="comment">%          atmultipole, atthinmultipole, atmarker, atcorrector atskewquad</span>
+0030 
+0031 
+0032 z = <a href="multipole.html" class="code" title="function z=multipole(fname,L,PolynomA,PolynomB,method)">multipole</a>(fname,L, [0 Qs 0 0], [0 0 0 0], method);</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

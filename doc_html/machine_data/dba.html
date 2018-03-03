@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of dba</title>
+  <meta name="keywords" content="dba">
+  <meta name="description" content="create dba lattice">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html machine_data --><h1>dba
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>create dba lattice</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function ring=dba() </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">create dba lattice</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>	ATDRIFT Creates a drift space element with Class 'Drift'</li><li><a href="../atmat/lattice/element_creation/atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>	ATMARKER Creates a marker space element</li><li><a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>	ATQUADRUPOLE Creates a quadrupole element with Class 'Quadrupole'</li><li><a href="../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>	ATRBEND Creates a rectangular bending magnet element with class 'Bend'</li><li><a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>	ATSEXTUPOLE Creates a sextupole element with class 'Sextupole'</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atdemos/tracking/generateTrackData.html" class="code" title="">generateTrackData</a>	give some initial coordinates.  Track through sample lattices.</li><li><a href="../atmat/atdemos/tracking/testTracking.html" class="code" title="function out = testTracking">testTracking</a>	test results of tracking against values previously computed</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function ring=dba()</a>
+0002 <span class="comment">%create dba lattice</span>
+0003 
+0004 DR_24 = <a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'DR_24'</span>,2.4);
+0005 QD = <a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QD'</span>,0.2,-3.2243,<span class="string">'StrMPoleSymplectic4Pass'</span>);
+0006 DR_03 = <a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'DR_03'</span>,0.3);
+0007 QF = <a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QF'</span>,0.2,4.60156,<span class="string">'StrMPoleSymplectic4Pass'</span>);
+0008 B=<a href="../atmat/lattice/element_creation/atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>(<span class="string">'B'</span>,1,0.7853981634,0,<span class="string">'BndMPoleSymplectic4E2Pass'</span>);
+0009 QDM = <a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QDM'</span>,0.2,-1.95898,<span class="string">'StrMPoleSymplectic4Pass'</span>);
+0010 SD = <a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>(<span class="string">'SD'</span>,0.1,-35.45865);
+0011 DR_04 = <a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'DR_04'</span>,0.4);
+0012 DR_031309 = <a href="../atmat/lattice/element_creation/atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>(<span class="string">'DR_031309'</span>,0.313086069999997);
+0013 SF= <a href="../atmat/lattice/element_creation/atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>(<span class="string">'SF'</span>,0.1,13.50225);
+0014 QFM = <a href="../atmat/lattice/element_creation/atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>(<span class="string">'QFM'</span>,0.199999999999999,3.57926,<span class="string">'StrMPoleSymplectic4Pass'</span>);
+0015 M = <a href="../atmat/lattice/element_creation/atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>(<span class="string">'M'</span>);
+0016  
+0017  
+0018 cell={<span class="keyword">...</span>
+0019   DR_24;QD;QD;DR_03;QF;QF;DR_03;QD;QD;DR_031309;<span class="keyword">...</span>
+0020            B;DR_031309;QDM;QDM;SD;DR_04;SF;QFM;M;QFM;<span class="keyword">...</span>
+0021         SF;DR_04;SD;QDM;QDM;DR_031309;B;DR_031309;QD;QD;DR_03;<span class="keyword">...</span>
+0022         QF;QF;DR_03;QD;QD;DR_24;
+0023     };
+0024 ring = repmat(cell,4,1);
+0025 
+0026 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

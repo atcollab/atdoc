@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of run_matchChromaticity</title>
+  <meta name="keywords" content="run_matchChromaticity">
+  <meta name="description" content="match chrmaticity">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../menu.html atmat --><!-- ../../menu.html atdemos --><!-- # atmatchExamples --><!-- menu.html matchChromaticity --><h1>run_matchChromaticity
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="box"><strong>match chrmaticity</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)"><pre class="comment">  match chrmaticity</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../matlabicon.gif)">
+<li><a href="../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>	atVarBuilder   create a simple variable structure for use with atmatch</li><li><a href="../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>	ATLINCONSTRAINT Generate a constraint on linear optics for atmatch</li><li><a href="../../../../atmat/atmatch/atmatch.html" class="code" title="function [NewRing,penalty,dmin]=atmatch(Ring,Variables,Constraints,Tolerance,Calls,verbose,varargin)">atmatch</a>	function [...</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)"><pre>0001 <span class="comment">%  match chrmaticity</span>
+0002 
+0003 
+0004 load dba.mat
+0005 
+0006 variabsxt=<a href="../../../../atmat/atmatch/atVariableBuilder.html" class="code" title="function variable=atVariableBuilder(varargin)">atVariableBuilder</a>(RING,{<span class="string">'SF'</span>,<span class="string">'SD'</span>},{{<span class="string">'PolynomB'</span>,{1,3}}});
+0007 
+0008 ConstrChrom=[<span class="keyword">...</span>
+0009     <a href="../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(1,{{<span class="string">'chromaticity'</span>,{1}}},0,0,1)<span class="keyword">...</span>
+0010     <a href="../../../../atmat/atmatch/atlinconstraint.html" class="code" title="function constraint = atlinconstraint(refpts,params,vmin,vmax,weight)">atlinconstraint</a>(1,{{<span class="string">'chromaticity'</span>,{2}}},0,0,1)];
+0011 
+0012 tol=1e-8;
+0013 RINGchrom0=<a href="../../../../atmat/atmatch/atmatch.html" class="code" title="function [NewRing,penalty,dmin]=atmatch(Ring,Variables,Constraints,Tolerance,Calls,verbose,varargin)">atmatch</a>(RING,variabsxt,ConstrChrom,tol,1000,4);
+0014</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atgetU0 -> atenergy;
+  atradon -> atenergy;
+  findelemraddiffm -> findelemraddiffm;
+  findelemraddiffm -> findthickmpoleraddiffm;
+  findthickmpoleraddiffm -> findthinmpoleraddiffm;
+  ohmienvelope -> findmpoleraddiffmatrix;
+  quantumDiff -> findmpoleraddiffmatrix;
+  thickmpoleraddiffm -> findthinmpoleraddiffm;
+
+  Contents [URL="Contents.html"];
+  atenergy [URL="atenergy.html"];
+  atgetU0 [URL="atgetU0.html"];
+  atradoff [URL="atradoff.html"];
+  atradon [URL="atradon.html"];
+  atsetenergy [URL="atsetenergy.html"];
+  findelemraddiffm [URL="findelemraddiffm.html"];
+  findmpoleraddiffmatrix [URL="findmpoleraddiffmatrix.html"];
+  findthickmpoleraddiffm [URL="findthickmpoleraddiffm.html"];
+  findthinmpoleraddiffm [URL="findthinmpoleraddiffm.html"];
+  ohmienvelope [URL="ohmienvelope.html"];
+  quantumDiff [URL="quantumDiff.html"];
+  radiationoff [URL="radiationoff.html"];
+  radiationon [URL="radiationon.html"];
+  thickmpoleraddiffm [URL="thickmpoleraddiffm.html"];
+  thinmpoleraddiffm [URL="thinmpoleraddiffm.html"];
+}

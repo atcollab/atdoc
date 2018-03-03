@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of findorbit6Err</title>
+  <meta name="keywords" content="findorbit6Err">
+  <meta name="description" content="findorbit6 with bpm reading errors">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../menu.html atmat --><!-- ../../menu.html pubtools --><!-- ../menu.html LatticeTuningFunctions --><!-- menu.html errors --><h1>findorbit6Err
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="box"><strong>findorbit6 with bpm reading errors</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="box"><strong>function orbit = findorbit6Err(RING, indbpm,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)"><pre class="comment"> findorbit6 with bpm reading errors
+
+see also findorbit6 <a href="bpm_process.html" class="code" title="function bpmreading = bpm_process(bpmorbit,rel,tel,trand)">bpm_process</a> <a href="bpm_matrices.html" class="code" title="function [rel,tel,trand] = bpm_matrices(bpms)">bpm_matrices</a></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../matlabicon.gif)">
+<li><a href="../../../../atmat/atphysics/Orbit/findorbit6.html" class="code" title="function [orbit,fixedpoint] = findorbit6(RING,varargin)">findorbit6</a>	FINDORBIT6 finds closed orbit in the full 6-d phase space</li><li><a href="bpm_matrices.html" class="code" title="function [rel,tel,trand] = bpm_matrices(bpms)">bpm_matrices</a>	BPM_MATRICES Computes the transformation matrices for the given BPMs</li><li><a href="bpm_process.html" class="code" title="function bpmreading = bpm_process(bpmorbit,rel,tel,trand)">bpm_process</a>	UNTITLED3 Summary of this function goes here</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../matlabicon.gif)">
+<li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/DispersionFreeSteering/atdispersionfreesteering.html" class="code" title="function [rcor,inCOD,hs,vs]=atdispersionfreesteering(rerr,indBPM,indHCor,indVCor,inCOD,neigSteerer,correctflags,scalefactor,wdisp,ModelRM,reforbit,refdispersion,steererlimit,printouttext)">atdispersionfreesteering</a>	function [...</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/DispersionFreeSteering/testdispersionfreesteering.html" class="code" title="">testdispersionfreesteering</a>	test errors and correction functions</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/RFcavity/atRFcorrection.html" class="code" title="function [rcor,inCOD,fc.]=atRFcorrection(rerr,indBPM,inCOD,neigSteerer,scalefactor,ModelRM,reforbit,printouttext)">atRFcorrection</a>	function [...</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/RFcavity/testsetRFCavityErr.html" class="code" title="">testsetRFCavityErr</a>	test errors and correction functions</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/correction_chain/DisplayCorrectionEffect.html" class="code" title="function [d0,de,dc]=DisplayCorrectionEffect(r0,rerr,rcor,inCODe,inCODc,refpts,indHCor,indVCor,indQCor,indSCor)">DisplayCorrectionEffect</a>	[d0,de,dc]=DisplayCorrectionEffect(...</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/orbit/atcorrectorbit.html" class="code" title="function [rcor,inCOD,hs,vs]=atcorrectorbit(rerr,indBPM,indHCor,indVCor,inCOD,neigSteerer,correctflags,scalefactor,ModelRM,reforbit,steererlimit,printouttext)">atcorrectorbit</a>	</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/orbit/testorbitbump.html" class="code" title="">testorbitbump</a>	test errors and correction functions</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/orbit/testorbitcorrection.html" class="code" title="">testorbitcorrection</a>	test errors and correction functions</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/orbitbumps/matching/BumpAtBPM.html" class="code" title="function [rbump,hs,vs]=BumpAtBPM(ring0,inCOD,bumph,bumpv,indBPMbump,indHCor,indVCor)">BumpAtBPM</a>	function roff=BumpAtBPM(...</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/response_matrix/findrespmat.html" class="code" title="function C = findrespmat(RING, OBSINDEX, PERTURB, PVALUE, varargin)">findrespmat</a>	FINDRESPM_mod computes the change in the closed orbit due to parameter perturbations</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/response_matrix/getresponsematrices.html" class="code" title="function ModelRM=getresponsematrices(r0,...          %1 AT lattice">getresponsematrices</a>	</li><li><a href="../../../../atmat/pubtools/LatticeTuningFunctions/correction/trajectory/atfirstturntrajectory.html" class="code" title="function [rclosed,inCOD]=atfirstturntrajectory(ropen,inCOD,indBPM,indHCor,indVCor,lim,maxcornum,correctflags,ModelRM,reforbit,steererlimit,printouttext)">atfirstturntrajectory</a>	ATFIRSTTURNTRAJECTORY Makes first turn correction</li><li><a href="finddispersion6Err.html" class="code" title="function dispersion=finddispersion6Err(RING, indbpm,indrfc,alpha,delta,inCOD)">finddispersion6Err</a>	FINDDISPERSION6ERR Gets 6D dispersion with bpm reading errors</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function orbit = findorbit6Err(RING, indbpm,varargin)</a>
+0002 <span class="comment">% findorbit6 with bpm reading errors</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">%see also findorbit6 bpm_process bpm_matrices</span>
+0005 
+0006 orbit = <a href="../../../../atmat/atphysics/Orbit/findorbit6.html" class="code" title="function [orbit,fixedpoint] = findorbit6(RING,varargin)">findorbit6</a>(RING, indbpm, varargin{:});
+0007 
+0008 <span class="comment">% BPM errors used only if class is Monitor</span>
+0009 <span class="comment">%useind=ismember(indbpm,find(atgetcells(ring,'Class','Monitor')));</span>
+0010 useind=1:length(indbpm);
+0011 
+0012 [rel,tel,trand] = <a href="bpm_matrices.html" class="code" title="function [rel,tel,trand] = bpm_matrices(bpms)">bpm_matrices</a>(RING(indbpm(useind)));
+0013 bpmreading = <a href="bpm_process.html" class="code" title="function bpmreading = bpm_process(bpmorbit,rel,tel,trand)">bpm_process</a>(orbit([1,3],:),rel,tel,trand);
+0014 orbit(1,:)=bpmreading(1,:);
+0015 orbit(3,:)=bpmreading(2,:);
+0016 
+0017 <span class="keyword">return</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

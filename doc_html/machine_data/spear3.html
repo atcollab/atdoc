@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of spear3</title>
+  <meta name="keywords" content="spear3">
+  <meta name="description" content="SPEAR3 Load the SPEAR3 lattice structure">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html machine_data --><h1>spear3
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>SPEAR3 Load the SPEAR3 lattice structure</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function varargout = spear3(varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">SPEAR3 Load the SPEAR3 lattice structure</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>	ATELEM makes a new AT element structure from another element,</li><li><a href="../atmat/lattice/reverse.html" class="code" title="function z = reverse(A)">reverse</a>	REVERSE reverses the order of elements in a one-dimensional MATLAB ARRAY</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atdiag.html" class="code" title="function atdiag">atdiag</a>	ATDIAG Tests AT intallation</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function varargout = spear3(varargin)</a>
+0002 <span class="comment">%SPEAR3 Load the SPEAR3 lattice structure</span>
+0003 
+0004 L0  = 2.341440122400003e+002;    <span class="comment">% design length [m]</span>
+0005 C0  = 299792458;                 <span class="comment">% speed of light [m/s]</span>
+0006 H   = 372;                      <span class="comment">% Cavity harmonic number</span>
+0007 
+0008 CAV    = struct(<span class="string">'FamName'</span>, <span class="string">'RF'</span> , <span class="string">'Energy'</span>, 3e9, <span class="keyword">...</span>
+0009         <span class="string">'Length'</span>, 0 , <span class="string">'Voltage'</span>, 3.2e+6 , <span class="string">'Frequency'</span>, H*C0/L0, <span class="keyword">...</span>
+0010         <span class="string">'HarmNumber'</span>, H , <span class="string">'PassMethod'</span>, <span class="string">'CavityPass'</span>); 
+0011 
+0012     
+0013 COR = struct(<span class="string">'FamName'</span>, <span class="string">'COR'</span> ,<span class="keyword">...</span>
+0014         <span class="string">'Length'</span>, 0.15, <span class="string">'KickAngle'</span>, [0 0], <span class="string">'PassMethod'</span>, <span class="string">'CorrectorPass'</span>); 
+0015     
+0016 BPM.FamName = <span class="string">'BPM'</span>;
+0017 BPM.Length = 0;
+0018 BPM.PassMethod = <span class="string">'IdentityPass'</span>;
+0019 
+0020 AP.FamName = <span class="string">'AP'</span>;
+0021 AP.Length = 0;
+0022 AP.Limits = [-0.1, 0.1, -0.1, 0.1];
+0023 AP.PassMethod = <span class="string">'AperturePass'</span>;
+0024 
+0025 <span class="comment">% ===================== Injection Kickers and Drifts ============================================</span>
+0026 
+0027 INJ.FamName = <span class="string">'SEPTUM'</span>;
+0028 INJ.MemberOf = <span class="string">'Injection'</span>;
+0029 INJ.Length = 0;
+0030 INJ.PassMethod = <span class="string">'IdentityPass'</span>; 
+0031 
+0032 K1 = struct(<span class="string">'FamName'</span>, <span class="string">'KICKER'</span> , <span class="string">'MemberOf'</span>, {{<span class="string">'Injection'</span>}}, <span class="string">'Tag'</span>, <span class="string">'K1'</span>, <span class="keyword">...</span>
+0033         <span class="string">'Length'</span>, 1.2 , <span class="string">'KickAngle'</span>, [0 0], <span class="string">'PassMethod'</span>, <span class="string">'CorrectorPass'</span>); 
+0034     
+0035 
+0036 K2 = K1; 
+0037 K2.Length = 0.6;
+0038 K2.Tag = <span class="string">'K2'</span>;
+0039 
+0040 
+0041 K3 = K1;
+0042 K3.Tag = <span class="string">'K3'</span>;
+0043 
+0044 
+0045 DI1 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI1'</span>  ,<span class="string">'Length'</span>, 0.9235741);
+0046 DI2 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI2'</span>  ,<span class="string">'Length'</span>, 0.6882939);
+0047 DI3 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI3'</span>  ,<span class="string">'Length'</span>, 0.6834939);
+0048 DI4 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI4'</span>  ,<span class="string">'Length'</span>, 0.1224401);
+0049 DI5 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI5'</span>  ,<span class="string">'Length'</span>, 1.24013);
+0050 DI6 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DI6'</span>  ,<span class="string">'Length'</span>, 0.165804);
+0051 
+0052 
+0053 
+0054 <span class="comment">% ================  Standard Cell Drifts ===================================</span>
+0055 
+0056 DC2 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC2'</span>, <span class="string">'Length'</span>,  0.097500);
+0057 DC5 = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC5'</span>, <span class="string">'Length'</span>,  0.200986);
+0058 
+0059 <span class="comment">% ================= Standard Cell BPM Drifts ===============================</span>
+0060 
+0061 DC1A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC1A'</span>, <span class="string">'Length'</span>, 1.405934);
+0062 DC1B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC1B'</span>, <span class="string">'Length'</span>, 0.12404125);
+0063 DC3A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC3A'</span>, <span class="string">'Length'</span>, 0.05322065);
+0064 DC3B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC3B'</span>, <span class="string">'Length'</span>, 0.16368247);
+0065 
+0066 DC4A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC4A'</span>, <span class="string">'Length'</span>, 0.15921467);
+0067 DC4B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC4B'</span>, <span class="string">'Length'</span>, 0.044418);
+0068 DC6A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC6A'</span>, <span class="string">'Length'</span>, 0.110646);
+0069 DC6B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC6B'</span>, <span class="string">'Length'</span>, 0.06316585);  <span class="comment">%0.069354 corrected to make path length consistent</span>
+0070 
+0071 <span class="comment">% ================= Standard Cell Corrector Magnet Drifts ==================</span>
+0072 DC2A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC2A'</span>, <span class="string">'Length'</span>, 0.11576525);
+0073 DC2B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC2B'</span>, <span class="string">'Length'</span>, 0.11581045);
+0074 DC2C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC2C'</span>, <span class="string">'Length'</span>, 0.10210045);
+0075 DC2D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC2D'</span>, <span class="string">'Length'</span>, 0.12947525);
+0076 
+0077 DC5A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC5A'</span>, <span class="string">'Length'</span>, 0.09058);
+0078 DC5B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC5B'</span>, <span class="string">'Length'</span>, 0.36139);
+0079 DC5C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC5C'</span>, <span class="string">'Length'</span>, 0.09584);
+0080 DC5D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>, <span class="string">'DC5D'</span>, <span class="string">'Length'</span>, 0.35613);
+0081 
+0082 
+0083 <span class="comment">% ================ Bending Magnets ======================================</span>
+0084 
+0085 BEND    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'bend'</span>, <span class="string">'FamName'</span>, <span class="string">'BND'</span>,<span class="string">'Length'</span>, 1.5048,  <span class="keyword">...</span>
+0086             <span class="string">'BendingAngle'</span>, 0.18479957, <span class="string">'EntranceAngle'</span>, 0.18479957/2,<span class="keyword">...</span>
+0087             <span class="string">'ExitAngle'</span>, 0.18479957/2, <span class="string">'K'</span>, -0.31537858);
+0088  
+0089 BDM        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'bend'</span>  , <span class="string">'FamName'</span>, <span class="string">'B34'</span>, <span class="string">'Length'</span>, 1.14329,  <span class="keyword">...</span>
+0090             <span class="string">'BendingAngle'</span>, 0.138599675894, <span class="string">'EntranceAngle'</span>, 0.138599675894/2, <span class="keyword">...</span>
+0091             <span class="string">'ExitAngle'</span>, 0.138599675894/2, <span class="string">'K'</span>, -0.31537858);
+0092         
+0093 <span class="comment">% ================ Standard Cell Quadrupoles  ===========================</span>
+0094 
+0095 QF        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QF'</span>, <span class="string">'Length'</span>, 0.3533895,  <span class="string">'K'</span>, 1.768672904054 );
+0096 QD        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QD'</span>, <span class="string">'Length'</span>, 0.1634591,  <span class="string">'K'</span>, -1.542474230359 );
+0097 QFC        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QFC'</span>, <span class="string">'Length'</span>, 0.5123803, <span class="string">'K'</span>, 1.748640831069);
+0098 
+0099 <span class="comment">% ================ Matching Cell Quadrupoles  ===========================</span>
+0100 
+0101 QDX     =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QDX'</span>, <span class="string">'Length'</span>, 0.3533895,  <span class="string">'K'</span>, -1.386467245226 );
+0102 QDY     =   <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QDY'</span>, <span class="string">'Length'</span>, 0.3533895,  <span class="string">'K'</span>, -0.460640930646 );
+0103 QDZ     =   <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QDZ'</span>, <span class="string">'Length'</span>, 0.3533895,  <span class="string">'K'</span>, -0.878223937747 );
+0104 QFX     =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QFX'</span>, <span class="string">'Length'</span>, 0.6105311,  <span class="string">'K'</span>, 1.573196278394 );
+0105 QFY     =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QFY'</span>, <span class="string">'Length'</span>, 0.5123803,  <span class="string">'K'</span>, 1.481493709831 );
+0106 QFZ     =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'quadrupole'</span>, <span class="string">'FamName'</span>, <span class="string">'QFZ'</span>, <span class="string">'Length'</span>, 0.3533895,  <span class="string">'K'</span>, 1.427902006984 );
+0107 
+0108 
+0109 <span class="comment">% ================ Sextupoles ============================================</span>
+0110 
+0111 SF = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'sextupole'</span>, <span class="string">'FamName'</span>, <span class="string">'SF'</span> , <span class="string">'Length'</span> , 0.21);
+0112 SF.PolynomB(3) = 32.0477093/2;
+0113 SF.MaxOrder = 2;
+0114 
+0115 SFM     =    SF; <span class="comment">% SFM is the same length as SF</span>
+0116 SFM.FamName = <span class="string">'SFM'</span>;
+0117 SFM.PolynomB(3) = 7.5;
+0118 
+0119 SDM    =    SF; <span class="comment">% SFM is the same length as SF, SFM</span>
+0120 SDM.FamName = <span class="string">'SDM'</span>;
+0121 SDM.PolynomB(3) = -8.5;
+0122 
+0123 SD = <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'sextupole'</span>, <span class="string">'FamName'</span>, <span class="string">'SD'</span> , <span class="string">'Length'</span> , 0.25);
+0124 SD.PolynomB(3) = -38.80153/2;
+0125 SD.MaxOrder = 2;
+0126 
+0127 <span class="comment">% ============== Matching Cell Drifts without correctors or BPMs</span>
+0128 <span class="comment">% NOTE: BPMS and correctors are not symmetric in MCA, MCB</span>
+0129 
+0130 DM1        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM1'</span> ,<span class="string">'Length'</span>, 3.81);
+0131 DM2        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM2'</span> ,<span class="string">'Length'</span>, 0.0975);
+0132 DM3        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM3'</span> ,<span class="string">'Length'</span>, 0.275);
+0133 DM4        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM4'</span> ,<span class="string">'Length'</span>, 0.21584572);
+0134 DM5        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM5'</span> ,<span class="string">'Length'</span>, 0.250);
+0135 DM6        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM6'</span> ,<span class="string">'Length'</span>, 0.49068463);
+0136 DM7        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM7'</span> ,<span class="string">'Length'</span>, 0.17380985);
+0137 DM8     =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM8'</span> ,<span class="string">'Length'</span>, 0.500);
+0138 DM9        =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM9'</span> ,<span class="string">'Length'</span>, 0.105);
+0139 DM10    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DM10'</span>,<span class="string">'Length'</span>, 3.2765714);
+0140 
+0141 <span class="comment">%Matching Cell A BPM Drifts</span>
+0142 DA1A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA1A'</span> , <span class="string">'Length'</span> ,3.6792386);
+0143 DA1B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA1B'</span> , <span class="string">'Length'</span> ,0.12406665);
+0144 
+0145 DA3A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA3A'</span> , <span class="string">'Length'</span> ,0.20889925);
+0146 DA3B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA3B'</span> , <span class="string">'Length'</span> ,0.05414045);
+0147 
+0148 DA5A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA5A'</span> , <span class="string">'Length'</span> ,0.11397747);
+0149 DA5B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA5B'</span> , <span class="string">'Length'</span> ,0.108563);
+0150 DA5C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA5C'</span> , <span class="string">'Length'</span> ,0.051845);   
+0151 DA5D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA5D'</span> , <span class="string">'Length'</span> ,0.17069547);   
+0152 
+0153 DA7A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA7A'</span> , <span class="string">'Length'</span> ,0.1106966);
+0154 DA7B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA7B'</span> , <span class="string">'Length'</span> ,0.06311325);
+0155 
+0156 DA8A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA8A'</span> , <span class="string">'Length'</span> ,0.33735947);
+0157 DA8B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA8B'</span> , <span class="string">'Length'</span> ,0.12848625);
+0158 
+0159 DA10A   =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA10A'</span>, <span class="string">'Length'</span> ,0.12393965);
+0160 DA10B   =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA10B'</span>, <span class="string">'Length'</span> ,3.145937 );
+0161 
+0162 <span class="comment">%Matching Cell A Corrector Drifts</span>
+0163 DA2A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA2A'</span> , <span class="string">'Length'</span> ,0.11530525);
+0164 DA2B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA2B'</span> , <span class="string">'Length'</span> ,0.11773445);
+0165 
+0166 DA6A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA6A'</span> , <span class="string">'Length'</span> ,0.1266);
+0167 <span class="comment">%DA6B    =    atelem('drift', 'FamName','DA6B' , 'Length' ,0.90476852);   %0.90477 corrected to make path length consistent</span>
+0168 DA6B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA6B'</span> , <span class="string">'Length'</span> ,0.90476828);   <span class="comment">%0.90477 corrected to make path length consistent with MAD (234.14401272)</span>
+0169 DA6C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA6C'</span> , <span class="string">'Length'</span> ,0.0960);
+0170 DA6D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA6D'</span> , <span class="string">'Length'</span> ,0.93537);
+0171 
+0172 DA9A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA9A'</span> , <span class="string">'Length'</span> ,0.10930525);
+0173 DA9B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DA9B'</span> , <span class="string">'Length'</span> ,0.13730525);
+0174 
+0175 <span class="comment">%Matching Cell B  BPM Drifts</span>
+0176 DB1A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB1A'</span> , <span class="string">'Length'</span> ,3.747082 );
+0177 DB1B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB1B'</span> , <span class="string">'Length'</span> ,0.05622325 );
+0178 
+0179 DB3A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB3A'</span> , <span class="string">'Length'</span> ,0.13222685);
+0180 DB3B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB3B'</span> , <span class="string">'Length'</span> ,0.13081285);
+0181 
+0182 DB5A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB5A'</span> , <span class="string">'Length'</span> ,0.17069547);
+0183 DB5B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB5B'</span> , <span class="string">'Length'</span> ,0.051845 );
+0184 DB5C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB5C'</span> , <span class="string">'Length'</span> ,0.1085632);
+0185 DB5D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB5D'</span> , <span class="string">'Length'</span> ,0.11397727);
+0186 
+0187 DB7A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB7A'</span> , <span class="string">'Length'</span> ,0.06311305);
+0188 DB7B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB7B'</span> , <span class="string">'Length'</span> ,0.1106968);
+0189 
+0190 DB8A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB8A'</span> , <span class="string">'Length'</span> ,0.32725027);
+0191 DB8B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB8B'</span> , <span class="string">'Length'</span> ,0.13859545);
+0192 
+0193 DB10A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB10A'</span>, <span class="string">'Length'</span> ,0.12404125 );
+0194 DB10B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB10B'</span>, <span class="string">'Length'</span> ,3.1458354);
+0195 
+0196 <span class="comment">%Matching Cell B Corrector Drifts</span>
+0197 DB2A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB2A'</span> , <span class="string">'Length'</span> ,0.115805250);
+0198 DB2B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB2B'</span> , <span class="string">'Length'</span> ,0.117234450);
+0199 
+0200 DB6A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB6A'</span> , <span class="string">'Length'</span> ,0.93737);
+0201 DB6B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB6B'</span> , <span class="string">'Length'</span> ,0.09399852);   <span class="comment">%0.094 corrected to make path length consistent</span>
+0202 DB6C    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB6C'</span> , <span class="string">'Length'</span> ,0.90437);
+0203 DB6D    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB6D'</span> , <span class="string">'Length'</span> ,0.1270);
+0204 
+0205 DB9A    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB9A'</span> , <span class="string">'Length'</span> ,0.12330525);
+0206 DB9B    =    <a href="../atmat/lattice/atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>(<span class="string">'drift'</span>, <span class="string">'FamName'</span>,<span class="string">'DB9B'</span> , <span class="string">'Length'</span> ,0.12330525);
+0207 
+0208 <span class="comment">% -------------------------------------------------------------------------</span>
+0209 <span class="comment">% -------------------------------------------------------------------------</span>
+0210 
+0211 <span class="comment">%Standard Cell: (Note QFC not split)</span>
+0212 HCEL1 =    {DC1A BPM DC1B QF DC2A COR DC2B QD DC3A BPM DC3B BEND DC4A BPM DC4B SD<span class="keyword">...</span>
+0213 DC5A COR DC5B SF DC6A BPM DC6B QFC};
+0214 
+0215 HCEL2 =    {DC6B DC6A SF DC5C COR DC5D<span class="keyword">...</span>
+0216 SD DC4B BPM DC4A BEND DC3B DC3A QD DC2C COR DC2D QF DC1B BPM DC1A};
+0217 
+0218 ACEL    =    [{AP} HCEL1 HCEL2];
+0219 
+0220 <span class="comment">%Cell 2: (K1 magnet, Note QFC not split)</span>
+0221 K1CEL2 =    {DC6B DC6A SF DC5C COR DC5D<span class="keyword">...</span>
+0222 SD DC4B BPM DC4A BEND DC3B DC3A QD DC2C COR DC2D QF DC1B BPM DI1};
+0223 CEL2    =    [{AP} HCEL1 K1CEL2];
+0224 
+0225 <span class="comment">%Cell 3: (K1 &amp; K2 magnets, Note QFC not split)</span>
+0226 K1CEL3 =    {K1 DI2 BPM DC1B QF DC2A COR DC2B QD DC3A BPM DC3B BEND DC4A BPM DC4B SD<span class="keyword">...</span>
+0227 DC5A COR DC5B SF DC6A BPM DC6B QFC};
+0228 
+0229 K2CEL3 =    {DC6B DC6A SF DC5C COR DC5D<span class="keyword">...</span>
+0230 SD DC4B BPM DC4A BEND DC3B DC3A QD DC2C COR DC2D QF DC1B BPM DI3 K2 DI4};
+0231 
+0232 CEL3    =    [{AP} K1CEL3 K2CEL3];
+0233 
+0234 <span class="comment">%Cell 4: (Septum &amp; K3 magnets, Note QFC not split)</span>
+0235 SEPCEL4 =    {DI5 INJ DI6 BPM DC1B QF DC2A COR DC2B QD DC3A BPM DC3B BEND DC4A BPM DC4B SD<span class="keyword">...</span>
+0236 DC5A COR DC5B SF DC6A BPM DC6B QFC};
+0237 
+0238 K3CEL4 =    {DC6B DC6A SF DC5C COR DC5D<span class="keyword">...</span>
+0239 SD DC4B BPM DC4A BEND DC3B DC3A QD DC2C COR DC2D QF DC1B BPM DI2 K3};
+0240 
+0241 CEL4    =    [{AP} SEPCEL4 K3CEL4];
+0242 
+0243 <span class="comment">%Cell 5: (K5 magnets, Note QFC not split)</span>
+0244 K3CEL5 =    {DI1 BPM DC1B QF DC2A COR DC2B QD DC3A BPM DC3B BEND DC4A BPM DC4B SD<span class="keyword">...</span>
+0245 DC5A COR DC5B SF DC6A BPM DC6B QFC};
+0246 CEL5    =    [{AP} K3CEL5 HCEL2];
+0247 
+0248 <span class="comment">%Matching Cell A (South East, North West)</span>
+0249 MCA={DA1A BPM DA1B QDX DA2A COR DA2B <span class="keyword">...</span>
+0250 QFX DA3A BPM DA3B QDY DM4 BDM DA5A BPM DA5B SDM DA6A COR DA6B SFM DA7A BPM DA7B QFY <span class="keyword">...</span>
+0251 DM7 SFM DA6C COR DA6D SDM DA5C BPM DA5D BDM<span class="keyword">...</span>
+0252 DA8A BPM DA8B QDZ DA9A COR DA9B QFZ DA10A BPM DA10B};
+0253 
+0254 <span class="comment">%Matching Cell B (North East, South West)</span>
+0255 MCB={DB1A BPM DB1B QDX DB2A COR DB2B <span class="keyword">...</span>
+0256 QFX DB3A BPM DB3B QDY DM4 BDM DB5A BPM DB5B SDM DB6A COR DB6B SFM DM7 QFY DB7A BPM<span class="keyword">...</span>
+0257 DB7B SFM DB6C COR DB6D SDM DB5C BPM DB5D BDM<span class="keyword">...</span>
+0258 DB8A BPM DB8B QDZ DB9A COR DB9B QFZ DB10A BPM DB10B};
+0259 
+0260 <span class="comment">% Begin Lattice</span>
+0261 NORTH   =    [CEL2 CEL3 CEL4 CEL5 ACEL ACEL ACEL];
+0262 SOUTH    =    [ACEL ACEL ACEL ACEL ACEL ACEL ACEL];
+0263 RING    =   [{CAV} MCA NORTH <a href="../atmat/lattice/reverse.html" class="code" title="function z = reverse(A)">reverse</a>(MCB) MCA SOUTH <a href="../atmat/lattice/reverse.html" class="code" title="function z = reverse(A)">reverse</a>(MCB)];
+0264 
+0265 
+0266 <span class="keyword">if</span> nargout
+0267     varargout{1} = RING';
+0268 <span class="keyword">else</span> <span class="comment">% If no output arguments - greate global variable THERING</span>
+0269     <span class="keyword">global</span> THERING
+0270     THERING = RING;
+0271     
+0272     <span class="keyword">if</span> evalin(<span class="string">'base'</span>,<span class="string">'exist(''THERING'')'</span>) &amp; evalin(<span class="string">'base'</span>,<span class="string">'isempty(whos(''global'',''THERING''))'</span>)
+0273         warning(<span class="string">'Global variable THERING was overridden'</span>);
+0274     <span class="keyword">else</span>
+0275         evalin(<span class="string">'caller'</span>,<span class="string">'global THERING'</span>);
+0276     <span class="keyword">end</span>
+0277 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

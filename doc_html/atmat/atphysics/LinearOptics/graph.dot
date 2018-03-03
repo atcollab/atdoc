@@ -1,0 +1,29 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  amat -> jmat;
+  atTunesAndDampingRatesFromMat -> amat;
+  beam44 -> beam22;
+  beam44 -> beam44;
+  find_betaoids -> jmat;
+  find_inv_G -> jmat;
+  get_dispersion_from_etaoids -> amat;
+  get_dispersion_from_etaoids -> find_etaoids;
+  get_dispersion_from_etaoids -> findm66;
+
+  amat [URL="amat.html"];
+  atTunesAndDampingRatesFromMat [URL="atTunesAndDampingRatesFromMat.html"];
+  beam22 [URL="beam22.html"];
+  beam44 [URL="beam44.html"];
+  find_betaoids [URL="find_betaoids.html"];
+  find_etaoids [URL="find_etaoids.html"];
+  find_inv_G [URL="find_inv_G.html"];
+  find_inv_G_fromA [URL="find_inv_G_fromA.html"];
+  findelemm44 [URL="findelemm44.html"];
+  findelemm66 [URL="findelemm66.html"];
+  findm44 [URL="findm44.html"];
+  findm66 [URL="findm66.html"];
+  get_dispersion_from_etaoids [URL="get_dispersion_from_etaoids.html"];
+  jmat [URL="jmat.html"];
+  mkSRotationMatrix [URL="mkSRotationMatrix.html"];
+  plotbeta [URL="plotbeta.html"];
+}

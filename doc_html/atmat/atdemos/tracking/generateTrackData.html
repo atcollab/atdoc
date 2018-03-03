@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of generateTrackData</title>
+  <meta name="keywords" content="generateTrackData">
+  <meta name="description" content="give some initial coordinates.  Track through sample lattices.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html atdemos --><!-- menu.html tracking --><h1>generateTrackData
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>give some initial coordinates.  Track through sample lattices.</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">give some initial coordinates.  Track through sample lattices.
+Store results for tracking tests.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>	RINGPASS tracks particles through each element of the cell array RING</li><li><a href="../../../machine_data/FODO.html" class="code" title="function ring=FODO()">FODO</a>	</li><li><a href="../../../machine_data/australian_synchrotron.html" class="code" title="function ring=australian_synchrotron()">australian_synchrotron</a>	</li><li><a href="../../../machine_data/dba.html" class="code" title="function ring=dba()">dba</a>	create dba lattice</li><li><a href="../../../machine_data/esrf.html" class="code" title="function ring=esrf()">esrf</a>	</li><li><a href="../../../machine_data/soleil.html" class="code" title="function ring=soleil()">soleil</a>	SOLEIL Loads SOLEIL lattice</li><li><a href="../../../machine_data/thomx.html" class="code" title="function ring=thomx()">thomx</a>	</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <span class="comment">%give some initial coordinates.  Track through sample lattices.</span>
+0002 <span class="comment">%Store results for tracking tests.</span>
+0003 xextent = 0.003;
+0004 yextent = 0.003;
+0005 deltaextent = 0.02;
+0006 n = 10;
+0007 Z0=[];
+0008 <span class="keyword">for</span> j=-n:n
+0009     <span class="keyword">for</span> k=-n:n
+0010         <span class="keyword">for</span> l=-n:n
+0011         x0=j*xextent/n;
+0012         y0=k*yextent/n;
+0013         delta0=l*deltaextent/n;
+0014         PS0=[x0;0;y0;0;deltaextent;0];
+0015         Z0=[Z0,PS0];
+0016         <span class="keyword">end</span>
+0017     <span class="keyword">end</span>
+0018 <span class="keyword">end</span>
+0019 <span class="comment">%Now, load each lattice and track</span>
+0020 dba_ring=<a href="../../../machine_data/dba.html" class="code" title="function ring=dba()">dba</a>;
+0021 FODO_ring=<a href="../../../machine_data/FODO.html" class="code" title="function ring=FODO()">FODO</a>;
+0022 AS_ring=<a href="../../../machine_data/australian_synchrotron.html" class="code" title="function ring=australian_synchrotron()">australian_synchrotron</a>;
+0023 esrf_ring=<a href="../../../machine_data/esrf.html" class="code" title="function ring=esrf()">esrf</a>;
+0024 soleil_ring=<a href="../../../machine_data/soleil.html" class="code" title="function ring=soleil()">soleil</a>;
+0025 thomx_ring=<a href="../../../machine_data/thomx.html" class="code" title="function ring=thomx()">thomx</a>;
+0026 
+0027 Z1_dba=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(dba_ring,Z0,1);
+0028 Z1_FODO=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(FODO_ring,Z0,1);
+0029 Z1_AS=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(AS_ring,Z0,1);
+0030 Z1_esrf=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(esrf_ring,Z0,1);
+0031 Z1_soleil=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(soleil_ring,Z0,1);
+0032 Z1_thomx=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(thomx_ring,Z0,1);
+0033 
+0034 save(<span class="string">'trackTestData.mat'</span>,<span class="string">'Z0'</span>,<span class="string">'Z1_dba'</span>,<span class="string">'Z1_FODO'</span>,<span class="string">'Z1_AS'</span>,<span class="string">'Z1_esrf'</span>,<span class="string">'Z1_soleil'</span>,<span class="string">'Z1_thomx'</span>)</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

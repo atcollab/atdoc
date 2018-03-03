@@ -1,0 +1,34 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atsetbpmerr -> atsetbpmerr;
+  finddispersion6Err -> findorbit6Err;
+  findorbit4Err -> bpm_matrices;
+  findorbit4Err -> bpm_process;
+  findorbit6Err -> bpm_matrices;
+  findorbit6Err -> bpm_process;
+  findtrajectory6Err -> bpm_matrices;
+  findtrajectory6Err -> bpm_process;
+  setGirderError -> setANYshift;
+  setGirderError -> setTiltAbout;
+  setGirderError -> setTiltGirderAbout;
+  setTiltAbout -> atsettiltdipole;
+  setTiltGirderAbout -> atsettiltdipole;
+
+  AssignFieldErr [URL="AssignFieldErr.html"];
+  SetLargeErrorList [URL="SetLargeErrorList.html"];
+  atset_s_shift [URL="atset_s_shift.html"];
+  atsetbpmerr [URL="atsetbpmerr.html"];
+  atsettiltdipole [URL="atsettiltdipole.html"];
+  bpm_matrices [URL="bpm_matrices.html"];
+  bpm_process [URL="bpm_process.html"];
+  finddispersion6Err [URL="finddispersion6Err.html"];
+  findorbit4Err [URL="findorbit4Err.html"];
+  findorbit6Err [URL="findorbit6Err.html"];
+  findtrajectory6Err [URL="findtrajectory6Err.html"];
+  setANYshift [URL="setANYshift.html"];
+  setFieldIntegralError [URL="setFieldIntegralError.html"];
+  setGirderError [URL="setGirderError.html"];
+  setTiltAbout [URL="setTiltAbout.html"];
+  setTiltGirderAbout [URL="setTiltGirderAbout.html"];
+  setXshift [URL="setXshift.html"];
+}

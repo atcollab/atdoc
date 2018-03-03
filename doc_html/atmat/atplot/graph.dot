@@ -1,0 +1,11 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atbaseplot -> atplotsyn;
+  atplot -> atbaseplot;
+
+  Contents [URL="Contents.html"];
+  atbaseplot [URL="atbaseplot.html"];
+  atplot [URL="atplot.html"];
+  atplotsyn [URL="atplotsyn.html"];
+  atreforbit [URL="atreforbit.html"];
+}

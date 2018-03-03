@@ -1,0 +1,20 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atlinopt -> atlinopt;
+  atsummary -> atlinopt;
+  atsummary -> twissring;
+  atx -> atlinopt;
+  linopt -> linopt;
+  ringpara -> twissring;
+  twissline -> twissline;
+  twissring -> twissring;
+
+  Contents [URL="Contents.html"];
+  atlinopt [URL="atlinopt.html"];
+  atsummary [URL="atsummary.html"];
+  atx [URL="atx.html"];
+  linopt [URL="linopt.html"];
+  ringpara [URL="ringpara.html"];
+  twissline [URL="twissline.html"];
+  twissring [URL="twissring.html"];
+}

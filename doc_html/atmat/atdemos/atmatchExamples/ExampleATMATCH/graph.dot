@@ -1,0 +1,17 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  dispx -> getDispersion;
+  runtotest_atmatch -> VaryQuadFam;
+  runtotest_atmatch -> betx;
+  runtotest_atmatch -> bety;
+  runtotest_atmatch -> dispx;
+  runtotest_atmatch -> mux;
+
+  VaryQuadFam [URL="VaryQuadFam.html"];
+  betx [URL="betx.html"];
+  bety [URL="bety.html"];
+  dispx [URL="dispx.html"];
+  getDispersion [URL="getDispersion.html"];
+  mux [URL="mux.html"];
+  runtotest_atmatch [URL="runtotest_atmatch.html"];
+}

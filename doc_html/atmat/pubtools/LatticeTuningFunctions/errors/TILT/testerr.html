@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of testerr</title>
+  <meta name="keywords" content="testerr">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../menu.html atmat --><!-- ../../../menu.html pubtools --><!-- ../../menu.html LatticeTuningFunctions --><!-- ../menu.html errors --><!-- menu.html TILT --><h1>testerr
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>	FINDSPOS returns longitudinal positions of accelerator lattice elements.</li><li><a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>	ATPLOT Plots optical functions</li><li><a href="../../../../../atmat/atplot/atplotsyn.html" class="code" title="function pp = atplotsyn(ax,ring,varargin)">atplotsyn</a>	ATPLOTSYN Helper function for ATPLOT</li><li><a href="../../../../../atmat/atplot/plotfunctions/plClosedOrbit.html" class="code" title="function varargout=plClosedOrbit(varargin)">plClosedOrbit</a>	PLCLOSEDORBIT Plots H and V 4x4 closed orbit</li><li><a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>	ATGETCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="../../../../../atmat/lattice/atsettilt.html" class="code" title="function ring=atsettilt(varargin)">atsettilt</a>	ATSETTILT sets the entrance and exit rotation matrices</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre>0001 clear all
+0002 close all
+0003 
+0004 <span class="comment">% load lattice</span>
+0005 load ../../ESRFLattice.mat
+0006 
+0007 <span class="comment">% get indexes</span>
+0008 indq=find(<a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>(ring,<span class="string">'Class'</span>,<span class="string">'Quadrupole'</span>));
+0009 
+0010 <span class="comment">% define s-axis rotation errors</span>
+0011 dt=1e-6*randn(size(indq)); <span class="comment">% random errors of 1um</span>
+0012 
+0013 <span class="comment">% set errors</span>
+0014 ringerr=<a href="../../../../../atmat/lattice/atsettilt.html" class="code" title="function ring=atsettilt(varargin)">atsettilt</a>(ring,indq,dt);
+0015 
+0016 <span class="comment">% plots</span>
+0017 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.3 0.3 0.45 0.35])
+0018 <a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>(ring,<span class="string">'comment'</span>,[],@<a href="../../../../../atmat/atplot/plotfunctions/plClosedOrbit.html" class="code" title="function varargout=plClosedOrbit(varargin)">plClosedOrbit</a>)
+0019 saveas(gca,<span class="string">'OrbitNoErrTilt.fig'</span>)
+0020 export_fig(<span class="string">'OrbitNoErrTilt.jpg'</span>,<span class="string">'-r300'</span>)
+0021 
+0022 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.3 0.3 0.45 0.35])
+0023 <a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>(ringerr,<span class="string">'comment'</span>,[],@<a href="../../../../../atmat/atplot/plotfunctions/plClosedOrbit.html" class="code" title="function varargout=plClosedOrbit(varargin)">plClosedOrbit</a>)
+0024 saveas(gca,<span class="string">'OrbitWithErrTilt.fig'</span>)
+0025 export_fig(<span class="string">'OrbitWithErrTilt.jpg'</span>,<span class="string">'-r300'</span>)
+0026 
+0027 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.3 0.3 0.45 0.35])
+0028 s=<a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>(ring,indq);
+0029 plot(s,dt,<span class="string">'b.'</span>);
+0030 <a href="../../../../../atmat/atplot/atplotsyn.html" class="code" title="function pp = atplotsyn(ax,ring,varargin)">atplotsyn</a>(gca,ringerr);
+0031 axis tight;
+0032 xlabel(<span class="string">'s [m]'</span>);
+0033 ylabel(<span class="string">'s-axis rotation [rad]'</span>);
+0034 
+0035 saveas(gca,<span class="string">'SetErrTilt.fig'</span>)
+0036 export_fig(<span class="string">'SetErrTilt.jpg'</span>,<span class="string">'-r300'</span>)
+0037</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

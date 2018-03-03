@@ -1,0 +1,7 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  pltmisalignments -> GetMisalignments;
+
+  GetMisalignments [URL="GetMisalignments.html"];
+  pltmisalignments [URL="pltmisalignments.html"];
+}

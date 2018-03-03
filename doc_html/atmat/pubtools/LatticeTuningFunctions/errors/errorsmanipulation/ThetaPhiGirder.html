@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of ThetaPhiGirder</title>
+  <meta name="keywords" content="ThetaPhiGirder">
+  <meta name="description" content="rtp=ThetaPhiGirder(r,mag_gr)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../menu.html atmat --><!-- ../../../menu.html pubtools --><!-- ../../menu.html LatticeTuningFunctions --><!-- ../menu.html errors --><!-- menu.html errorsmanipulation --><h1>ThetaPhiGirder
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>rtp=ThetaPhiGirder(r,mag_gr)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>function rtp=ThetaPhiGirder(r,mag_gr) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre class="comment">rtp=ThetaPhiGirder(r,mag_gr)
+
+ sets misalignment to model theta, phi errors for magnets on girder
+
+ mag_gr is the output of getMagGroupsFromGirderIndex(ring)
+ 
+see also: <a href="GetExistingErrors.html" class="code" title="function [X,Y,S,T,R,P,bpmerrors]=GetExistingErrors(THERING,varargin)">GetExistingErrors</a> setANYshift setTiltAbout seterrorrand</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>	FINDSPOS returns longitudinal positions of accelerator lattice elements.</li><li><a href="../../../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>	ATGETFIELDVALUES retrieves the field values AT cell array of elements</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/seterrorrand.html" class="code" title="function rrand=seterrorrand(r,...             % nominal lattice">seterrorrand</a>	</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/setANYshift.html" class="code" title="function re=setANYshift(r,pos,coord,D)">setANYshift</a>	SETANYSHIFT Adds to the existing shift errors additional D</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/atsetrandomerrors.html" class="code" title="function rerr=atsetrandomerrors(rerr,magindex,indBPM,seed,sigma,nsig,type)">atsetrandomerrors</a>	function rerr=atsetrandomerrors(...</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/setTiltGirderAbout.html" class="code" title="function re=setTiltGirderAbout(r,mag_gr,coord,PSI)">setTiltGirderAbout</a>	SETTILTGIRDERABOUT Set Tilt error on a magnet</li></ul>
+</div>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function gm=gmisal(r,mg)</a></li></ul>
+</div>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function rtp=ThetaPhiGirder(r,mag_gr)</a>
+0002 <span class="comment">%rtp=ThetaPhiGirder(r,mag_gr)</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% sets misalignment to model theta, phi errors for magnets on girder</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">% mag_gr is the output of getMagGroupsFromGirderIndex(ring)</span>
+0007 <span class="comment">%</span>
+0008 <span class="comment">%see also: GetExistingErrors setANYshift setTiltAbout seterrorrand</span>
+0009 
+0010 <span class="comment">%    get girder centers</span>
+0011 gm=cellfun(@(mg)<a href="#_sub1" class="code" title="subfunction gm=gmisal(r,mg)">gmisal</a>(r,mg),mag_gr,<span class="string">'un'</span>,0);
+0012 
+0013 magindex=[mag_gr{:}];
+0014 allmisg=[gm{:}];
+0015 
+0016 <span class="comment">% get existing alignment errors</span>
+0017 <span class="comment">%[X0,Y0]=GetExistingErrors(r,magindex);</span>
+0018 
+0019 rtp=r;
+0020 nsig=2;
+0021 
+0022 errfun=@(r,po,er)<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/setANYshift.html" class="code" title="function re=setANYshift(r,pos,coord,D)">setANYshift</a>(r,po,1,er); <span class="comment">% sets x errors</span>
+0023 <span class="comment">%rtp=seterrorrand(rtp,magindex,errfun,0,0,nsig,X0+allmisg(1,:));</span>
+0024 rtp=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/seterrorrand.html" class="code" title="function rrand=seterrorrand(r,...             % nominal lattice">seterrorrand</a>(rtp,magindex,errfun,0,0,nsig,allmisg(1,:));
+0025 
+0026 errfun=@(r,po,er)<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/setANYshift.html" class="code" title="function re=setANYshift(r,pos,coord,D)">setANYshift</a>(r,po,3,er); <span class="comment">% sets Y errors</span>
+0027 <span class="comment">%rtp=seterrorrand(rtp,magindex,errfun,0,0,nsig,Y0+allmisg(2,:));</span>
+0028 rtp=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/seterrorrand.html" class="code" title="function rrand=seterrorrand(r,...             % nominal lattice">seterrorrand</a>(rtp,magindex,errfun,0,0,nsig,allmisg(2,:));
+0029 
+0030 
+0031 <span class="keyword">return</span>
+0032 
+0033 <a name="_sub1" href="#_subfunctions" class="code">function gm=gmisal(r,mg)</a>
+0034 
+0035 sg=<a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>(r,mg);
+0036 gc=(max(sg)+min(sg))/2;
+0037 
+0038 dg=sg-gc; <span class="comment">% distance from girder center</span>
+0039 
+0040 tg=<a href="../../../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>(r,mg,<span class="string">'RotAboutX'</span>,{1,1}); <span class="comment">% sets a vertical misalignment</span>
+0041 pg=<a href="../../../../../atmat/lattice/atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>(r,mg,<span class="string">'RotAboutY'</span>,{1,1}); <span class="comment">% sets a horizontal misalignment</span>
+0042 
+0043 gm=zeros(length(mg),2);
+0044 
+0045 <span class="keyword">if</span> ~isempty(tg)
+0046     gm(:,2)=dg'.*sin(tg);
+0047 <span class="keyword">end</span>
+0048 <span class="keyword">if</span> ~isempty(pg)
+0049     gm(:,1)=dg'.*sin(pg);
+0050 <span class="keyword">end</span>
+0051 
+0052 gm=gm';
+0053 <span class="keyword">return</span>
+0054 
+0055</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

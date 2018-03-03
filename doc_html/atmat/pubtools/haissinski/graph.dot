@@ -1,0 +1,9 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  plothaissinski -> fitgaussian;
+
+  Qval [URL="Qval.html"];
+  blength [URL="blength.html"];
+  fitgaussian [URL="fitgaussian.html"];
+  plothaissinski [URL="plothaissinski.html"];
+}

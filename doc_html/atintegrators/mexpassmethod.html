@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of mexpassmethod</title>
+  <meta name="keywords" content="mexpassmethod">
+  <meta name="description" content="MEXPASSMETHOD builds pass-method mex-files from C files">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>mexpassmethod
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>MEXPASSMETHOD builds pass-method mex-files from C files</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function mexpassmethod(PASSMETHODS, varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">MEXPASSMETHOD builds pass-method mex-files from C files
+
+ PASSMETHODS argument can be:
+  Single pass-method name - the same as the C file name without '.c'
+  Cell array of strings containing pass-method names
+  'all' - option automatically detects all C files matching *Pass.c pattern
+
+ The second argument is a list of options passed to the 'mex' script
+
+ Examples: mexpassmethod('DriftPass','-v')
+           mexpassmethod('all','-argcheck')
+           mexpassmethod({'DriftPass','BendLinearPass'})
+
+ Note:  MEXPASSMETHOD automatically determines the host
+ platform and costructs -D&lt;PLATFORM&gt; option to feed to the
+ mex script. All pass-methods #include elempass.h header file
+ which uses #if defined(PLATFORM) directive to select
+ between platform-specific branches
+
+ See also: file:elempass.h</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="passmethods.html" class="code" title="function files = passmethods(varargin);">passmethods</a>	PASSMETHODS Returns a list of available AT passmethod functions in</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atmexall.html" class="code" title="function atmexall(varargin)">atmexall</a>	ATMEXALL builds all AT platform dependent mex-files from C-sources</li></ul>
+</div>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function generate_passlist(pdir,passmethods)</a></li></ul>
+</div>
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function mexpassmethod(PASSMETHODS, varargin)</a>
+0002 <span class="comment">%MEXPASSMETHOD builds pass-method mex-files from C files</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% PASSMETHODS argument can be:</span>
+0005 <span class="comment">%  Single pass-method name - the same as the C file name without '.c'</span>
+0006 <span class="comment">%  Cell array of strings containing pass-method names</span>
+0007 <span class="comment">%  'all' - option automatically detects all C files matching *Pass.c pattern</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% The second argument is a list of options passed to the 'mex' script</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% Examples: mexpassmethod('DriftPass','-v')</span>
+0012 <span class="comment">%           mexpassmethod('all','-argcheck')</span>
+0013 <span class="comment">%           mexpassmethod({'DriftPass','BendLinearPass'})</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% Note:  MEXPASSMETHOD automatically determines the host</span>
+0016 <span class="comment">% platform and costructs -D&lt;PLATFORM&gt; option to feed to the</span>
+0017 <span class="comment">% mex script. All pass-methods #include elempass.h header file</span>
+0018 <span class="comment">% which uses #if defined(PLATFORM) directive to select</span>
+0019 <span class="comment">% between platform-specific branches</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% See also: file:elempass.h</span>
+0022 
+0023 <span class="comment">% Optional flag to turn on multi-threading feature (openmp) in some of the</span>
+0024 <span class="comment">% pass methods to decrease the tracking time for multi-particle</span>
+0025 <span class="comment">% simulations. The if the number of particle is less than</span>
+0026 <span class="comment">% OMP_PARTICLE_THRESHOLD (defined in atcommon.h) then only a single thread</span>
+0027 <span class="comment">% is used. The number of threads used can be manually set using the</span>
+0028 <span class="comment">% environment variable OMP_NUM_THREADS.</span>
+0029 <span class="comment">% Originally intriduced by Xiabiao Huang (7/12/2010).</span>
+0030 opt_parallel = false;
+0031 
+0032 PLATFORMOPTION=[varargin{:}];
+0033 
+0034 <span class="comment">%Additional platform-specific options for mex</span>
+0035 pdir=fileparts(mfilename(<span class="string">'fullpath'</span>));
+0036 <span class="keyword">if</span> ispc()
+0037     EXPORT=<span class="string">' %s'</span>;
+0038     map1=<span class="string">''</span>;
+0039 <span class="keyword">else</span>
+0040     <span class="comment">% Starting from R2016b, Matlab introduced a new entry point in MEX-files</span>
+0041     <span class="comment">% The &quot;*.mapext&quot; files define this new entry point</span>
+0042     <span class="keyword">if</span> ~exist(<span class="string">'verLessThan'</span>) || verLessThan(<span class="string">'matlab'</span>,<span class="string">'9.1'</span>) <span class="comment">%#ok&lt;EXIST&gt;</span>
+0043         mapformat=fullfile(pdir,<span class="string">'%s'</span>);
+0044     <span class="keyword">else</span>
+0045         mapformat=fullfile(pdir,<span class="string">'%sext'</span>);
+0046     <span class="keyword">end</span>
+0047     
+0048     <span class="keyword">switch</span> computer
+0049         <span class="keyword">case</span> {<span class="string">'SOL2'</span>,<span class="string">'SOL64'</span>}
+0050             exportarg=<span class="string">'-M'</span>;
+0051             map1=<span class="string">'mexFunctionSOL2.map'</span>;
+0052             ldflags=[<span class="string">'-G -mt '</span>,exportarg,<span class="string">' '</span>];
+0053         <span class="keyword">case</span> <span class="string">'GLNX86'</span>
+0054             exportarg=<span class="string">'-Wl,--version-script,'</span>;
+0055             map1=<span class="string">'mexFunctionGLNX86.map'</span>;
+0056             ldflags=[<span class="string">'-pthread -shared -m32 -Wl,--no-undefined '</span>,exportarg];
+0057         <span class="keyword">case</span> <span class="string">'GLNXA64'</span>
+0058             exportarg=<span class="string">'-Wl,--version-script,'</span>;
+0059             map1=<span class="string">'mexFunctionGLNX86.map'</span>;
+0060             ldflags=[<span class="string">'-pthread -shared -Wl,--no-undefined '</span>,exportarg];
+0061         <span class="keyword">case</span> {<span class="string">'MAC'</span>,<span class="string">'MACI'</span>,<span class="string">'MACI64'</span>}
+0062             exportarg=<span class="string">'-Wl,-exported_symbols_list,'</span>;
+0063             map1=<span class="string">'trackFunctionMAC.map'</span>;
+0064             map2=<span class="string">'passFunctionMAC.map'</span>;
+0065     <span class="keyword">end</span>
+0066     
+0067     <span class="keyword">if</span> opt_parallel
+0068         <span class="comment">% Add library flags to enable openmp</span>
+0069         exportarg = [<span class="string">' -fopenmp '</span>, exportarg];
+0070     <span class="keyword">end</span>
+0071     
+0072     <span class="keyword">if</span> ~exist(<span class="string">'verLessThan'</span>) || verLessThan(<span class="string">'matlab'</span>,<span class="string">'7.6'</span>) <span class="comment">%#ok&lt;EXIST&gt; R2008a</span>
+0073         EXPORT=[<span class="string">' LDFLAGS='''</span>,ldflags,mapformat,<span class="string">''' '</span>];
+0074     <span class="keyword">elseif</span> verLessThan(<span class="string">'matlab'</span>,<span class="string">'8.3'</span>)                      <span class="comment">% R2014a</span>
+0075         ldf=regexprep(mex.getCompilerConfigurations(<span class="string">'C'</span>).Details.LinkerFlags,[<span class="string">'('</span> exportarg <span class="string">'\s?)([^\s,]+)'</span>],[<span class="string">'$1'</span>,mapformat]);
+0076         EXPORT=[<span class="string">' LDFLAGS='''</span>,strrep(ldf,<span class="string">'$'</span>,<span class="string">'\\$'</span>),<span class="string">''' '</span>];
+0077     <span class="keyword">elseif</span> verLessThan(<span class="string">'matlab'</span>,<span class="string">'9.1'</span>)                      <span class="comment">% R2016b</span>
+0078         EXPORT=[<span class="string">' LINKEXPORT='''</span>,exportarg,mapformat,<span class="string">''' '</span>];
+0079     <span class="keyword">else</span>
+0080         <span class="keyword">if</span> ismac()  <span class="comment">% Correct a bug in Mac setup which uses both LINKEXPORT and LINKEXPORTVER</span>
+0081             PLATFORMOPTION=[PLATFORMOPTION <span class="keyword">...</span>
+0082                 <span class="string">'LDFLAGS=''-Wl,-twolevel_namespace -undefined error -arch x86_64 -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET -Wl,-syslibroot,$ISYSROOT'' '</span> <span class="keyword">...</span>
+0083                 <span class="string">'CMDLINE200=''$LD $LDFLAGS $LDBUNDLE $LINKOPTIM $LINKEXPORTVER $OBJS $CLIBS $LINKLIBS -o $EXE'' '</span><span class="keyword">...</span>
+0084                 ];
+0085         <span class="keyword">end</span>
+0086         EXPORT=[<span class="string">' LINKEXPORTVER='''</span>,exportarg,mapformat,<span class="string">''' '</span>];
+0087     <span class="keyword">end</span>
+0088 <span class="keyword">end</span>
+0089 
+0090 <span class="keyword">if</span> opt_parallel
+0091     <span class="comment">% Add compiler flags to enable openmp</span>
+0092     <span class="keyword">if</span> ispc()
+0093         warning(<span class="string">'OpenMP available with MSVC or V Studio compilers.'</span>);
+0094         EXPORT = [<span class="string">' COMPFLAGS=''$COMPFLAGS /openmp'' '</span>, EXPORT];
+0095     <span class="keyword">else</span>
+0096         <span class="keyword">switch</span> computer
+0097             <span class="keyword">case</span> {<span class="string">'SOL2'</span>,<span class="string">'SOL64'</span>}
+0098                 EXPORT = [<span class="string">' CFLAGS=''$CFLAGS -xopenmp'' '</span>, EXPORT];
+0099             <span class="keyword">case</span> {<span class="string">'MAC'</span>,<span class="string">'MACI'</span>,<span class="string">'MACI64'</span>}
+0100                 warning(<span class="string">'OpenMP may not be supportded on MAC. *Untested*'</span>);
+0101                 EXPORT = [<span class="string">' CFLAGS=''$CFLAGS -fopenmp'' '</span>, EXPORT];
+0102             <span class="keyword">otherwise</span>
+0103                 EXPORT = [<span class="string">' CFLAGS=''$CFLAGS -fopenmp'' '</span>, EXPORT];
+0104         <span class="keyword">end</span>
+0105     <span class="keyword">end</span>
+0106 <span class="keyword">end</span>
+0107     
+0108 
+0109 <span class="keyword">if</span> ischar(PASSMETHODS) <span class="comment">% one file name - convert to a cell array</span>
+0110     <span class="keyword">if</span> strcmpi(PASSMETHODS,<span class="string">'all'</span>)
+0111         <span class="comment">% Find all files matching '*Pass.c' wildcard</span>
+0112         D = dir(fullfile(pdir,<span class="string">'*Pass.c'</span>));
+0113         ok=cellfun(@(nm) nm(1)~=<span class="string">'.'</span>,{D.name});  <span class="comment">% Eliminate invisible files</span>
+0114         PASSMETHODS=cellfun(@(nm) strrep(nm,<span class="string">'.c'</span>,<span class="string">''</span>),{D(ok).name},<span class="string">'UniformOutput'</span>,false);
+0115         <span class="keyword">try</span>
+0116             <a href="#_sub1" class="code" title="subfunction generate_passlist(pdir,passmethods)">generate_passlist</a>(pdir,PASSMETHODS);
+0117         <span class="keyword">catch</span> err
+0118             fprintf(2,<span class="string">'\nCannot generate the list of passmethods: %s\n\n'</span>, err.message);
+0119         <span class="keyword">end</span>
+0120     <span class="keyword">else</span> <span class="comment">% Mex a single specifie pass-method</span>
+0121         PASSMETHODS={PASSMETHODS};
+0122     <span class="keyword">end</span>
+0123 <span class="keyword">end</span>
+0124 
+0125 <span class="keyword">for</span> i = 1:length(PASSMETHODS)
+0126     PM = fullfile(pdir,[PASSMETHODS{i} <span class="string">'.c'</span>]);
+0127     evalin(<span class="string">'base'</span>,[<span class="string">'clear '</span>,PASSMETHODS{i}]);
+0128     <span class="keyword">if</span> exist(PM,<span class="string">'file'</span>)
+0129         <span class="keyword">try</span>
+0130             <span class="keyword">if</span> exist(<span class="string">'map2'</span>,<span class="string">'var'</span>)
+0131                 <span class="keyword">try</span>
+0132                     MEXSTRING = [<span class="string">'mex '</span>,PLATFORMOPTION,<span class="string">'-outdir '</span>,pdir,sprintf(EXPORT,map1),PM];
+0133                     disp(MEXSTRING);
+0134                     evalin(<span class="string">'base'</span>,MEXSTRING);
+0135                 <span class="keyword">catch</span>
+0136                     MEXSTRING = [<span class="string">'mex '</span>,PLATFORMOPTION,<span class="string">'-outdir '</span>,pdir,sprintf(EXPORT,map2),PM];
+0137                     disp(MEXSTRING);
+0138                     evalin(<span class="string">'base'</span>,MEXSTRING);
+0139                 <span class="keyword">end</span>
+0140             <span class="keyword">else</span>
+0141                 MEXSTRING = [<span class="string">'mex '</span>,PLATFORMOPTION,<span class="string">'-outdir '</span>,pdir,sprintf(EXPORT,map1),PM];
+0142                 disp(MEXSTRING);
+0143                 evalin(<span class="string">'base'</span>,MEXSTRING);
+0144             <span class="keyword">end</span>
+0145         <span class="keyword">catch</span> err
+0146             fprintf(2,<span class="string">'Could not compile %s: %s\n'</span>,PM,err.message);
+0147         <span class="keyword">end</span>
+0148     <span class="keyword">else</span>
+0149         fprintf(2,<span class="string">'%s not found, skip to next\n'</span>,PM);
+0150     <span class="keyword">end</span>
+0151 <span class="keyword">end</span>
+0152 
+0153     <a name="_sub1" href="#_subfunctions" class="code">function generate_passlist(pdir,passmethods)</a>
+0154         [fid,msg]=fopen(fullfile(pdir,<span class="string">'passmethodlist.m'</span>),<span class="string">'wt'</span>);
+0155         <span class="keyword">if</span> ~isempty(msg)
+0156             error(msg);
+0157         <span class="keyword">end</span>
+0158         fprintf(fid,<span class="string">'function passmethodlist\n'</span>);
+0159         fprintf(fid,<span class="string">'%%PASSMETHODLIST\tUtility function for MATLAB Compiler\n%%\n'</span>);
+0160         fprintf(fid,<span class="string">'%%Since passmethods are loaded at run time, the compiler will not include them\n'</span>);
+0161         fprintf(fid,<span class="string">'%%unless this function is included in the list of functions to be compiled.\n\n'</span>);
+0162         nbytes=cellfun(@(pass) fprintf(fid,<span class="string">'%s\n'</span>,pass),<a href="passmethods.html" class="code" title="function files = passmethods(varargin);">passmethods</a>); <span class="comment">%#ok&lt;NASGU&gt;</span>
+0163         fprintf(fid,<span class="string">'\nend\n'</span>);
+0164         fclose(fid);
+0165     <span class="keyword">end</span>
+0166 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

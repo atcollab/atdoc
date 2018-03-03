@@ -1,0 +1,8 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atsetrandomerrors -> atsetrandomerrors;
+  atsetrandomerrors -> seterrorrand;
+
+  atsetrandomerrors [URL="atsetrandomerrors.html"];
+  seterrorrand [URL="seterrorrand.html"];
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of atdiag</title>
+  <meta name="keywords" content="atdiag">
+  <meta name="description" content="ATDIAG Tests AT intallation">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atmat --><h1>atdiag
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>ATDIAG Tests AT intallation</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function atdiag </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">ATDIAG Tests AT intallation</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>	ATPLOT Plots optical functions</li><li><a href="../machine_data/spear3.html" class="code" title="function varargout = spear3(varargin)">spear3</a>	SPEAR3 Load the SPEAR3 lattice structure</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function atdiag</a>
+0002 <span class="comment">%ATDIAG Tests AT intallation</span>
+0003 
+0004 <span class="keyword">try</span>
+0005     disp(<span class="string">'&gt;&gt; spear3;'</span>)
+0006     ring = <a href="../machine_data/spear3.html" class="code" title="function varargout = spear3(varargin)">spear3</a>;
+0007     disp(<span class="string">'&gt;&gt; plotbeta'</span>);
+0008     <a href="../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>(ring);
+0009     disp(<span class="string">'If you see beta-function plots, AT is installed correctly'</span>)
+0010 <span class="keyword">catch</span>
+0011     disp(<span class="string">'AT was not installed correctly'</span>)
+0012 <span class="keyword">end</span>
+0013 
+0014</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

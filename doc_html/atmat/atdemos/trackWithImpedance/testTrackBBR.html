@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of testTrackBBR</title>
+  <meta name="keywords" content="testTrackBBR">
+  <meta name="description" content="create a fast ring from ESRF lattice">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html atdemos --><!-- menu.html trackWithImpedance --><h1>testTrackBBR
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>create a fast ring from ESRF lattice</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">create a fast ring from ESRF lattice
+generate a Broad Band Resonator Impedance
+add to fast ring</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="makeFastRingWithBBR.html" class="code" title="">makeFastRingWithBBR</a>	SI units</li><li><a href="../../../atmat/atphysics/CollectiveEffects/atbeam.html" class="code" title="function particle_dist = atbeam(np,sigma,orbit)">atbeam</a>	ATBEAM generates a particle distribution according to a sigma matrix</li><li><a href="../../../atmat/atphysics/CollectiveEffects/atsigma.html" class="code" title="function sigma = atsigma(varargin)">atsigma</a>	ATSIGMA constructs a beam sigma matrix 2x2 4x4 or 6x6</li><li><a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>	RINGPASS tracks particles through each element of the cell array RING</li><li><a href="../../../machine_data/esrf.html" class="code" title="function ring=esrf()">esrf</a>	</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <span class="comment">%create a fast ring from ESRF lattice</span>
+0002 <span class="comment">%generate a Broad Band Resonator Impedance</span>
+0003 <span class="comment">%add to fast ring</span>
+0004 <a href="makeFastRingWithBBR.html" class="code" title="">makeFastRingWithBBR</a>;
+0005 
+0006 <span class="comment">%Generate particle distribution and track</span>
+0007 <span class="comment">%watch rms values</span>
+0008 NP=1e4;
+0009 Nturns=1000;
+0010 particles=<a href="../../../atmat/atphysics/CollectiveEffects/atbeam.html" class="code" title="function particle_dist = atbeam(np,sigma,orbit)">atbeam</a>(NP,<a href="../../../atmat/atphysics/CollectiveEffects/atsigma.html" class="code" title="function sigma = atsigma(varargin)">atsigma</a>(<a href="../../../machine_data/esrf.html" class="code" title="function ring=esrf()">esrf</a>));
+0011 disp(std(particles'))
+0012 <span class="keyword">for</span> i=1:Nturns
+0013   particles=<a href="../../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(fastringBBR,particles,1);
+0014   disp(std(particles'))
+0015 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

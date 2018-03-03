@@ -1,0 +1,10 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  CorrectionChain -> CorrectionChain;
+  CorrectionChain -> DisplayCorrectionEffect;
+  testcorrectionchain -> CorrectionChain;
+
+  CorrectionChain [URL="CorrectionChain.html"];
+  DisplayCorrectionEffect [URL="DisplayCorrectionEffect.html"];
+  testcorrectionchain [URL="testcorrectionchain.html"];
+}

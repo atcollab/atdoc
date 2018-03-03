@@ -1,0 +1,7 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+
+  latticedemo [URL="latticedemo.html"];
+  linoptdemo [URL="linoptdemo.html"];
+  ohmienvelopedemo [URL="ohmienvelopedemo.html"];
+}

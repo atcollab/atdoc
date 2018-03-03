@@ -1,0 +1,7 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atsigma -> atsigma;
+
+  atbeam [URL="atbeam.html"];
+  atsigma [URL="atsigma.html"];
+}

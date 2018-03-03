@@ -1,0 +1,33 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  idtable_global -> mhdrload_bis;
+  mexpassmethod -> passmethods;
+  skewquad -> multipole;
+
+  Contents [URL="Contents.html"];
+  aperture [URL="aperture.html"];
+  corrector [URL="corrector.html"];
+  drift [URL="drift.html"];
+  hmonitor [URL="hmonitor.html"];
+  idtable_global [URL="idtable_global.html"];
+  mDriftPass [URL="mDriftPass.html"];
+  mIdentityPass [URL="mIdentityPass.html"];
+  marker [URL="marker.html"];
+  mexpassmethod [URL="mexpassmethod.html"];
+  mhdrload_bis [URL="mhdrload_bis.html"];
+  monitor [URL="monitor.html"];
+  multipole [URL="multipole.html"];
+  passmethodlist [URL="passmethodlist.html"];
+  passmethods [URL="passmethods.html"];
+  quadrupole [URL="quadrupole.html"];
+  rbend [URL="rbend.html"];
+  rbend2 [URL="rbend2.html"];
+  rbend3 [URL="rbend3.html"];
+  rfcavity [URL="rfcavity.html"];
+  sbend [URL="sbend.html"];
+  sextupole [URL="sextupole.html"];
+  skewquad [URL="skewquad.html"];
+  solenoid [URL="solenoid.html"];
+  vmonitor [URL="vmonitor.html"];
+  wiggler [URL="wiggler.html"];
+}

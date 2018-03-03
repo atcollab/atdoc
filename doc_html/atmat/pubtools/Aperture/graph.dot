@@ -1,0 +1,8 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+
+  SetPhysicalAperture [URL="SetPhysicalAperture.html"];
+  plotAperture [URL="plotAperture.html"];
+  plotERAperture [URL="plotERAperture.html"];
+  plotRAperture [URL="plotRAperture.html"];
+}

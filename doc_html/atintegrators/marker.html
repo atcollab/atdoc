@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of marker</title>
+  <meta name="keywords" content="marker">
+  <meta name="description" content="MARKER Creates a marker element in old AT version (Obsolete)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>marker
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>MARKER Creates a marker element in old AT version (Obsolete)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function z = marker(fname,method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">MARKER Creates a marker element in old AT version (Obsolete)
+MARKER('FAMILYNAME','METHOD')
+    creates a new family in the FAMLIST - a structure with fields
+        FamName            family name
+        Length             is set to 0 for  marker type 
+        PassMethod        name of the function on disk to use for tracking
+                            use 'IdentityPass' for markers that have no action
+                            such as reference points
+
+ returns assigned address in the FAMLIST that is uniquely identifies
+ the family
+
+  NOTES
+  1. Obsolete: use atmarker instead
+
+  See also atdrift, atquadrupole, atsextupole, atsbend, atskewquad,
+          atmultipole, atthinmultipole, atmarker, atcorrector</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="../machine_data/sp3v81f.html" class="code" title="function sp3v81f">sp3v81f</a>	All the dipole and quadrupole lengths are effective lengths</li><li><a href="../machine_data/spear2resp.html" class="code" title="function spear2resp">spear2resp</a>	SPEAR2RESP  example SPEAR2 lattice with orbit correctors and BPMS</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function z = marker(fname,method)</a>
+0002 <span class="comment">%MARKER Creates a marker element in old AT version (Obsolete)</span>
+0003 <span class="comment">%MARKER('FAMILYNAME','METHOD')</span>
+0004 <span class="comment">%    creates a new family in the FAMLIST - a structure with fields</span>
+0005 <span class="comment">%        FamName            family name</span>
+0006 <span class="comment">%        Length             is set to 0 for  marker type</span>
+0007 <span class="comment">%        PassMethod        name of the function on disk to use for tracking</span>
+0008 <span class="comment">%                            use 'IdentityPass' for markers that have no action</span>
+0009 <span class="comment">%                            such as reference points</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% returns assigned address in the FAMLIST that is uniquely identifies</span>
+0012 <span class="comment">% the family</span>
+0013 <span class="comment">%</span>
+0014 <span class="comment">%  NOTES</span>
+0015 <span class="comment">%  1. Obsolete: use atmarker instead</span>
+0016 <span class="comment">%</span>
+0017 <span class="comment">%  See also atdrift, atquadrupole, atsextupole, atsbend, atskewquad,</span>
+0018 <span class="comment">%          atmultipole, atthinmultipole, atmarker, atcorrector</span>
+0019 
+0020 ElemData.FamName = fname;  <span class="comment">% add check for identical family names</span>
+0021 ElemData.Length=0;
+0022 ElemData.PassMethod=method;
+0023 
+0024 <span class="keyword">global</span> FAMLIST
+0025 z = length(FAMLIST)+1; <span class="comment">% number of declare families including this one</span>
+0026 FAMLIST{z}.FamName = fname;
+0027 FAMLIST{z}.NumKids = 0;
+0028 FAMLIST{z}.KidsList= [];
+0029 FAMLIST{z}.ElemData= ElemData;
+0030</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of multipole</title>
+  <meta name="keywords" content="multipole">
+  <meta name="description" content="MULTIPOLE Creates a thick multipole element in old AT versions (Obsolete)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html atintegrators --><h1>multipole
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>MULTIPOLE Creates a thick multipole element in old AT versions (Obsolete)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function z=multipole(fname,L,PolynomA,PolynomB,method) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre class="comment">MULTIPOLE Creates a thick multipole element in old AT versions (Obsolete)
+ MULTIPOLE('FAMILYNAME',Length [m],PolynomA,PolynomB,'METHOD')
+    creates a new family in the FAMLIST - a structure with fields
+    FamName            family name
+    Length            length[m]
+    ElemData.PolynomA= skew [dipole quad sext oct];     
+    ElemData.PolynomB= normal [dipole quad sext oct]; 
+    PassMethod     name of the function to use for tracking
+
+   internally the additional structure fields are set:
+
+    NumIntSteps        Number of integration steps
+    MaxOrder
+    R1                    6 x 6 rotation matrix at the entrance
+    R2                6 x 6 rotation matrix at the entrance
+    T1                    6 x 1 translation at entrance 
+    T2                    6 x 1 translation at exit4
+
+ returns assigned address in the FAMLIST that uniquely identifies
+ the family
+
+  NOTES
+  1. Obsolete: use atmultipole or atthinmultipole instead
+
+  See also atdrift, atquadrupole, atsextupole, atsbend, atskewquad,
+          atmultipole, atthinmultipole, atmarker, atcorrector</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="skewquad.html" class="code" title="function z = skewquad(fname,L , Qs , method)">skewquad</a>	SKEWQUAD Creates a skewquad element (alias to multipole) in old AT version (Obsolete)</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function z=multipole(fname,L,PolynomA,PolynomB,method)</a>
+0002 <span class="comment">%MULTIPOLE Creates a thick multipole element in old AT versions (Obsolete)</span>
+0003 <span class="comment">% MULTIPOLE('FAMILYNAME',Length [m],PolynomA,PolynomB,'METHOD')</span>
+0004 <span class="comment">%    creates a new family in the FAMLIST - a structure with fields</span>
+0005 <span class="comment">%    FamName            family name</span>
+0006 <span class="comment">%    Length            length[m]</span>
+0007 <span class="comment">%    ElemData.PolynomA= skew [dipole quad sext oct];</span>
+0008 <span class="comment">%    ElemData.PolynomB= normal [dipole quad sext oct];</span>
+0009 <span class="comment">%    PassMethod     name of the function to use for tracking</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">%   internally the additional structure fields are set:</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">%    NumIntSteps        Number of integration steps</span>
+0014 <span class="comment">%    MaxOrder</span>
+0015 <span class="comment">%    R1                    6 x 6 rotation matrix at the entrance</span>
+0016 <span class="comment">%    R2                6 x 6 rotation matrix at the entrance</span>
+0017 <span class="comment">%    T1                    6 x 1 translation at entrance</span>
+0018 <span class="comment">%    T2                    6 x 1 translation at exit4</span>
+0019 <span class="comment">%</span>
+0020 <span class="comment">% returns assigned address in the FAMLIST that uniquely identifies</span>
+0021 <span class="comment">% the family</span>
+0022 <span class="comment">%</span>
+0023 <span class="comment">%  NOTES</span>
+0024 <span class="comment">%  1. Obsolete: use atmultipole or atthinmultipole instead</span>
+0025 <span class="comment">%</span>
+0026 <span class="comment">%  See also atdrift, atquadrupole, atsextupole, atsbend, atskewquad,</span>
+0027 <span class="comment">%          atmultipole, atthinmultipole, atmarker, atcorrector</span>
+0028 
+0029 
+0030 ElemData.FamName = fname;  <span class="comment">% add check for identical family names</span>
+0031 ElemData.Length = L;
+0032 ElemData.MaxOrder = 3;
+0033 ElemData.NumIntSteps = 10;
+0034 ElemData.R1 = diag(ones(6,1));
+0035 ElemData.R2 = diag(ones(6,1));
+0036 ElemData.T1 = zeros(1,6);
+0037 ElemData.T2 = zeros(1,6);
+0038 ElemData.PolynomA= PolynomA;     
+0039 ElemData.PolynomB= PolynomB;
+0040 ElemData.BendingAngle      = PolynomB(1);
+0041 ElemData.PassMethod=method;
+0042 
+0043 <span class="keyword">global</span> FAMLIST
+0044 z = length(FAMLIST)+1; <span class="comment">% number of declare families including this one</span>
+0045 FAMLIST{z}.FamName = fname;
+0046 FAMLIST{z}.NumKids = 0;
+0047 FAMLIST{z}.KidsList= [];
+0048 FAMLIST{z}.ElemData= ElemData;
+0049</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

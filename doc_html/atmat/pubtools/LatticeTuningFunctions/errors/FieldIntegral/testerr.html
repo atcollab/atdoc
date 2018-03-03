@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of testerr</title>
+  <meta name="keywords" content="testerr">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../menu.html atmat --><!-- ../../../menu.html pubtools --><!-- ../../menu.html LatticeTuningFunctions --><!-- ../menu.html errors --><!-- menu.html FieldIntegral --><h1>testerr
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>	ATPLOT Plots optical functions</li><li><a href="../../../../../atmat/atplot/plotfunctions/plPolynomBComp.html" class="code" title="function plotdata=plPolynomBComp(lindata,ring,~,varargin)">plPolynomBComp</a>	PLPOLYNOMBCOMP PlotBn coefficient with normalization</li><li><a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>	ATGETCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/atsetrandomerrors.html" class="code" title="function rerr=atsetrandomerrors(rerr,magindex,indBPM,seed,sigma,nsig,type)">atsetrandomerrors</a>	function rerr=atsetrandomerrors(...</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre>0001 clear all
+0002 close all
+0003 addpath(<span class="string">'/mntdirect/_machfs/liuzzo/CODE/LatticeTuningFunctions/errors'</span>)
+0004 
+0005 <span class="comment">% load lattice</span>
+0006 load ../../ESRFLattice.mat
+0007 
+0008 <span class="comment">% get indexes</span>
+0009 indm=indBPM;
+0010 indq=find(<a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>(ring,<span class="string">'Class'</span>,<span class="string">'Quadrupole'</span>)); <span class="comment">% girders are defined by GS and GE markers (start and end of girder)</span>
+0011 
+0012 rerr=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/random/atsetrandomerrors.html" class="code" title="function rerr=atsetrandomerrors(rerr,magindex,indBPM,seed,sigma,nsig,type)">atsetrandomerrors</a>(<span class="keyword">...</span>
+0013     ring,<span class="keyword">...</span>
+0014     indq,<span class="keyword">...</span>
+0015     indm,<span class="keyword">...</span>
+0016     1,<span class="keyword">...</span>
+0017     1e-1,<span class="keyword">...</span>
+0018     2.5,<span class="keyword">...</span>
+0019     <span class="string">'dpb2'</span>);
+0020 
+0021 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.1 0.4 0.65 0.35])
+0022 <a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>(rerr,[0,100],<span class="string">'comment'</span>,[],@<a href="../../../../../atmat/atplot/plotfunctions/plPolynomBComp.html" class="code" title="function plotdata=plPolynomBComp(lindata,ring,~,varargin)">plPolynomBComp</a>);
+0023 saveas(gca,<span class="string">'FieldIntegral.fig'</span>)
+0024 export_fig(<span class="string">'FieldIntegral.jpg'</span>,<span class="string">'-r300'</span>)
+0025</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

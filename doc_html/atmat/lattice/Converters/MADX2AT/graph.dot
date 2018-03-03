@@ -1,0 +1,10 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atfrommadx -> ParseAtributesMADX_2_AT;
+  reshapeToCellArray -> reshapeToCellArray;
+
+  ParseAtributesMADX_2_AT [URL="ParseAtributesMADX_2_AT.html"];
+  atfrommadx [URL="atfrommadx.html"];
+  buildATLattice [URL="buildATLattice.html"];
+  reshapeToCellArray [URL="reshapeToCellArray.html"];
+}

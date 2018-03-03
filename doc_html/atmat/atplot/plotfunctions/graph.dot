@@ -1,0 +1,31 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  plClosedOrbit -> plClosedOrbit;
+  plEmitContrib -> CurlyH;
+  plenvelope -> plenvelope;
+  plotB0curlyh -> CurlyHlindata;
+  plotWdispP -> plotWdispP;
+  plot_trajectory -> plot_trajectory;
+  plotbetadispcurlyh -> CurlyHlindata;
+  plotsqrtbetadispcurlyh -> CurlyHlindata;
+
+  CurlyH [URL="CurlyH.html"];
+  CurlyHlindata [URL="CurlyHlindata.html"];
+  plBeamSize [URL="plBeamSize.html"];
+  plClosedOrbit [URL="plClosedOrbit.html"];
+  plCorrectorStrength [URL="plCorrectorStrength.html"];
+  plEmitContrib [URL="plEmitContrib.html"];
+  plPolynomBComp [URL="plPolynomBComp.html"];
+  plPolynomBSxtOct [URL="plPolynomBSxtOct.html"];
+  plSigmaSigmap [URL="plSigmaSigmap.html"];
+  plenvelope [URL="plenvelope.html"];
+  plotB0curlyh [URL="plotB0curlyh.html"];
+  plotRDT [URL="plotRDT.html"];
+  plotWdispP [URL="plotWdispP.html"];
+  plot_betabeat [URL="plot_betabeat.html"];
+  plot_trajectory [URL="plot_trajectory.html"];
+  plotbetadispcurlyh [URL="plotbetadispcurlyh.html"];
+  plotsqrtbetadispcurlyh [URL="plotsqrtbetadispcurlyh.html"];
+  pltouschek [URL="pltouschek.html"];
+  plxi [URL="plxi.html"];
+}

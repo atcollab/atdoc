@@ -1,0 +1,9 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  findrespmat -> gettunechromatlinopt;
+  getresponsematrices -> findrespmat;
+
+  findrespmat [URL="findrespmat.html"];
+  getresponsematrices [URL="getresponsematrices.html"];
+  gettunechromatlinopt [URL="gettunechromatlinopt.html"];
+}

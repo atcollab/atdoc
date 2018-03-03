@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of seterrorwave</title>
+  <meta name="keywords" content="seterrorwave">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../menu.html atmat --><!-- ../../../menu.html pubtools --><!-- ../../menu.html LatticeTuningFunctions --><!-- ../menu.html errors --><!-- menu.html wave --><h1>seterrorwave
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>function rwave=seterrorwave(r,...             % nominal lattice </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>	FINDSPOS returns longitudinal positions of accelerator lattice elements.</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="atsetwaveerrors.html" class="code" title="function rerr=atsetwaveerrors(rerr,magindex,indBPM,W,A,type)">atsetwaveerrors</a>	function rerr=atsetwaveerrors(...</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function rwave=seterrorwave(</a><span class="keyword">...</span>
+0002     r,<span class="keyword">...</span><span class="comment">             % nominal lattice</span>
+0003     positions,<span class="keyword">...</span><span class="comment">      % positions where to apply the error</span>
+0004     errorsetfunct,<span class="keyword">...</span><span class="comment"> % function handle to set the error</span>
+0005     wavelength,<span class="keyword">...</span><span class="comment">    % wavelength [m]</span>
+0006     amplitude,<span class="keyword">...</span><span class="comment">     % amplitude [m]</span>
+0007     existingerr)        
+0008 <span class="comment">%</span>
+0009 <span class="comment">%  rwave=seterrorwave(...</span>
+0010 <span class="comment">%     r,...             % nominal lattice</span>
+0011 <span class="comment">%     position,...      % positions where to apply the error</span>
+0012 <span class="comment">%     errorsetfunct,... % function handle to set the error</span>
+0013 <span class="comment">%     wavelength,...    % array of wavelengths [m]</span>
+0014 <span class="comment">%     amplitude)        % array of amplitudes [m]</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% sets error waves. errors are defined and applid by the function</span>
+0017 <span class="comment">% errorsetfunct with signature r=errorsetfunct(r,positions,erroval)</span>
+0018 <span class="comment">%</span>
+0019 <span class="comment">%see also: findspos</span>
+0020 <span class="keyword">if</span> nargin&lt;6
+0021 existingerr=zeros(size(positions));
+0022 <span class="keyword">end</span>
+0023 
+0024 nw=length(amplitude);
+0025 np=length(positions);
+0026 
+0027 spos=<a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>(r,positions);
+0028 
+0029 <span class="comment">%errorvalues=zeros(size(positions));</span>
+0030 
+0031 sposdivwave = bsxfun(@rdivide, repmat(spos,nw,1), wavelength');
+0032 sinsposdivwave=sin(2*pi*sposdivwave);
+0033 
+0034 sinusoidsmat=repmat(amplitude,np,1).*sinsposdivwave';
+0035 errorvalues=sum(sinusoidsmat,2)';
+0036 
+0037 <span class="comment">%plot(spos,errorvalues)</span>
+0038 <span class="comment">%errorvalues=amplitude*sin(2*pi*spos/wavelength);</span>
+0039 
+0040 rwave=errorsetfunct(r,positions,existingerr+errorvalues);
+0041 
+0042 <span class="keyword">return</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

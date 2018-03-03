@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of getcellstruct</title>
+  <meta name="keywords" content="getcellstruct">
+  <meta name="description" content="GETCELLSTRUCT retrieves the field values MATLAB cell array of structures">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html atmat --><!-- menu.html lattice --><h1>getcellstruct
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>GETCELLSTRUCT retrieves the field values MATLAB cell array of structures</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function values = getcellstruct(CELLARRAY,field,index,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment">GETCELLSTRUCT retrieves the field values MATLAB cell array of structures
+
+ VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX,M,N)
+
+ VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX,M) can be used
+   for one dimensional vectors
+
+ VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX) is the same as
+   GETCELLSTRUCT(CELLARRAY,'field',index,1,1) if the field data
+   is a scalar
+
+ VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX) is a MATLAB cell array
+      of strings if specified fields contain strings.
+
+ See also <a href="atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">ATGETFIELDVALUES</a> <a href="setcellstruct.html" class="code" title="function CELLARRAY = setcellstruct(CELLARRAY,field,index,values,varargin)">SETCELLSTRUCT</a> <a href="findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">FINDCELLS</a></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>	ATGETFIELDVALUES retrieves the field values AT cell array of elements</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../atmat/atdemos/atmatchExamples/ExampleATMATCH/runtotest_atmatch.html" class="code" title="">runtotest_atmatch</a>	macro match dba test lattice beta functions and dispersion using</li><li><a href="../../atmat/atgui/intlat.html" class="code" title="function intlat(varargin)">intlat</a>	INTLAT Interactive AT lattice editor</li><li><a href="../../atmat/atphysics/NonLinearDynamics/computeRDT.html" class="code" title="function RDT=computeRDT(ring, index, varargin)">computeRDT</a>	COMPUTERDT Computes Hamiltonian resonance driving terms (RDTs)</li><li><a href="../../atmat/atphysics/ParameterSummaryFunctions/ringpara.html" class="code" title="function rp = ringpara(THERING,varargin)">ringpara</a>	RINGPARA Calculates various ring parameters</li><li><a href="../../atmat/atphysics/TouschekPiwinski/TouschekPiwinskiLifeTime.html" class="code" title="function [Tl,contributionsTL]=TouschekPiwinskiLifeTime(r,dpp,Ib,varargin)">TouschekPiwinskiLifeTime</a>	function [Tl,contributionsTL]=TouschekPiwinskiLifeTime(r,dpp,Ib)</li><li><a href="../../atmat/atphysics/TouschekPiwinski/simpletestToucheckLT.html" class="code" title="">simpletestToucheckLT</a>	simple example of use of toucheck lifetime formula:</li><li><a href="../../atmat/atphysics/TuneAndChromaticity/fitchrom2.html" class="code" title="function varargout =  fitchrom2(newchrom, sextfam1, sextfam2, varargin);">fitchrom2</a>	FITCHROM2 fits chromaticity  of THERING using 2 sextupole families</li><li><a href="../../atmat/atphysics/TuneAndChromaticity/fittune2.html" class="code" title="function [dK, Jinv] =  fittune2(newtunes, quadfam1, quadfam2, varargin);">fittune2</a>	FITTUNE2 fits linear tunes of THERING using 2 quadrupole families</li><li><a href="../../atmat/atplot/plotfunctions/plCorrectorStrength.html" class="code" title="function plotdata=plCorrectorStrength(lindata,ring,dpp,varargin) %#ok<INUSD>">plCorrectorStrength</a>	DEFAULTPLOT    Default plotting function for ATPLOT</li><li><a href="../../atmat/atplot/plotfunctions/plEmitContrib.html" class="code" title="function plotdata=plEmitContrib(lindata,ring,dpp,varargin)">plEmitContrib</a>	plots H/rho³ at every dipole</li><li><a href="../../atmat/atplot/plotfunctions/plPolynomBComp.html" class="code" title="function plotdata=plPolynomBComp(lindata,ring,~,varargin)">plPolynomBComp</a>	PLPOLYNOMBCOMP PlotBn coefficient with normalization</li><li><a href="../../atmat/atplot/plotfunctions/plPolynomBSxtOct.html" class="code" title="function plotdata=plPolynomBSxtOct(lindata,ring,~,varargin)">plPolynomBSxtOct</a>	PLPOLYNOMBSXTOCT Plots Bn for sextupole and octupole magnets</li><li><a href="../../atmat/atplot/plotfunctions/plotB0curlyh.html" class="code" title="function plotdata=plotB0curlyh(lindata,ring,dpp,varargin)">plotB0curlyh</a>	</li><li><a href="../../atmat/lattice/Converters/AT2Elegant/AT_2_Elegant.html" class="code" title="function AT_2_Elegant(AT_ring,linename)">AT_2_Elegant</a>	this functions converts the AT lattice AT_ring in elegant form.</li><li><a href="../../atmat/lattice/Converters/AT2MAD8/AT_2_mad8.html" class="code" title="function [elelat,def,lines]=AT_2_mad8(AT_ring,linename)">AT_2_mad8</a>	function [elelat,def,lines]=AT_2_mad8(AT_ring,linename)</li><li><a href="../../atmat/lattice/Converters/AT2MADX/AT_2_madX.html" class="code" title="function [elelat,defs,lines]=AT_2_madX(AT_ring,linename)">AT_2_madX</a>	function [elelat,defs,lines]=AT_2_madX(AT_ring,linename)</li><li><a href="../../atmat/lattice/Converters/AT2OPA/AT_2_OPA.html" class="code" title="function AT_2_OPA(AT_ring,linename)">AT_2_OPA</a>	function AT_2_OPA(AT_ring,linename)</li><li><a href="../../atmat/pubtools/Aperture/plotAperture.html" class="code" title="function plotdata=plotAperture(~,ring,~,varargin)">plotAperture</a>	PLOTAPERTURE Plots x and y aperture.</li><li><a href="../../atmat/pubtools/Aperture/plotERAperture.html" class="code" title="function plotdata=plotERAperture(~,ring,~,varargin)">plotERAperture</a>	PLOTERAPERTURE Plots RApertures EApertures aperture.</li><li><a href="../../atmat/pubtools/Aperture/plotRAperture.html" class="code" title="function plotdata=plotRAperture(~,ring,~,varargin)">plotRAperture</a>	PLOTRAPERTURE Plots Rectangular aperture</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/correction/correction_chain/DisplayCorrectionEffect.html" class="code" title="function [d0,de,dc]=DisplayCorrectionEffect(r0,rerr,rcor,inCODe,inCODc,refpts,indHCor,indVCor,indQCor,indSCor)">DisplayCorrectionEffect</a>	[d0,de,dc]=DisplayCorrectionEffect(...</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/correction/trajectory/atfirstturntrajectory.html" class="code" title="function [rclosed,inCOD]=atfirstturntrajectory(ropen,inCOD,indBPM,indHCor,indVCor,lim,maxcornum,correctflags,ModelRM,reforbit,steererlimit,printouttext)">atfirstturntrajectory</a>	ATFIRSTTURNTRAJECTORY Makes first turn correction</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/AssignFieldErr.html" class="code" title="function [r,Pnew,Panew]=AssignFieldErr(r,refpos,N,rho,BNn,ANn)">AssignFieldErr</a>	function r=AssignFieldErr(r,refpos,N,rho,BNn,ANn)</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errordisplayfunctions/GetMisalignments.html" class="code" title="function [X,Y,T]=GetMisalignments(THERING,varargin)">GetMisalignments</a>	this function retrives 3 vectors, for x and y misalignments and tilts</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/GetExistingErrors.html" class="code" title="function [X,Y,S,T,R,P,bpmerrors]=GetExistingErrors(THERING,varargin)">GetExistingErrors</a>	this function retrives 6 vectors, for x, y,s misalignments,</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/errorsmanipulation/getMagGroupsFromMagNum.html" class="code" title="function maggroups=getMagGroupsFromMagNum(r)">getMagGroupsFromMagNum</a>	GETMAGGROUPSFROMMAGNUM - Gets magnet from a Magnet group</li><li><a href="../../atmat/pubtools/calc_dppAperture.html" class="code" title="function [deltap,deltam, indextab] = calc_dppAperture(THERING, varargin)">calc_dppAperture</a>	calculate the momentum aperture at each location of the ring due to</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function values = getcellstruct(CELLARRAY,field,index,varargin)</a>
+0002 <span class="comment">%GETCELLSTRUCT retrieves the field values MATLAB cell array of structures</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX,M,N)</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">% VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX,M) can be used</span>
+0007 <span class="comment">%   for one dimensional vectors</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX) is the same as</span>
+0010 <span class="comment">%   GETCELLSTRUCT(CELLARRAY,'field',index,1,1) if the field data</span>
+0011 <span class="comment">%   is a scalar</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">% VALUES = GETCELLSTRUCT(CELLARRAY,'field',INDEX) is a MATLAB cell array</span>
+0014 <span class="comment">%      of strings if specified fields contain strings.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% See also ATGETFIELDVALUES SETCELLSTRUCT FINDCELLS</span>
+0017 
+0018 values=<a href="atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>(CELLARRAY(index),field,varargin);
+0019 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

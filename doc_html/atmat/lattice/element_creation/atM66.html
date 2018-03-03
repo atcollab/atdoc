@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of atM66</title>
+  <meta name="keywords" content="atM66">
+  <meta name="description" content="ATM66(FAMNAME,M66,PASSMETHOD)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html lattice --><!-- menu.html element_creation --><h1>atM66
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>ATM66(FAMNAME,M66,PASSMETHOD)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>function elem=atM66(fname,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">ATM66(FAMNAME,M66,PASSMETHOD)
+   atM66 creates an element that applies an arbitrary matrix m66
+
+FAMNAME    family name
+M66        transfer matrix, defaults to Identity(6)]
+PASSMETHOD    tracking function, defaults to 'Matrix66Pass'
+
+ATM66(FAMNAME,ATSTRUCT,PASSMETHOD)
+   atM66 will generate the matrix by calling FINDM66(ATSTRUCT)
+
+ATSTRUCT   AT structure</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="../../../atmat/atphysics/LinearOptics/findm66.html" class="code" title="function [M66, varargout] = findm66(LATTICE, varargin)">findm66</a>	FINDM66 numerically finds the 6x6 transfer matrix of an accelerator lattice</li><li><a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>	ATBASELEM  Create an AT element structure + various checks</li><li><a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>	DECODEATARGS separates arguments and resources</li><li><a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>	GETOPTION Extract a keyword argument from the input arguments</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="../../../atmat/lattice/at2py.html" class="code" title="function elstr=at2py(elem)">at2py</a>	ELSTR=AT2PY(ELEM) convert AT element tp pyat</li><li><a href="../../../atmat/lattice/at2str.html" class="code" title="function elstr=at2str(elem)">at2str</a>	AT2STR Makes the string representation of an AT element</li><li><a href="../../../atmat/lattice/atfastring.html" class="code" title="function [newring,newringrad] = atfastring(ring0,varargin)">atfastring</a>	ATFASTRING Generate simplified AT structures</li><li><a href="atdampMatElem.html" class="code" title="function elem=atdampMatElem(fname,ring,varargin)">atdampMatElem</a>	atdampMatElem creates an element that applies the global damping matrix</li><li><a href="../../../machine_data/australian_synchrotron.html" class="code" title="function ring=australian_synchrotron()">australian_synchrotron</a>	</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function elem=atM66(fname,varargin)</a>
+0002 <span class="comment">%ATM66(FAMNAME,M66,PASSMETHOD)</span>
+0003 <span class="comment">%   atM66 creates an element that applies an arbitrary matrix m66</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">%FAMNAME    family name</span>
+0006 <span class="comment">%M66        transfer matrix, defaults to Identity(6)]</span>
+0007 <span class="comment">%PASSMETHOD    tracking function, defaults to 'Matrix66Pass'</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">%ATM66(FAMNAME,ATSTRUCT,PASSMETHOD)</span>
+0010 <span class="comment">%   atM66 will generate the matrix by calling FINDM66(ATSTRUCT)</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">%ATSTRUCT   AT structure</span>
+0013 
+0014 [rsrc,m66,method] = <a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>({eye(6),<span class="string">'Matrix66Pass'</span>},varargin);
+0015 [method,rsrc]     = <a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'PassMethod'</span>,method);
+0016 [cl,rsrc]         = <a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Class'</span>,<span class="string">'Matrix66'</span>);
+0017 
+0018 <span class="keyword">if</span> isstruct(m66)
+0019     m66=<a href="../../../atmat/atphysics/LinearOptics/findm66.html" class="code" title="function [M66, varargout] = findm66(LATTICE, varargin)">findm66</a>(m66);
+0020 <span class="keyword">end</span>
+0021 
+0022 elem=<a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>(fname,method,<span class="string">'Class'</span>,cl,<span class="string">'M66'</span>,m66,rsrc{:});
+0023 
+0024 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

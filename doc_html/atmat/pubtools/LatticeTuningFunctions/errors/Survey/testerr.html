@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of testerr</title>
+  <meta name="keywords" content="testerr">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../../../menu.html atmat --><!-- ../../../menu.html pubtools --><!-- ../../menu.html LatticeTuningFunctions --><!-- ../menu.html errors --><!-- menu.html Survey --><h1>testerr
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+<li><a href="../../../../../atmat/atphysics/Orbit/findorbit4.html" class="code" title="function [orbit,fixedpoint] = findorbit4(RING,dP,varargin)">findorbit4</a>	FINDORBIT4 finds closed orbit in the 4-d transverse phase</li><li><a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>	FINDSPOS returns longitudinal positions of accelerator lattice elements.</li><li><a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>	ATPLOT Plots optical functions</li><li><a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>	ATGETCELLS performs a search on MATLAB cell arrays of structures</li><li><a href="SetESRFAlgeAlignmentError.html" class="code" title="function ringerr=SetESRFAlgeAlignmentError(ring,algeexcelfile,filenameout,nseeds,fracerr,plotdataALGE)">SetESRFAlgeAlignmentError</a>	function SetESRFAlgeAlignmentError(...</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/errordisplayfunctions/pltmisalignments.html" class="code" title="function plotdata=pltmisalignments(lindata,ring,dpp,varargin) %#ok<INUSD>">pltmisalignments</a>	PLTMISALIGNMENTS - Plots misalignement errors</li><li><a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>	findorbit4Err Gets 4x4 closed orbit with BPM errors</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../../../matlabicon.gif)">
+</ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../../../atcollab.png)"><pre>0001 clear all
+0002 close all
+0003 
+0004 <span class="comment">% load lattice</span>
+0005 load /machfs/liuzzo/ESRF/StorageRing/LATTICE/AT/ESRF_fortol.mat
+0006 
+0007 
+0008 
+0009 algedir=<span class="string">'/machfs/liuzzo/EBS'</span>;
+0010 algeactfile=fullfile(algedir,<span class="string">'Actual_Position_Simu.xlsx'</span>);
+0011 rerr=<a href="SetESRFAlgeAlignmentError.html" class="code" title="function ringerr=SetESRFAlgeAlignmentError(ring,algeexcelfile,filenameout,nseeds,fracerr,plotdataALGE)">SetESRFAlgeAlignmentError</a>(ring,algeactfile,<span class="string">''</span>,1);
+0012     
+0013 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.1 0.4 0.65 0.35])
+0014 <a href="../../../../../atmat/atplot/atplot.html" class="code" title="function curve = atplot(varargin)">atplot</a>(rerr,<span class="string">'comment'</span>,[],@<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/errordisplayfunctions/pltmisalignments.html" class="code" title="function plotdata=pltmisalignments(lindata,ring,dpp,varargin) %#ok<INUSD>">pltmisalignments</a>)
+0015 
+0016 saveas(gca,<span class="string">'SurveyErrors.fig'</span>)
+0017 export_fig(<span class="string">'SurveyErrors.jpg'</span>,<span class="string">'-r300'</span>)
+0018   
+0019 indm=find(<a href="../../../../../atmat/lattice/atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>(rerr,<span class="string">'Class'</span>,<span class="string">'Monitor'</span>));
+0020 
+0021 <span class="comment">%% plots</span>
+0022 figure(<span class="string">'units'</span>,<span class="string">'normalized'</span>,<span class="string">'position'</span>,[0.1 0.4 0.65 0.35])
+0023 s=<a href="../../../../../atmat/atphysics/findspos.html" class="code" title="function spos = findspos(line,refpts)">findspos</a>(rerr,indm);
+0024 o=<a href="../../../../../atmat/atphysics/Orbit/findorbit4.html" class="code" title="function [orbit,fixedpoint] = findorbit4(RING,dP,varargin)">findorbit4</a>(rerr,0,indm);
+0025 plot(s,o(1,:)'*1e3,<span class="string">'k'</span>);
+0026 hold on;
+0027 oe=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rerr,0,indm);
+0028 plot(s,oe(1,:)'*1e3,<span class="string">'rx'</span>);
+0029 legend(<span class="string">'orbit'</span>,<span class="string">'bpm reading'</span>);
+0030 oe=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rerr,0,indm);
+0031 plot(s,oe(1,:)'*1e3,<span class="string">'rx'</span>);
+0032 oe=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rerr,0,indm);
+0033 plot(s,oe(1,:)'*1e3,<span class="string">'rx'</span>);
+0034 oe=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rerr,0,indm);
+0035 plot(s,oe(1,:)'*1e3,<span class="string">'rx'</span>);
+0036 oe=<a href="../../../../../atmat/pubtools/LatticeTuningFunctions/errors/findorbit4Err.html" class="code" title="function orbit = findorbit4Err(RING, dP, indbpm, varargin)">findorbit4Err</a>(rerr,0,indm);
+0037 plot(s,oe(1,:)'*1e3,<span class="string">'rx'</span>);
+0038 xlabel(<span class="string">'s [m]'</span>);ylabel(<span class="string">'x [mm]'</span>)
+0039 saveas(gca,<span class="string">'OrbitBPMAllErrX.fig'</span>)
+0040 export_fig(<span class="string">'OrbitBPMAllErrX.jpg'</span>,<span class="string">'-r300'</span>)</pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

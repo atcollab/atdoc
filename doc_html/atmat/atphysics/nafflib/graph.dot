@@ -1,0 +1,11 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  calcnaff -> nafflib;
+  naff_example -> calcnaff;
+
+  Contents [URL="Contents.html"];
+  calcnaff [URL="calcnaff.html"];
+  naff_cc [URL="naff_cc.html"];
+  naff_example [URL="naff_example.html"];
+  nafflib [URL="nafflib.html"];
+}

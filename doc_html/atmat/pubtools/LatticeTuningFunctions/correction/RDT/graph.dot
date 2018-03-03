@@ -1,0 +1,29 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atQuadRDTdispersioncorrection -> EquivalentGradientsFromAlignments6D;
+  atQuadRDTdispersioncorrection -> qemrdtresp_mod;
+  atRDTdispersioncorrection -> EquivalentGradientsFromAlignments6D;
+  atRDTdispersioncorrection -> qemrdtresp_mod;
+  atRDTdispersioncorrection -> semrdtresp_mod;
+  atRDTdispersionmeasuredcorrection -> EquivalentGradientsFromAlignments6D;
+  atRDTdispersionmeasuredcorrection -> qemrdtresp_mod;
+  atRDTdispersionmeasuredcorrection -> semrdtresp_mod;
+  atSkewRDTdispersioncorrection -> EquivalentGradientsFromAlignments6D;
+  atSkewRDTdispersioncorrection -> semrdtresp_mod;
+  qemrdtresp_mod -> atavedata_mod;
+  semrdtresp_mod -> atavedata_mod;
+  testRDTdispersionfreesteering -> atQuadRDTdispersioncorrection;
+  testRDTdispersionfreesteering -> atRDTdispersioncorrection;
+  testRDTdispersionfreesteering -> atRDTdispersionmeasuredcorrection;
+  testRDTdispersionfreesteering -> atSkewRDTdispersioncorrection;
+
+  EquivalentGradientsFromAlignments6D [URL="EquivalentGradientsFromAlignments6D.html"];
+  atQuadRDTdispersioncorrection [URL="atQuadRDTdispersioncorrection.html"];
+  atRDTdispersioncorrection [URL="atRDTdispersioncorrection.html"];
+  atRDTdispersionmeasuredcorrection [URL="atRDTdispersionmeasuredcorrection.html"];
+  atSkewRDTdispersioncorrection [URL="atSkewRDTdispersioncorrection.html"];
+  atavedata_mod [URL="atavedata_mod.html"];
+  qemrdtresp_mod [URL="qemrdtresp_mod.html"];
+  semrdtresp_mod [URL="semrdtresp_mod.html"];
+  testRDTdispersionfreesteering [URL="testRDTdispersionfreesteering.html"];
+}

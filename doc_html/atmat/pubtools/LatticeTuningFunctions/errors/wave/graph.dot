@@ -1,0 +1,8 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  atsetwaveerrors -> atsetwaveerrors;
+  atsetwaveerrors -> seterrorwave;
+
+  atsetwaveerrors [URL="atsetwaveerrors.html"];
+  seterrorwave [URL="seterrorwave.html"];
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of ataperture</title>
+  <meta name="keywords" content="ataperture">
+  <meta name="description" content="ATAPERTURE Creates a aperture element">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../../menu.html atmat --><!-- ../menu.html lattice --><!-- menu.html element_creation --><h1>ataperture
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>ATAPERTURE Creates a aperture element</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="box"><strong>function elem=ataperture(fname,varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">ATAPERTURE Creates a aperture element
+ ATAPERTURE(FAMNAME,LIMITS,PASSMETHOD
+ define physical aperture element (collimator)
+ lim=[-x,+x,-y,+y];
+ 
+ lim={[-x,+x,-y,+y],[-x,+x,-y,+y],[-x,+x,-y,+y],...};
+ will generate various aperture elements (one for every set of errors)
+ 
+  See also setphysicalaperture</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)">
+This function calls:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>	ATBASELEM  Create an AT element structure + various checks</li><li><a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>	DECODEATARGS separates arguments and resources</li><li><a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>	GETOPTION Extract a keyword argument from the input arguments</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../../matlabicon.gif)">
+<li><a href="../../../atintegrators/aperture.html" class="code" title="function z = aperture(fname,varargin)">aperture</a>	APERTURE Creates a aperture element in old a AT version (Obsolete)</li><li><a href="../../../atmat/lattice/at2py.html" class="code" title="function elstr=at2py(elem)">at2py</a>	ELSTR=AT2PY(ELEM) convert AT element tp pyat</li><li><a href="../../../atmat/lattice/at2str.html" class="code" title="function elstr=at2str(elem)">at2str</a>	AT2STR Makes the string representation of an AT element</li><li><a href="../../../atmat/pubtools/Aperture/SetPhysicalAperture.html" class="code" title="function ringapert=SetPhysicalAperture(ring,apertureX,apertureY)">SetPhysicalAperture</a>	ringapert=SetPhysicalAperture(ring,apertureX,apertureY)</li><li><a href="../../../machine_data/australian_synchrotron.html" class="code" title="function ring=australian_synchrotron()">australian_synchrotron</a>	</li></ul>
+</div>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
+<div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function elem=ataperture(fname,varargin)</a>
+0002 <span class="comment">%ATAPERTURE Creates a aperture element</span>
+0003 <span class="comment">% ATAPERTURE(FAMNAME,LIMITS,PASSMETHOD</span>
+0004 <span class="comment">% define physical aperture element (collimator)</span>
+0005 <span class="comment">% lim=[-x,+x,-y,+y];</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% lim={[-x,+x,-y,+y],[-x,+x,-y,+y],[-x,+x,-y,+y],...};</span>
+0008 <span class="comment">% will generate various aperture elements (one for every set of errors)</span>
+0009 <span class="comment">%</span>
+0010 <span class="comment">%  See also setphysicalaperture</span>
+0011 <span class="comment">%</span>
+0012 
+0013 [rsrc,limits,method,~]=<a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>({[0 0],<span class="string">'AperturePass'</span>,<span class="string">''</span>},varargin);
+0014 [limits,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Limits'</span>,limits);
+0015 [method,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'PassMethod'</span>,method);
+0016 [cl,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Class'</span>,<span class="string">'Aperture'</span>);
+0017 elem=<a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>(fname,method,<span class="string">'Class'</span>,cl,<span class="string">'Limits'</span>,limits,rsrc{:});
+0018 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>
