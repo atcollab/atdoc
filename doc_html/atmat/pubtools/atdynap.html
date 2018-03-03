@@ -4,7 +4,7 @@
 <head>
   <title>Description of atdynap</title>
   <meta name="keywords" content="atdynap">
-  <meta name="description" content="ATDYNAP Computes the dynamic aperture for ring structure">
+  <meta name="description" content="ATDYNAP		Compute the dynamic aperture">
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
   <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
   <meta name="robots" content="index, follow">
@@ -15,43 +15,29 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../menu.html atmat --><!-- menu.html pubtools --><h1>atdynap
 </h1>
 
 <h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="box"><strong>ATDYNAP Computes the dynamic aperture for ring structure</strong></div>
+<div class="box"><strong>ATDYNAP		Compute the dynamic aperture</strong></div>
 
 <h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="box"><strong>function [xx,zz]=atdynap(ring,nt,dpp,rfrac) </strong></div>
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment">ATDYNAP Computes the dynamic aperture for ring structure
+<div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment">ATDYNAP        Compute the dynamic aperture
 
-  [xx,zz] = atdynap(ring,nturns,dpp,rfrac)
 
-  INPUTS
-  1. ring  - Lattice strucutre
-  2. nt    - Number of turns for tracking
-  3. dpp   - Energy offset (default: 0)
-  4. rfrac - Resolution of the grid for checking the stability
-              as a fraction of the maximum stable amplitude
-              (default: 0.02)
-  OUPUTS
-  1. XX - Horizontal limit of the dynamic aperture (betatron amplitudes in m)
-  2. ZZ - Vertical limit of the dynamic aperture (betatron amplitudes in m)
+[XX,ZZ]=ATDYNAP(RING,NTURNS,DPP,RFRAC)
 
-  NOTES
-  1. Algorithm in 2 steps
-  2. Speed up possible using a alorithm similar to ELEGANT with dichotomy
-  3. Improve and add more input parameter for rlist and np at least
-  4. Handle DISPLAYFLAG
-
-  EXAMPLES
-  1. ring = soleil; % load lattice
-     [xx zz] = atdynap(ring, 100); % compute DA
-     plot(xx,zz, '*-'); % plot DA
-
-  See also <a href="atmomap.html" class="code" title="function [deltap,deltam,Rfin, loss,X0l] = atmomap(ring, Nturn)">atmomap</a></pre></div>
+XX,ZZ :    limit of the dynamic aperture (betatron amplitudes in m)
+RING :        Structure for tracking
+NTURNS:    Number of turns
+DPP :        Off-momentum value (default: 0)
+RFRAC :    Resolution of the grid for checking the stability
+            as a fraction of the maximum stable amplitude
+            (default: 0.02)</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
@@ -68,147 +54,88 @@ This function is called by:
 <h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../atcollab.png)">
 <ul style="list-style-image:url(../../matlabicon.gif)">
-<li><a href="#_sub1" class="code">function rmax=ascan(ring,nt,clorb,theta,rlist, DISPLAYFLAG)</a></li><li><a href="#_sub2" class="code">function [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist, DISPLAYFLAG)</a></li></ul>
+<li><a href="#_sub1" class="code">function rmax=ascan(ring,nt,clorb,theta,rlist)</a></li><li><a href="#_sub2" class="code">function [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist)</a></li></ul>
 </div>
 
 <h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [xx,zz]=atdynap(ring,nt,dpp,rfrac)</a>
-0002 <span class="comment">%ATDYNAP Computes the dynamic aperture for ring structure</span>
+0002 <span class="comment">%ATDYNAP        Compute the dynamic aperture</span>
 0003 <span class="comment">%</span>
-0004 <span class="comment">%  [xx,zz] = atdynap(ring,nturns,dpp,rfrac)</span>
-0005 <span class="comment">%</span>
-0006 <span class="comment">%  INPUTS</span>
-0007 <span class="comment">%  1. ring  - Lattice strucutre</span>
-0008 <span class="comment">%  2. nt    - Number of turns for tracking</span>
-0009 <span class="comment">%  3. dpp   - Energy offset (default: 0)</span>
-0010 <span class="comment">%  4. rfrac - Resolution of the grid for checking the stability</span>
-0011 <span class="comment">%              as a fraction of the maximum stable amplitude</span>
-0012 <span class="comment">%              (default: 0.02)</span>
-0013 <span class="comment">%  OUPUTS</span>
-0014 <span class="comment">%  1. XX - Horizontal limit of the dynamic aperture (betatron amplitudes in m)</span>
-0015 <span class="comment">%  2. ZZ - Vertical limit of the dynamic aperture (betatron amplitudes in m)</span>
-0016 <span class="comment">%</span>
-0017 <span class="comment">%  NOTES</span>
-0018 <span class="comment">%  1. Algorithm in 2 steps</span>
-0019 <span class="comment">%  2. Speed up possible using a alorithm similar to ELEGANT with dichotomy</span>
-0020 <span class="comment">%  3. Improve and add more input parameter for rlist and np at least</span>
-0021 <span class="comment">%  4. Handle DISPLAYFLAG</span>
-0022 <span class="comment">%</span>
-0023 <span class="comment">%  EXAMPLES</span>
-0024 <span class="comment">%  1. ring = soleil; % load lattice</span>
-0025 <span class="comment">%     [xx zz] = atdynap(ring, 100); % compute DA</span>
-0026 <span class="comment">%     plot(xx,zz, '*-'); % plot DA</span>
-0027 <span class="comment">%</span>
-0028 <span class="comment">%  See also atmomap</span>
-0029 
-0030 DISPLAYFLAG = 1;
-0031 
-0032 np=5; <span class="comment">% number of point. The sampling over pi will be in 2np+3 points</span>
-0033 rlist=0:0.001:0.1; <span class="comment">%</span>
-0034 
-0035 <span class="keyword">if</span> nargin &lt; 4, rfrac=0.02; <span class="keyword">end</span>
-0036 
-0037 <span class="keyword">if</span> nargin &lt; 3, dpp=0.0; <span class="keyword">end</span>
-0038 
-0039 <span class="comment">% closed orbit 6D if on momentum</span>
-0040 <span class="keyword">if</span> isnumeric(dpp)
-0041     clorb=[<a href="../../atmat/atphysics/Orbit/findorbit4.html" class="code" title="function [orbit,fixedpoint] = findorbit4(RING,dP,varargin)">findorbit4</a>(ring,dpp);dpp;0];
-0042 <span class="keyword">else</span>
-0043     clorb=<a href="../../atmat/atphysics/Orbit/findorbit6.html" class="code" title="function [orbit,fixedpoint] = findorbit6(RING,varargin)">findorbit6</a>(ring);
-0044 <span class="keyword">end</span>
-0045 
-0046 t1=linspace(0,pi,2*np+3);
-0047 
-0048 <span class="comment">% Border theta=0,pi/é,pi fast exploration</span>
-0049 <span class="comment">% looks for xmax/z=0</span>
-0050 xpmax = <a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist, DISPLAYFLAG)">ascan</a>(ring,nt,clorb,0,rlist, DISPLAYFLAG);
-0051 <span class="comment">% looks for zmax/x=0</span>
-0052 zmax  = <a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist, DISPLAYFLAG)">ascan</a>(ring,nt,clorb,0.5*pi,rlist, DISPLAYFLAG);
-0053 <span class="comment">% looks for xmin/z=0</span>
-0054 xmmax = <a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist, DISPLAYFLAG)">ascan</a>(ring,nt,clorb,pi,rlist, DISPLAYFLAG);
-0055 <span class="comment">%</span>
-0056 <span class="comment">% x1=[xpmax*ones(1,np+2) xmmax*ones(1,np+1)];</span>
-0057 <span class="comment">% z1=zmax*ones(1,2*np+3);</span>
-0058 <span class="comment">% tlist=atan2(sin(t1).*z1,cos(t1).*x1)';</span>
-0059 <span class="comment">%</span>
-0060 <span class="comment">% rr=NaN(2*np+3,1);</span>
-0061 <span class="comment">% rr(1)=xpmax;</span>
-0062 <span class="comment">% rr(np+2)=zmax;</span>
-0063 <span class="comment">% rr(2*np+3)=xmmax;</span>
-0064 <span class="comment">% for i=[2:np+1 np+3:2*np+2]</span>
-0065 <span class="comment">%    rr(i)=ascan(ring,nt,clorb,tlist(i),rlist);</span>
-0066 <span class="comment">% end</span>
-0067 <span class="comment">% xx=rr.*cos(tlist);</span>
-0068 <span class="comment">% zz=rr.*sin(tlist);</span>
-0069 
-0070 <span class="comment">% Real search for DA between 0.5 and 2 time maximum found at the previous</span>
-0071 <span class="comment">% iteration</span>
-0072 slist=0.5:rfrac:2;
-0073 xx=NaN(2*np+3,1);
-0074 zz=xx;
-0075 
-0076 <span class="comment">% Positive DA</span>
-0077 <span class="keyword">for</span> i=1:np+3
-0078     [xx(i),zz(i)]=<a href="#_sub2" class="code" title="subfunction [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist, DISPLAYFLAG)">bscan</a>(ring,nt,clorb,<span class="keyword">...</span>
-0079         xpmax*cos(t1(i))*slist,zmax*sin(t1(i))*slist, DISPLAYFLAG);
-0080 <span class="keyword">end</span>
-0081 
-0082 <span class="comment">% Negative DA</span>
-0083 <span class="keyword">for</span> i=np+4:2*np+3
-0084     [xx(i),zz(i)]=<a href="#_sub2" class="code" title="subfunction [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist, DISPLAYFLAG)">bscan</a>(ring,nt,clorb,<span class="keyword">...</span>
-0085         xmmax*cos(t1(i))*slist,zmax*sin(t1(i))*slist, DISPLAYFLAG);
-0086 <span class="keyword">end</span>
-0087 
-0088 <a name="_sub1" href="#_subfunctions" class="code">function rmax=ascan(ring,nt,clorb,theta,rlist, DISPLAYFLAG)</a>
-0089 <span class="comment">%ASCAN Looks for DA around closed orbit</span>
-0090 <span class="comment">%</span>
-0091 <span class="comment">%  INPUTS</span>
-0092 <span class="comment">%  1. ring  - Ring lattice</span>
-0093 <span class="comment">%  2. nt    - Number of turns</span>
-0094 <span class="comment">%  3. clorb - Closed orbit</span>
-0095 <span class="comment">%  4. theta - Vector of angle (defining a radius) for the sampling of DA</span>
-0096 <span class="comment">%  5. rlist - Number of points to search for on each radius</span>
-0097 <span class="comment">%</span>
-0098 <span class="comment">%  OUPUTS</span>
-0099 <span class="comment">%  1. rmax - Maximum radius</span>
-0100 <span class="keyword">for</span> rr=rlist
-0101     rin=clorb+[rr*cos(theta);0;rr*sin(theta);0;0;0];
-0102     [dummy,lost]=<a href="../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(ring,rin,nt,<span class="string">'KeepLattice'</span>); <span class="comment">%#ok&lt;ASGLU&gt;</span>
-0103     <span class="keyword">if</span> lost, <span class="keyword">break</span>; <span class="keyword">end</span>
-0104     rmax=rr;
-0105 <span class="keyword">end</span>
-0106 <span class="keyword">if</span> DISPLAYFLAG
-0107     fprintf(<span class="string">'theta: %g, r: %g\n'</span>,theta,rmax);
-0108 <span class="keyword">end</span>
-0109 
-0110 
-0111 <a name="_sub2" href="#_subfunctions" class="code">function [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist, DISPLAYFLAG)</a>
-0112 <span class="comment">%BSCAN Looks for DA around closed orbit</span>
-0113 <span class="comment">%</span>
-0114 <span class="comment">%  INPUTS</span>
-0115 <span class="comment">%  1. ring  - Ring lattice</span>
-0116 <span class="comment">%  2. nt    - Number of turns</span>
-0117 <span class="comment">%  3. clorb - Closed orbit</span>
-0118 <span class="comment">%  4. xlist - Vector of horizontal points</span>
-0119 <span class="comment">%  5. zlist - Vector of vertical points</span>
-0120 <span class="comment">%</span>
-0121 <span class="comment">%  OUPUTS</span>
-0122 <span class="comment">%  1. xmax - Vector horizontal points defining the border of the DA</span>
-0123 <span class="comment">%  2. zmax - Vector vertical points defining the border of the DA</span>
-0124 
-0125 xmax = 0.0;
-0126 zmax = 0.0;
-0127 <span class="keyword">for</span> i=1:length(xlist)
-0128     rin=clorb+[xlist(i);0;zlist(i);0;0;0];
-0129     [dummy,lost]=<a href="../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(ring,rin,nt,<span class="string">'KeepLattice'</span>); <span class="comment">%#ok&lt;ASGLU&gt;</span>
-0130     <span class="keyword">if</span> lost, <span class="keyword">break</span>; <span class="keyword">end</span>
-0131     xmax=xlist(i);
-0132     zmax=zlist(i);
-0133 <span class="keyword">end</span>
-0134 
-0135 <span class="keyword">if</span> DISPLAYFLAG
-0136     fprintf(<span class="string">'xm: %g, zm: %g\n'</span>,xmax,zmax);
-0137 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0004 <span class="comment">%</span>
+0005 <span class="comment">%[XX,ZZ]=ATDYNAP(RING,NTURNS,DPP,RFRAC)</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">%XX,ZZ :    limit of the dynamic aperture (betatron amplitudes in m)</span>
+0008 <span class="comment">%RING :        Structure for tracking</span>
+0009 <span class="comment">%NTURNS:    Number of turns</span>
+0010 <span class="comment">%DPP :        Off-momentum value (default: 0)</span>
+0011 <span class="comment">%RFRAC :    Resolution of the grid for checking the stability</span>
+0012 <span class="comment">%            as a fraction of the maximum stable amplitude</span>
+0013 <span class="comment">%            (default: 0.02)</span>
+0014 
+0015 np=5;
+0016 rlist=0:0.001:0.1;
+0017 <span class="keyword">if</span> nargin &lt; 4, rfrac=0.02; <span class="keyword">end</span>
+0018 <span class="keyword">if</span> nargin &lt; 3, dpp=0.0; <span class="keyword">end</span>
+0019 
+0020 <span class="keyword">if</span> isnumeric(dpp)
+0021 clorb=[<a href="../../atmat/atphysics/Orbit/findorbit4.html" class="code" title="function [orbit,fixedpoint] = findorbit4(RING,dP,varargin)">findorbit4</a>(ring,dpp);dpp;0];
+0022 <span class="keyword">else</span>
+0023    clorb=<a href="../../atmat/atphysics/Orbit/findorbit6.html" class="code" title="function [orbit,fixedpoint] = findorbit6(RING,varargin)">findorbit6</a>(ring);
+0024 <span class="keyword">end</span>
+0025 
+0026 t1=linspace(0,pi,2*np+3);
+0027 xpmax=<a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist)">ascan</a>(ring,nt,clorb,0,rlist);
+0028 zmax=<a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist)">ascan</a>(ring,nt,clorb,0.5*pi,rlist);
+0029 xmmax=<a href="#_sub1" class="code" title="subfunction rmax=ascan(ring,nt,clorb,theta,rlist)">ascan</a>(ring,nt,clorb,pi,rlist);
+0030 <span class="comment">%</span>
+0031 <span class="comment">% x1=[xpmax*ones(1,np+2) xmmax*ones(1,np+1)];</span>
+0032 <span class="comment">% z1=zmax*ones(1,2*np+3);</span>
+0033 <span class="comment">% tlist=atan2(sin(t1).*z1,cos(t1).*x1)';</span>
+0034 <span class="comment">%</span>
+0035 <span class="comment">% rr=NaN(2*np+3,1);</span>
+0036 <span class="comment">% rr(1)=xpmax;</span>
+0037 <span class="comment">% rr(np+2)=zmax;</span>
+0038 <span class="comment">% rr(2*np+3)=xmmax;</span>
+0039 <span class="comment">% for i=[2:np+1 np+3:2*np+2]</span>
+0040 <span class="comment">%    rr(i)=ascan(ring,nt,clorb,tlist(i),rlist);</span>
+0041 <span class="comment">% end</span>
+0042 <span class="comment">% xx=rr.*cos(tlist);</span>
+0043 <span class="comment">% zz=rr.*sin(tlist);</span>
+0044 slist=0.5:rfrac:2;
+0045 xx=NaN(2*np+3,1);
+0046 zz=xx;
+0047 <span class="keyword">for</span> i=1:np+3
+0048    [xx(i),zz(i)]=<a href="#_sub2" class="code" title="subfunction [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist)">bscan</a>(ring,nt,clorb,<span class="keyword">...</span>
+0049       xpmax*cos(t1(i))*slist,zmax*sin(t1(i))*slist);
+0050 <span class="keyword">end</span>
+0051 <span class="keyword">for</span> i=np+4:2*np+3
+0052    [xx(i),zz(i)]=<a href="#_sub2" class="code" title="subfunction [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist)">bscan</a>(ring,nt,clorb,<span class="keyword">...</span>
+0053       xmmax*cos(t1(i))*slist,zmax*sin(t1(i))*slist);
+0054 <span class="keyword">end</span>
+0055 
+0056 <a name="_sub1" href="#_subfunctions" class="code">function rmax=ascan(ring,nt,clorb,theta,rlist)</a>
+0057 <span class="keyword">for</span> rr=rlist
+0058    rin=clorb+[rr*cos(theta);0;rr*sin(theta);0;0;0];
+0059    [dummy,lost]=<a href="../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(ring,rin,nt,<span class="string">'KeepLattice'</span>); <span class="comment">%#ok&lt;ASGLU&gt;</span>
+0060    <span class="keyword">if</span> lost, <span class="keyword">break</span>; <span class="keyword">end</span>
+0061    rmax=rr;
+0062 <span class="keyword">end</span>
+0063 fprintf(<span class="string">'theta: %g, r: %g\n'</span>,theta,rmax);
+0064 
+0065 <a name="_sub2" href="#_subfunctions" class="code">function [xmax,zmax]=bscan(ring,nt,clorb,xlist,zlist)</a>
+0066 xmax = 0.0;
+0067 zmax = 0.0;
+0068 <span class="keyword">for</span> i=1:length(xlist)
+0069    rin=clorb+[xlist(i);0;zlist(i);0;0;0];
+0070    [dummy,lost]=<a href="../../atmat/attrack/ringpass.html" class="code" title="function [Rout, varargout] = ringpass(ring, Rin, nturns, varargin)">ringpass</a>(ring,rin,nt,<span class="string">'KeepLattice'</span>); <span class="comment">%#ok&lt;ASGLU&gt;</span>
+0071    <span class="keyword">if</span> lost, <span class="keyword">break</span>; <span class="keyword">end</span>
+0072    xmax=xlist(i);
+0073    zmax=zlist(i);
+0074 <span class="keyword">end</span>
+0075 fprintf(<span class="string">'xm: %g, zm: %g\n'</span>,xmax,zmax);</pre></div>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

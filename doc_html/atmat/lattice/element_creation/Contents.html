@@ -15,6 +15,7 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../../menu.html atmat --><!-- ../menu.html lattice --><!-- menu.html element_creation --><h1>Contents
 </h1>
 
@@ -26,37 +27,38 @@
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment"> ELEMENT_CREATION
- 
-   Contents file for ELEMENT_CREATION and its subfolders.
-   
+ See also
+
+   <a href="Contents.html" class="code" title="">Contents</a> file for ELEMENT_CREATION and its subfolders.
+
    ELEMENT_CREATION
-   ataperture      - Creates a aperture element
-   atbaselem       - Create an AT element structure + various checks
-   atcorrector     - Creates a drift space element with class 'Corrector'
-   atdampMatElem   - Creates an element that applies the global damping matrix
-   atdrift         - Creates a drift space element with Class 'Drift'
-   atidtable       - (FAMNAME,Nslice,filename,Energy,method)
-   atM66           - (FAMNAME,M66,PASSMETHOD)
-   atM66Tijk       - ATM66(FAMNAME,M66,Tijk,PASSMETHOD)
-   atmarker        - Creates a marker space element
-   atmonitor       - Creates a Beam Position Monitor element with Class 'Monitor'
-   atmultipole     - Creates a multipole element
-   atquadrupole    - Creates a quadrupole element with Class 'Quadrupole'
-   atQuantDiff     - Creates a quantum diffusion element
-   atrbend         - Creates a rectangular bending magnet element with class 'Bend'
-   atrfcavity      - Creates an rfcavity element with Class 'RFCavity'
-   atringparam     - Creates a RingParameter Element which should go at the beginning of the ring
-   atsbend         - Creates a sector bending magnet element with class 'Bend'
-   atsextupole     - Creates a sextupole element with class 'Sextupole'
-   atskewquad      - Creates a skew quadrupole element with Class 'Multipole'
-   atsolenoid      - Creates a new solenoid element with Class 'Solenoid'
-   atthinmultipole - Creates a thin multipole element
-   atwiggler       - Create a WIGGLER element
-   
+   <a href="ataperture.html" class="code" title="function elem=ataperture(fname,varargin)">ataperture</a>      - Creates a aperture element
+   <a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>       - Create an AT element structure + various checks
+   <a href="atcorrector.html" class="code" title="function elem=atcorrector(fname,varargin)">atcorrector</a>     - Creates a drift space element with class 'Corrector'
+   <a href="atdampMatElem.html" class="code" title="function elem=atdampMatElem(fname,ring,varargin)">atdampMatElem</a>   - Creates an element that applies the global damping matrix
+   <a href="atdrift.html" class="code" title="function elem=atdrift(fname,varargin)">atdrift</a>         - Creates a drift space element with Class 'Drift'
+   <a href="atidtable.html" class="code" title="function Elem = atidtable(fname, Nslice, filename, Energy, method)">atidtable</a>       - (FAMNAME,Nslice,filename,Energy,method)
+   <a href="atM66.html" class="code" title="function elem=atM66(fname,varargin)">atM66</a>           - (FAMNAME,M66,PASSMETHOD)
+   <a href="atM66Tijk.html" class="code" title="function elem=atM66Tijk(fname,varargin)">atM66Tijk</a>       - ATM66(FAMNAME,M66,Tijk,PASSMETHOD)
+   <a href="atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>        - Creates a marker space element
+   <a href="atmonitor.html" class="code" title="function elem=atmonitor(fname,varargin)">atmonitor</a>       - Creates a Beam Position Monitor element with Class 'Monitor'
+   <a href="atmultipole.html" class="code" title="function elem=atmultipole(fname,varargin)">atmultipole</a>     - Creates a multipole element
+   <a href="atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>    - Creates a quadrupole element with Class 'Quadrupole'
+   <a href="atQuantDiff.html" class="code" title="function elem=atQuantDiff(fname,varargin)">atQuantDiff</a>     - Creates a quantum diffusion element
+   <a href="atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>         - Creates a rectangular bending magnet element with class 'Bend'
+   <a href="atrfcavity.html" class="code" title="function elem=atrfcavity(fname,varargin)">atrfcavity</a>      - Creates an rfcavity element with Class 'RFCavity'
+   <a href="atringparam.html" class="code" title="function elem=atringparam(fname,varargin)">atringparam</a>     - Creates a RingParameter Element which should go at the beginning of the ring
+   <a href="atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>         - Creates a sector bending magnet element with class 'Bend'
+   <a href="atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>     - Creates a sextupole element with class 'Sextupole'
+   <a href="atskewquad.html" class="code" title="function elem = atskewquad(fname,varargin)">atskewquad</a>      - Creates a skew quadrupole element with Class 'Multipole'
+   <a href="atsolenoid.html" class="code" title="function Elem=atsolenoid(fname,varargin)">atsolenoid</a>      - Creates a new solenoid element with Class 'Solenoid'
+   <a href="atthinmultipole.html" class="code" title="function elem=atthinmultipole(fname,varargin)">atthinmultipole</a> - Creates a thin multipole element
+   <a href="atwiggler.html" class="code" title="function Elem = atwiggler(fname, Ltot, Lw, Bmax, Nstep, Nmeth, By, Bx, method)">atwiggler</a>       - Create a WIGGLER element
+
    ELEMENT_CREATION/PRIVATE
    decodeatargs    - Separates arguments and resources
-    
-   This file was generated by updateContents.m on 02 Mar 2018 at 19:39:36.</pre></div>
+
+   This file was generated by updateContents.m on 04 Mar 2018 at 00:00:04.</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
@@ -73,6 +75,9 @@ This function is called by:
 
 
 
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

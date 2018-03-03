@@ -5,7 +5,6 @@ digraph m2html {
   athelp -> atroot;
   atm2html -> atroot;
   atmexall -> atroot;
-  atmexall -> atupdateContents;
   atupdateContents -> atroot;
   atupdateContents -> updateContents;
   updateContents -> getContents;

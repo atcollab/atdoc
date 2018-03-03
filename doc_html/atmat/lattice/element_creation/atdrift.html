@@ -15,6 +15,7 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../../menu.html atmat --><!-- ../menu.html lattice --><!-- menu.html element_creation --><h1>atdrift
 </h1>
 
@@ -26,12 +27,12 @@
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../../atcollab.png)"><pre class="comment">ATDRIFT Creates a drift space element with Class 'Drift'
-atdrift(famname,length,passmethod)
+ATDRIFT(FAMNAME,LENGTH,PASSMETHOD)
 
   INPUTS
-  1. famname       - Family name
-  2. length       - Length [m]
-  3. passmethod   - Tracking function, defaults to 'driftpass'
+  1. FAMNAME       - Family name
+  2. LENGTH       - Length [m]
+  3. PASSMETHOD - Tracking function, defaults to 'DriftPass'
 
   OPTIONS (order does not matter)
     R1                6 x 6 rotation matrix at the entrance
@@ -46,10 +47,7 @@ atdrift(famname,length,passmethod)
 
   EXAMPLES
   1. atdrift(famname,length,passmethod,'fieldname1',value1,...)
-    each pair {'fieldname',value} is added to the element
-
-  See also  <a href="atquadrupole.html" class="code" title="function elem=atquadrupole(fname,varargin)">atquadrupole</a>, <a href="atsextupole.html" class="code" title="function elem=atsextupole(fname,varargin)">atsextupole</a>, <a href="atsbend.html" class="code" title="function elem=atsbend(fname,varargin)">atsbend</a>, <a href="atrbend.html" class="code" title="function elem=atrbend(fname,varargin)">atrbend</a>
-            <a href="atmultipole.html" class="code" title="function elem=atmultipole(fname,varargin)">atmultipole</a>, <a href="atthinmultipole.html" class="code" title="function elem=atthinmultipole(fname,varargin)">atthinmultipole</a>, <a href="atmarker.html" class="code" title="function elem=atmarker(fname,varargin)">atmarker</a>, <a href="atcorrector.html" class="code" title="function elem=atcorrector(fname,varargin)">atcorrector</a></pre></div>
+    each pair {'fieldname',value} is added to the element</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
@@ -68,12 +66,12 @@ This function is called by:
 <h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../../atcollab.png)"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function elem=atdrift(fname,varargin)</a>
 0002 <span class="comment">%ATDRIFT Creates a drift space element with Class 'Drift'</span>
-0003 <span class="comment">%atdrift(famname,length,passmethod)</span>
+0003 <span class="comment">%ATDRIFT(FAMNAME,LENGTH,PASSMETHOD)</span>
 0004 <span class="comment">%</span>
 0005 <span class="comment">%  INPUTS</span>
-0006 <span class="comment">%  1. famname       - Family name</span>
-0007 <span class="comment">%  2. length       - Length [m]</span>
-0008 <span class="comment">%  3. passmethod   - Tracking function, defaults to 'driftpass'</span>
+0006 <span class="comment">%  1. FAMNAME       - Family name</span>
+0007 <span class="comment">%  2. LENGTH       - Length [m]</span>
+0008 <span class="comment">%  3. PASSMETHOD - Tracking function, defaults to 'DriftPass'</span>
 0009 <span class="comment">%</span>
 0010 <span class="comment">%  OPTIONS (order does not matter)</span>
 0011 <span class="comment">%    R1                6 x 6 rotation matrix at the entrance</span>
@@ -90,15 +88,19 @@ This function is called by:
 0022 <span class="comment">%  1. atdrift(famname,length,passmethod,'fieldname1',value1,...)</span>
 0023 <span class="comment">%    each pair {'fieldname',value} is added to the element</span>
 0024 <span class="comment">%</span>
-0025 <span class="comment">%  See also  atquadrupole, atsextupole, atsbend, atrbend</span>
-0026 <span class="comment">%            atmultipole, atthinmultipole, atmarker, atcorrector</span>
-0027 
-0028 [rsrc,L,method]=<a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>({0,<span class="string">'DriftPass'</span>},varargin);
-0029 [L,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Length'</span>,L);
-0030 [method,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'PassMethod'</span>,method);
-0031 [cl,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Class'</span>,<span class="string">'Drift'</span>);
-0032 elem=<a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>(fname,method,<span class="string">'Class'</span>,cl,<span class="string">'Length'</span>,L,rsrc{:});
-0033 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0025 
+0026 <span class="comment">%See also  atquadrupole, atsextupole, atsbend, atrbend</span>
+0027 <span class="comment">%          atmultipole, atthinmultipole, atmarker, atcorrector</span>
+0028 
+0029 [rsrc,L,method]=<a href="../../../atmat/lattice/element_creation/private/decodeatargs.html" class="code" title="function [rsrc,varargout] = decodeatargs(default_values,args)">decodeatargs</a>({0,<span class="string">'DriftPass'</span>},varargin);
+0030 [L,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Length'</span>,L);
+0031 [method,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'PassMethod'</span>,method);
+0032 [cl,rsrc]=<a href="../../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>(rsrc,<span class="string">'Class'</span>,<span class="string">'Drift'</span>);
+0033 elem=<a href="atbaselem.html" class="code" title="function elem = atbaselem(famname,method,varargin)">atbaselem</a>(fname,method,<span class="string">'Class'</span>,cl,<span class="string">'Length'</span>,L,rsrc{:});
+0034 <span class="keyword">end</span></pre></div>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

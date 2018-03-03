@@ -15,6 +15,7 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../menu.html atmat --><!-- menu.html pubtools --><h1>Contents
 </h1>
 
@@ -26,39 +27,40 @@
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment"> PUBTOOLS
- 
-   Contents file for PUBTOOLS and its subfolders.
-   
+ See also
+
+   <a href="Contents.html" class="code" title="">Contents</a> file for PUBTOOLS and its subfolders.
+
    PUBTOOLS
-   atdynap                             - Computes the dynamic aperture for ring structure
-   atmomap                             - Find momentum aperture at start of ring
-   atsurvey2spos                       - Returns closest lattics s coordinates to xycoord points
-   atundulator                         - Define undulator model
-   atvalue                             - Extract array from lindata structure
-   calc_dppAperture                    - Calculate the momentum aperture at each location of the ring due to
-   calc_Touschek                       - TauT = calc_Touschek(THERING, Ib)
-   calc_TouschekPM                     - TauT = calc_TouschekPM(TD,dppPM,Trf,Ib,U0,coupling, sigE, emit_x)
-   freqsearch                          - =========================================================================
-   nlchromplot                         - Example:   nlchromplot(esrf,-.04,.04,30,16,1)
-   
+   <a href="atdynap.html" class="code" title="function [xx,zz]=atdynap(ring,nt,dpp,rfrac)">atdynap</a>                             - Compute the dynamic aperture
+   <a href="atmomap.html" class="code" title="function [deltap,deltam,Rfin, loss,X0l] = atmomap(ring, Nturn)">atmomap</a>                             - Find momentum aperture at start of ring
+   <a href="atsurvey2spos.html" class="code" title="function [s,distance]=atsurvey2spos(r,xycoord,varargin)">atsurvey2spos</a>                       - Returns closest lattics s coordinates to xycoord points
+   <a href="atundulator.html" class="code" title="function undulator=atundulator(LUnd,nperiod,varargin)">atundulator</a>                         - Define undulator model
+   <a href="atvalue.html" class="code" title="function v=atvalue(lindata,code,idx)">atvalue</a>                             - Extract array from lindata structure
+   <a href="calc_dppAperture.html" class="code" title="function [deltap,deltam, indextab] = calc_dppAperture(THERING, varargin)">calc_dppAperture</a>                    - Calculate the momentum aperture at each location of the ring due to
+   <a href="calc_Touschek.html" class="code" title="function tauT = calc_Touschek(THERING,Ib,varargin)">calc_Touschek</a>                       - TauT = calc_Touschek(THERING, Ib)
+   <a href="calc_TouschekPM.html" class="code" title="function tauT = calc_TouschekPM(TD,dppPM,Trf,Ib,U0,coupling, sigE, emit_x)">calc_TouschekPM</a>                     - TauT = calc_TouschekPM(TD,dppPM,Trf,Ib,U0,coupling, sigE, emit_x)
+   <a href="freqsearch.html" class="code" title="function varargout = freqsearch3(data, varargin)">freqsearch</a>                          - =========================================================================
+   <a href="nlchromplot.html" class="code" title="function nlchromplot(ring,min_delta,max_delta,steps,nper,fig,dash)">nlchromplot</a>                         - Example:   nlchromplot(esrf,-.04,.04,30,16,1)
+
    PUBTOOLS/APERTURE
    plotAperture                        - Plots x and y aperture
    plotERAperture                      - Plots RApertures EApertures aperture
    plotRAperture                       - Plots Rectangular aperture
    SetPhysicalAperture                 - Ringapert=SetPhysicalAperture(ring,apertureX,apertureY)
-   
+
    PUBTOOLS/CREATE_ELEMS
    atidtable_dat                       - Atidtable(fname, Nslice, filename, Energy, method)
-   
+
    PUBTOOLS/DISTANCE2CURVE
    distance2curve                      - Gets the minimum distance from a point to a general curvilinear n-dimensional arc
-   
+
    PUBTOOLS/HAISSINSKI
    blength
    fitgaussian                         - GAUSSIAN_PARAM FITERR GAUSSFIT SIGERROR]= FITGAUSSIAN(DATA,[property_value_pair]);
    plothaissinski                      - [z lambda sigma mu] = HASSINSKYFIT(SIGMA0, R, L)
    Qval                                - Gives the unitless Q parameter needed to compute the
-   
+
    PUBTOOLS/LATTICE_TOOLS
    atreadbeta                          - Reads a BETA file
    atrotatelattice                     - Gives a new lattice starting with index as the first
@@ -67,38 +69,38 @@
    setsext                             - Newring=setsext(ring,fam,val);
    setsextall                          - Newring=setsextall(ring,fam,val);
    sext_sens_scan                      - Esrf(:)
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION
    qemsvd_mod                          - Function dq=qemsvd_mod(a,b,neig,plot)
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/CHROMATICITY
    atmatchchromdelta                   - Function arcchrom0=atmatchchromdelta(arc,c,sxtfams)
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/CORRECTION_CHAIN
    CorrectionChain                     - Corrected lattice
    DisplayCorrectionEffect             - [d0,de,dc]=DisplayCorrectionEffect(..
    testcorrectionchain                 - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/DISPERSION
    atcorrectdispersion                 - Function [..
    testdispersioncorrection            - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/DISPERSIONFREESTEERING
    atdispersionfreesteering            - Function [..
    testdispersionfreesteering          - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/ORBIT
    atcorrectorbit
    testorbitbump                       - Test errors and correction functions
    testorbitcorrection                 - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/ORBITBUMPS/MATCHING
    BumpAtBPM                           - Function roff=BumpAtBPM(..
    BumpAtBPM4D                         - Function roff=BumpAtBPM(..
    testorbitbump                       - Test matching orbit bump
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/RDT
    atavedata_mod                       - ATAVEDATA       Average of optical functions on selected elements
    atQuadRDTdispersioncorrection       - - Make dispersion correction based on RDTs
@@ -109,29 +111,29 @@
    qemrdtresp_mod                      - QEMRDTRESP  compute resonance driving terms at BPM locations
    semrdtresp_mod                      - SEMRDT compute resonance driving terms at BPM locations
    testRDTdispersionfreesteering       - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/RESPONSE_MATRIX
    findrespmat                         - FINDRESPM_mod computes the change in the closed orbit due to parameter perturbations
    getresponsematrices                 - 1 AT lattice
    gettunechromatlinopt                - Gets tunes and chromaticities from atlinopt
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/RFCAVITY
    atRFcorrection                      - Function [..
    atsetRFCavityErr                    - ATSETRFCAVITY sets the RF Cavity with the passmethod RFCavityPass
    testsetRFCavityErr                  - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/TRAJECTORY
    atfirstturntrajectory               - Makes first turn correction
    MatchLast2CorForFirstBPM            - Takes the last two correctors to match the orbit and angle trajectory at
    Scan2x2DinCOD                       - [bestinputcoord]=ScanPosAngle(..
    testorbitaftertrajectory            - Test errors and correction functions
    testtrajectorycorrection            - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/CORRECTION/TUNE
    atmatchtunedelta                    - Function arcchrom0=atmatchtunedelta(arc,c,quadfams)
    fittunedelta2fam                    - Rerr=fittunedelta2fam(rerr,r0)
    testfittunedelta2fam                - Test errors and correction functions
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS
    AssignFieldErr                      - Function r=AssignFieldErr(r,refpos,N,rho,BNn,ANn)
    atset_s_shift                       - Implements DS longitudinal position drift
@@ -150,20 +152,20 @@
    setTiltAbout                        - Sets tilt errors
    setTiltGirderAbout                  - Set Tilt error on a magnet
    setXshift                           - Set horizontal shifts for a element list
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/BPMERRORS
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/DELTAS
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/DXDY
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/ERRORDISPLAYFUNCTIONS
    GetMisalignments                    - This function retrives 3 vectors, for x and y misalignments and tilts
    pltmisalignments                    - #ok&lt;INUSD&gt;
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/ERRORSMANIPULATION
    GetExistingErrors                   - This function retrives 6 vectors, for x, y,s misalignments,
    getMagGroupsFromGirderIndex         - Gets magnets on a girder
@@ -174,49 +176,49 @@
    ThetaPhiGirder                      - Rtp=ThetaPhiGirder(r,mag_gr)
    UniformGirderErrors                 - Function ring=UniformGirderErrors(ring)
    UniformMagGroupsErrors              - Function ring=UniformMagGroupsErrors(ring)
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/FIELDINTEGRAL
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/GIRDERS
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/LARGEERRLIST
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/LARGEWAVELIST
    testcor                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/MULTIPOLES
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/RANDOM
    atsetrandomerrors                   - Function rerr=atsetrandomerrors(..
    seterrorrand                        - Nominal lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/SURVEY
    SetESRFAlgeAlignmentError           - Function SetESRFAlgeAlignmentError(..
    testerr                             - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/TILT
    compRotCorVsDip                     - Load lattice
    compRotCorVsDipQuad                 - Load lattice
    testerr                             - Load lattice
    testerrRotCorrector                 - Load lattice
-   
+
    PUBTOOLS/LATTICETUNINGFUNCTIONS/ERRORS/WAVE
    atsetwaveerrors                     - Function rerr=atsetwaveerrors(..
    seterrorwave                        - Nominal lattice
-   
+
    PUBTOOLS/LOCAL_LATTICE_PARAMS
    atmakeXYProjectionEllipse           - Gives points to plot the contour ellipses
    machine_at                          - Machine AT will return the optics of the lattice. Essentially takes what
    plotContours                        - Plots contours
-   
+
    PUBTOOLS/VACUUMLIFETIME
    VacLifetimeResidualGass             - Coloumb scattering and residual gas Bremsstrahlung Cross sections are
-    
-   This file was generated by updateContents.m on 02 Mar 2018 at 19:39:37.</pre></div>
+
+   This file was generated by updateContents.m on 04 Mar 2018 at 00:00:05.</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
@@ -233,6 +235,9 @@ This function is called by:
 
 
 
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

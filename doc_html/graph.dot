@@ -125,7 +125,6 @@ digraph m2html {
   atmatch -> atGetVariableValue;
   atmexall -> mexpassmethod;
   atmexall -> atroot;
-  atmexall -> atupdateContents;
   atsigma -> atsigma;
   atsigma -> atx;
   atsigma -> blength;

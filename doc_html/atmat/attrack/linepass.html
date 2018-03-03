@@ -15,6 +15,7 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../menu.html atmat --><!-- menu.html attrack --><h1>linepass
 </h1>
 
@@ -102,7 +103,7 @@
 <div class="fragment" style="background-image:url(../../atcollab.png)">
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-<li><a href="atpass.html" class="code" title="function varargout=atpass(varargin)">atpass</a>	ATPASS Numerical tracking engine for AT 1.3</li><li><a href="../../atmat/lattice/getflag.html" class="code" title="function [flag,opts] = getflag(opts,optname)">getflag</a>	GETFLAG Check the presence of a flag in an argument list</li><li><a href="../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>	GETOPTION Extract a keyword argument from the input arguments</li><li><a href="../../atmat/lattice/parseargs.html" class="code" title="function varargout = parseargs(default_values,args)">parseargs</a>	PARSEARGS Check and expands optional argument lists</li></ul>
+<li><a href="atpass.html" class="code" title="function varargout=atpass(varargin) %#ok<STOUT>">atpass</a>	ATPASS is a numerical tracking engine for AT 1.3</li><li><a href="../../atmat/lattice/getflag.html" class="code" title="function [flag,opts] = getflag(opts,optname)">getflag</a>	GETFLAG Check the presence of a flag in an argument list</li><li><a href="../../atmat/lattice/getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>	GETOPTION Extract a keyword argument from the input arguments</li><li><a href="../../atmat/lattice/parseargs.html" class="code" title="function varargout = parseargs(default_values,args)">parseargs</a>	PARSEARGS Check and expands optional argument lists</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="../../atmat/atphysics/LinearOptics/findm44.html" class="code" title="function [M44, varargout]  = findm44(LATTICE,DP,varargin)">findm44</a>	FINDM44 numerically finds the 4x4 transfer matrix of an accelerator lattice</li><li><a href="../../atmat/atphysics/LinearOptics/findm66.html" class="code" title="function [M66, varargout] = findm66(LATTICE, varargin)">findm66</a>	FINDM66 numerically finds the 6x6 transfer matrix of an accelerator lattice</li><li><a href="../../atmat/atphysics/Orbit/findorbit4.html" class="code" title="function [orbit,fixedpoint] = findorbit4(RING,dP,varargin)">findorbit4</a>	FINDORBIT4 finds closed orbit in the 4-d transverse phase</li><li><a href="../../atmat/atphysics/Orbit/findorbit6.html" class="code" title="function [orbit,fixedpoint] = findorbit6(RING,varargin)">findorbit6</a>	FINDORBIT6 finds closed orbit in the full 6-d phase space</li><li><a href="../../atmat/atphysics/Orbit/findsyncorbit.html" class="code" title="function [orbit, fixedpoint] = findsyncorbit(RING,dCT,varargin)">findsyncorbit</a>	FINDSYNCORBIT finds closed orbit, synchronous with the RF cavity</li><li><a href="../../atmat/atphysics/Radiation/quantumDiff.html" class="code" title="function DiffMat = quantumDiff(elems,radindex,orb0)">quantumDiff</a>	quantumDiff    Compute the radiation-diffusion matrix</li><li><a href="../../atmat/atplot/plotfunctions/plot_trajectory.html" class="code" title="function varargout=plot_trajectory(varargin)">plot_trajectory</a>	PLOT_TRAJECTORY    Plots particle trajectories</li><li><a href="../../atmat/pubtools/LatticeTuningFunctions/errors/findtrajectory6Err.html" class="code" title="function [t] = findtrajectory6Err( ring,indBPM,inCOD )">findtrajectory6Err</a>	[t    6xNbpm array of  trajectory</li></ul>
@@ -208,7 +209,7 @@ This function is called by:
 0094     args(funcargs));
 0095 
 0096 <span class="keyword">try</span>
-0097     [Rout,lossinfo] = <a href="atpass.html" class="code" title="function varargout=atpass(varargin)">atpass</a>(line,Rin,newlattice,1,refpts,prefunc,postfunc,nhist);
+0097     [Rout,lossinfo] = <a href="atpass.html" class="code" title="function varargout=atpass(varargin) %#ok<STOUT>">atpass</a>(line,Rin,newlattice,1,refpts,prefunc,postfunc,nhist);
 0098     
 0099     <span class="keyword">if</span> nargout&gt;1
 0100         <span class="keyword">if</span> nargout&gt;2, varargout{2}=lossinfo; <span class="keyword">end</span>
@@ -227,6 +228,9 @@ This function is called by:
 0113     <span class="keyword">end</span>
 0114 <span class="keyword">end</span>
 0115 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

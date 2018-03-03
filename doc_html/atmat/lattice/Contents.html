@@ -15,6 +15,7 @@
 </head>
 <body>
 <a name="_top"></a>
+
 <!-- ../menu.html atmat --><!-- menu.html lattice --><h1>Contents
 </h1>
 
@@ -26,103 +27,104 @@
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="fragment" style="background-image:url(../../atcollab.png)"><pre class="comment"> LATTICE
- 
-   Contents file for LATTICE and its subfolders.
-   
+ See also
+
+   <a href="Contents.html" class="code" title="">Contents</a> file for LATTICE and its subfolders.
+
    LATTICE
-   at2py                      - ELSTR=AT2PY(ELEM) convert AT element tp pyat
-   at2str                     - Makes the string representation of an AT element
-   ataddmpolecomppoly         - Adds a multipole component to an existing polynomial,
-   ataddmpoleerrors           - Ataddrandmpole adds a random multipole component to all elements of type
-   atdivelem                  - LINE=ATDIVELEM(ELEM,FRAC) divide an element into pieces
-   atelem                     - Makes a new AT element structure from another element,
-   atfastring                 - Generate simplified AT structures
-   atfitchrom                 - ATFITTUNE fits chromaticites by scaling 2 sextupol families
-   atfittune                  - Fits linear tunes by scaling 2 quadrupole families
-   atgetcells                 - Performs a search on MATLAB cell arrays of structures
-   atgetfieldvalues           - Retrieves the field values AT cell array of elements
-   atguessclass               - Tries to determine the class of an element
-   atindex                    - Extracts the information about element families and
-   atinsertelems              - Insert elements at given locations in a line
-   atloadfielderrs            - Will load a field error structure into a ring
-   atmakefielderrstruct       - MAKERNDFIELDERRS will create a field error data structure
-   atreduce                   - Remove useless elements from an AT structure
-   atsbreak                   - Insert markers at given s positions in a lattice
-   atsetfieldvalues           - Sets the field values of MATLAB cell array of structures
-   atsetRFCavity              - - sets the RF Cavity with the passmethod RFCavityPass
-   atsetshift                 - Sets the misalignment vectors
-   atsettilt                  - Sets the entrance and exit rotation matrices
-   atshiftelem                - Set new displacement parameters
-   atsplitelem                - Creates a line by inserting one or more elements into a base element
-   attiltelem                 - Sets new rotation parameters
-   atwritem                   - Creates a .m file to store an AT structure
-   atwritepy                  - Creates a .m file to store an AT structure
-   buildlat                   - Places elements from FAMLIST into cell array THERING
-   combinebypassmethod        - Combines adjacent elements that have the same specified pass method
-   combinelinear45            - Combines adjacent  elements that use 4-by-5 PassMethods
-   entrancefields             - () Return the list of field names affecting the element entrance
-   exitfields                 - () Return the list of field names affecting the element exit
-   findcells                  - Performs a search on MATLAB cell arrays of structures
-   findtags                   - Looks for string matches in 'Tag' field of AT lattice elements
-   getargs                    - Process positional arguments from the input arguments
-   getcellstruct              - Retrieves the field values MATLAB cell array of structures
-   getflag                    - Check the presence of a flag in an argument list
-   getoption                  - Extract a keyword argument from the input arguments
-   insertelem0                - - quick and dirty:
-   insertindrift              - Inserts one or more elements into a drift element
-   isatelem                   - Tests if an input argument is a valid AT element
-   isatlattice                - Tests if an input argument is a valid AT lattice
-   mergedrift                 - Removes a lattice element and merges the two adjacent drift spaces
-   mvelem                     - (ELEMPOS, DIST) moves an element  located at ELEMPOS in THERING
-   mvfield                    - Move fields from one structure to another
-   parseargs                  - Check and expands optional argument lists
-   reverse                    - Reverses the order of elements in a one-dimensional MATLAB ARRAY
-   rmelem0                    - Removes elements of length 0 from the accelerator lattice
-   setcellstruct              - Sets the field values of MATLAB cell array of structures
-   setshift                   - Sets the misalignment vectors T1, T2 for elements
-   settags                    - Sets the 'Tag' field in AT lattice elements
-   settilt                    - Sets the entrance and exit misalignment matrixes
-   splitdrift                 - Inserts an element into a drift space
-   symplectify                - Makes a matrix more symplectic
-   
+   <a href="at2py.html" class="code" title="function elstr=at2py(elem)">at2py</a>                      - ELSTR=AT2PY(ELEM) convert AT element tp pyat
+   <a href="at2str.html" class="code" title="function elstr=at2str(elem)">at2str</a>                     - Makes the string representation of an AT element
+   <a href="ataddmpolecomppoly.html" class="code" title="function [PolynomOut] = ataddmpolecomppoly(Polynom,refindex,newindex,strength,radius,varargin)">ataddmpolecomppoly</a>         - Adds a multipole component to an existing polynomial,
+   <a href="ataddmpoleerrors.html" class="code" title="function newring = ataddmpoleerrors(ring,type,newindex,strength,radius,randflag)">ataddmpoleerrors</a>           - Ataddrandmpole adds a random multipole component to all elements of type
+   <a href="atdivelem.html" class="code" title="function line = atdivelem(elem,frac,varargin)">atdivelem</a>                  - LINE=ATDIVELEM(ELEM,FRAC) divide an element into pieces
+   <a href="atelem.html" class="code" title="function elemstruct = atelem(elem,varargin)">atelem</a>                     - Makes a new AT element structure from another element,
+   <a href="atfastring.html" class="code" title="function [newring,newringrad] = atfastring(ring0,varargin)">atfastring</a>                 - Generate simplified AT structures
+   <a href="atfitchrom.html" class="code" title="function newring=atfitchrom(ring,varargin)">atfitchrom</a>                 - <a href="atfittune.html" class="code" title="function newring=atfittune(ring,varargin)">ATFITTUNE</a> fits chromaticites by scaling 2 sextupol families
+   <a href="atfittune.html" class="code" title="function newring=atfittune(ring,varargin)">atfittune</a>                  - Fits linear tunes by scaling 2 quadrupole families
+   <a href="atgetcells.html" class="code" title="function ok=atgetcells(cellarray, field, varargin)">atgetcells</a>                 - Performs a search on MATLAB cell arrays of structures
+   <a href="atgetfieldvalues.html" class="code" title="function values = atgetfieldvalues(ring,varargin)">atgetfieldvalues</a>           - Retrieves the field values AT cell array of elements
+   <a href="atguessclass.html" class="code" title="function atclass = atguessclass(elem, varargin)">atguessclass</a>               - Tries to determine the class of an element
+   <a href="atindex.html" class="code" title="function indexstruct = atindex(lattice)">atindex</a>                    - Extracts the information about element families and
+   <a href="atinsertelems.html" class="code" title="function newring=atinsertelems(ring,refpts,varargin)">atinsertelems</a>              - Insert elements at given locations in a line
+   <a href="atloadfielderrs.html" class="code" title="function ring = atloadfielderrs(ring,fielderrstruct)">atloadfielderrs</a>            - Will load a field error structure into a ring
+   <a href="atmakefielderrstruct.html" class="code" title="function ferrs = atmakefielderrstruct(ring,class,nval,Bval,Aval,radius,rnd)">atmakefielderrstruct</a>       - MAKERNDFIELDERRS will create a field error data structure
+   <a href="atreduce.html" class="code" title="function [newring,indx,newrefs] = atreduce(oldring,oldrefs)">atreduce</a>                   - Remove useless elements from an AT structure
+   <a href="atsbreak.html" class="code" title="function [newring,refpts] = atsbreak(ring,sdata)">atsbreak</a>                   - Insert markers at given s positions in a lattice
+   <a href="atsetfieldvalues.html" class="code" title="function newring = atsetfieldvalues(ring,varargin)">atsetfieldvalues</a>           - Sets the field values of MATLAB cell array of structures
+   <a href="atsetRFCavity.html" class="code" title="function newring = atsetRFCavity(ring, rfv, radflag, HarmNumber, DeltaFreq )">atsetRFCavity</a>              - - sets the RF Cavity with the passmethod RFCavityPass
+   <a href="atsetshift.html" class="code" title="function ring=atsetshift(varargin)">atsetshift</a>                 - Sets the misalignment vectors
+   <a href="atsettilt.html" class="code" title="function ring=atsettilt(varargin)">atsettilt</a>                  - Sets the entrance and exit rotation matrices
+   <a href="atshiftelem.html" class="code" title="function elem = atshiftelem(elem,dx,dz)">atshiftelem</a>                - Set new displacement parameters
+   <a href="atsplitelem.html" class="code" title="function line=atsplitelem(baseelem,varargin)">atsplitelem</a>                - Creates a line by inserting one or more elements into a base element
+   <a href="attiltelem.html" class="code" title="function elem = attiltelem(elem,PSI)">attiltelem</a>                 - Sets new rotation parameters
+   <a href="atwritem.html" class="code" title="function atwritem(ring,filename)">atwritem</a>                   - Creates a .m file to store an AT structure
+   <a href="atwritepy.html" class="code" title="function pyring=atwritepy(ring,filename)">atwritepy</a>                  - Creates a .m file to store an AT structure
+   <a href="buildlat.html" class="code" title="function buildlat(ELIST)">buildlat</a>                   - Places elements from FAMLIST into cell array THERING
+   <a href="combinebypassmethod.html" class="code" title="function [NEWLATTICE, SHIFTEDKEEPINDEX, SHIFTEDREFINDEX] = combinebypassmethod(LATTICE,METHOD,KEEPINDEX,REFINDEX)">combinebypassmethod</a>        - Combines adjacent elements that have the same specified pass method
+   <a href="combinelinear45.html" class="code" title="function [NEWLATTICE, SHIFTEDKEEPINDEX, SHIFTEDREFINDEX] = combinelinear45(LATTICE,KEEPINDEX,REFINDEX)">combinelinear45</a>            - Combines adjacent  elements that use 4-by-5 PassMethods
+   <a href="entrancefields.html" class="code" title="function fnames = entrancefields(varargin)">entrancefields</a>             - () Return the list of field names affecting the element entrance
+   <a href="exitfields.html" class="code" title="function fnames = exitfields(varargin)">exitfields</a>                 - () Return the list of field names affecting the element exit
+   <a href="findcells.html" class="code" title="function index = findcells(CELLARRAY, field, varargin)">findcells</a>                  - Performs a search on MATLAB cell arrays of structures
+   <a href="findtags.html" class="code" title="function index = findtags(CELLARRAY, MATCHSTR)">findtags</a>                   - Looks for string matches in 'Tag' field of AT lattice elements
+   <a href="getargs.html" class="code" title="function varargout = getargs(args,default_values)">getargs</a>                    - Process positional arguments from the input arguments
+   <a href="getcellstruct.html" class="code" title="function values = getcellstruct(CELLARRAY,field,index,varargin)">getcellstruct</a>              - Retrieves the field values MATLAB cell array of structures
+   <a href="getflag.html" class="code" title="function [flag,opts] = getflag(opts,optname)">getflag</a>                    - Check the presence of a flag in an argument list
+   <a href="getoption.html" class="code" title="function [optval,opts] = getoption(opts,optname,defval)">getoption</a>                  - Extract a keyword argument from the input arguments
+   <a href="insertelem0.html" class="code" title="function NEWLATTICE = insertelem0(LATTICE, DRIFTPOS, SPLITLENGTH, ELEMDATA)">insertelem0</a>                - - quick and dirty:
+   <a href="insertindrift.html" class="code" title="function ELEMSEQ = insertindrift(DRIFT0, ELEM1, POS1, varargin)">insertindrift</a>              - Inserts one or more elements into a drift element
+   <a href="isatelem.html" class="code" title="function [t, errorstr] = isatelem(ELEM,varargin)">isatelem</a>                   - Tests if an input argument is a valid AT element
+   <a href="isatlattice.html" class="code" title="function [T, badlist, errorstr] = isatlattice(LATTICE,varargin)">isatlattice</a>                - Tests if an input argument is a valid AT lattice
+   <a href="mergedrift.html" class="code" title="function mergedrift(SPLITPOS)">mergedrift</a>                 - Removes a lattice element and merges the two adjacent drift spaces
+   <a href="mvelem.html" class="code" title="function mergedrift(ELEMPOS, DIST)">mvelem</a>                     - (ELEMPOS, DIST) moves an element  located at ELEMPOS in THERING
+   <a href="mvfield.html" class="code" title="function [dst,src] = mvfield(dst,src,fields)">mvfield</a>                    - Move fields from one structure to another
+   <a href="parseargs.html" class="code" title="function varargout = parseargs(default_values,args)">parseargs</a>                  - Check and expands optional argument lists
+   <a href="reverse.html" class="code" title="function z = reverse(A)">reverse</a>                    - Reverses the order of elements in a one-dimensional MATLAB ARRAY
+   <a href="rmelem0.html" class="code" title="function [NEWLATTICE, SHIFTEDINDEX] = rmelem0(LATTICE,ELEMINDEX)">rmelem0</a>                    - Removes elements of length 0 from the accelerator lattice
+   <a href="setcellstruct.html" class="code" title="function CELLARRAY = setcellstruct(CELLARRAY,field,index,values,varargin)">setcellstruct</a>              - Sets the field values of MATLAB cell array of structures
+   <a href="setshift.html" class="code" title="function setshift(ELEMINDEX, DX, DY)">setshift</a>                   - Sets the misalignment vectors T1, T2 for elements
+   <a href="settags.html" class="code" title="function LATTICE = settags(LATTICE,INDEX,tag,varargin)">settags</a>                    - Sets the 'Tag' field in AT lattice elements
+   <a href="settilt.html" class="code" title="function settilt(ELEMINDEX, PSI)">settilt</a>                    - Sets the entrance and exit misalignment matrixes
+   <a href="splitdrift.html" class="code" title="function splitdrift(DRIFTPOS, SPLIT, varargin)">splitdrift</a>                 - Inserts an element into a drift space
+   <a href="symplectify.html" class="code" title="function MS=symplectify(M)">symplectify</a>                - Makes a matrix more symplectic
+
    LATTICE/CONVERTERS
    readmad                    - Reads the file output of MAD commands
-   
+
    LATTICE/CONVERTERS/AT2ELEGANT
    AT_2_Elegant               - This functions converts the AT lattice AT_ring in elegant form
-   
+
    LATTICE/CONVERTERS/AT2G4BL
    ATtoG4BL                   - Function [outtext]=ATtoG4BL(P_0,particle,folder)
-   
+
    LATTICE/CONVERTERS/AT2MAD8
    AT_2_mad8                  - Function [elelat,def,lines]=AT_2_mad8(AT_ring,linename)
-   
+
    LATTICE/CONVERTERS/AT2MADX
    AT_2_madX                  - Function [elelat,defs,lines]=AT_2_madX(AT_ring,linename)
-   
+
    LATTICE/CONVERTERS/AT2OPA
    AT_2_OPA                   - Function AT_2_OPA(AT_ring,linename)
-   
+
    LATTICE/CONVERTERS/ELEGANT2AT
    ele2at_run_me              - Test_elegant_converter
    elegant2at                 - Function elegant2at(elegantlattice,E0,outfilename)
    ParseAtributesELEGANT_2_AT - Determines atribute and sets field in sxs{i} structure AT
-   
+
    LATTICE/CONVERTERS/MAD82MADX
    mad8TOmadx                 - Converts mad8 sequence files to madX
-   
+
    LATTICE/CONVERTERS/MADX2AT
    atfrommadx                 - Function atfrommadx(seqfilemadX,E0,outfilename)
    buildATLattice             - Given a list (cell array) of elements with specified field Spos (center of element (madx default)) in a
    ParseAtributesMADX_2_AT    - Determines atribute and sets field in sxs{i} structure AT
    reshapeToCellArray         - If CEL_CEL is a cell array of structures and cell arrays it converts it a
-   
+
    LATTICE/CONVERTERS/MADX2AT/EXAMPLES
    convertMADXtoATExample     - Simple lattice test (uncomment to run)
-   
+
    LATTICE/CONVERTERS/MADX2G4BL
    madx2g4bl                  - Function [outtext]=madx2g4bl(P_0,particle,folder)
-   
+
    LATTICE/ELEMENT_CREATION
    ataperture                 - Creates a aperture element
    atbaselem                  - Create an AT element structure + various checks
@@ -146,22 +148,22 @@
    atsolenoid                 - Creates a new solenoid element with Class 'Solenoid'
    atthinmultipole            - Creates a thin multipole element
    atwiggler                  - Create a WIGGLER element
-   
+
    LATTICE/ELEMENT_CREATION/PRIVATE
    decodeatargs               - Separates arguments and resources
-   
+
    LATTICE/PARAMGROUP
    atparamgroup               - PARAMETER GROUP in AT is a general way
    mkparamgroup               - Simplifies creation of AT parameter groups
    restoreparamgroup          - Restores the values of multiple physical
    saveparamgroup             - Saves the values of multiple physical
    setparamgroup              - Modifies a group of parameters
-   
+
    LATTICE/SURVEY
    atgeometry                 - Computes the 2-D position of all elements (no vertical bend)
    atgeometry3                - Computes the 3-D position of all elements
-    
-   This file was generated by updateContents.m on 02 Mar 2018 at 19:39:36.</pre></div>
+
+   This file was generated by updateContents.m on 04 Mar 2018 at 00:00:04.</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
@@ -178,6 +180,9 @@ This function is called by:
 
 
 
-<hr><address>Generated on Sat 03-Mar-2018 19:26:17 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr>
+<hr><address>GitHub Website <strong><a href="https://github.com/atcollab/at" target="_parent">at</a></strong> &copy; 2018</address>
+<br />
+<address>Generated on Sun 04-Mar-2018 00:43:10 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>
