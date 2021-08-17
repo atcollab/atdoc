@@ -1,38 +1,38 @@
-## Welcome to GitHub Pages
+## Introduction
 
-You can use the [editor on GitHub](https://github.com/atcollab/atdoc/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Accelerator Toolbox (AT) is a collection of tools to model storage rings and beam transport lines.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+With AT, it is possible to:
 
-### Markdown
+- **create and manipulate accelerator lattice elements**,
+- **track particles through the lattice**, selecting the appropriate integrator to represent the physics
+- **compute accelerator parameters and beam properties**, generating new scripts or taking advantage of the existing ones
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+AT is based on a 6-D modular tracking engine written in C/C++ for efficiency.
+Lattice manipulation and computation of accelerator physics parameters are provided
+by two interfaces:
+- a [Matlab interface][1], available as a Matlab toolbox,
+- a [python interface][2], available as a python package.
 
-```markdown
-Syntax highlighted code block
+## Coordinate system
+The 6-d phase space coordinates used in AT are as follows
 
-# Header 1
-## Header 2
-### Header 3
+$$
+\begin{equation}
+\vec Z = \pmatrix{x\cr \frac{p_x}{P_0} \cr y \cr \frac{p_y}{P_0} \cr \delta \cr c\tau}
+\end{equation}
+$$
 
-- Bulleted
-- List
+The momenta are defined as
 
-1. Numbered
-2. List
+$$
+\begin{equation}
+p_x = x' P_z  \ \ p_y =  y' P_z
+\end{equation}
+$$
 
-**Bold** and _Italic_ and `Code` text
+with $$P_z = P_0 (1+\delta)$$.  $$P_0$$ is the reference momentum.  $$\tau$$ is the time lag relative to
+the ideal particle.
 
-[Link](url) and ![Image](src)
-```
-[matlab](matlab.html)
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/atcollab/atdoc/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+[1]: matlab.html/ "Matlab interface"
+[2]: python.html/ "python interfqce"
