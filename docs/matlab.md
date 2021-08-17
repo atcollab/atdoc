@@ -1,3 +1,6 @@
+---
+title: Matlab
+---
 ## Requirements:
 AT is compatible with:
 - **Matlab** release >= R2016b (Matlab 9.1)
