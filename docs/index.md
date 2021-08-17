@@ -1,5 +1,5 @@
 ---
-title:
+title: Welcome to AT
 ---
 ## Introduction
 
@@ -37,5 +37,5 @@ $$
 with $$P_z = P_0 (1+\delta)$$.  $$P_0$$ is the reference momentum.  $$\tau$$ is the time lag relative to
 the ideal particle.
 
-[1]: matlab.html/ "Matlab interface"
+[1]: matlab/ "Matlab interface"
 [2]: python.html/ "python interfqce"

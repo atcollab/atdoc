@@ -1,5 +1,6 @@
 ---
 title: Matlab
+permalink: matlab
 ---
 ## Requirements:
 AT is compatible with:
