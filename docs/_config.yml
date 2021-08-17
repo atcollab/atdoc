@@ -5,5 +5,10 @@ title: Accelerator Toolbox
 description: >- # this means to ignore newlines until "baseurl:"
   A toolbox for modelling particle accelerators in Matlab or python
 
+header_pages:
+  - matlab.md
+  - python.md
+  - about.md
+
 kramdown:
   math_engine: mathjax
