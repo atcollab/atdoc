@@ -1,5 +1,6 @@
 ---
 title: Matlab
+layout: page
 permalink: matlab
 ---
 ## Requirements:
