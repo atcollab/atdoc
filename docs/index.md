@@ -1,6 +1,6 @@
 ---
 title: Welcome to AT
-layout: home
+layout: page
 ---
 ## Introduction
 

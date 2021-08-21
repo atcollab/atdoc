@@ -1,14 +1,34 @@
 # theme: jekyll-theme-cayman
-theme: minima
+# theme: minima
+# remote_theme: jekyll/minima
+remote_theme: tomjoht/documentation-theme-jekyll
+
 title: Accelerator Toolbox
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   A toolbox for modelling particle accelerators in Matlab or python
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      topnav: topnav
 
 header_pages:
   - matlab.md
   - python.md
   - about.md
 
+plugins:
+  - jekyll-remote-theme
+
 kramdown:
   math_engine: mathjax
+
+feedback_disable: true
+company_name: atcollab
+site_title: Accelerator Toolbox

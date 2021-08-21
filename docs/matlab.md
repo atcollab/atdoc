@@ -1,7 +1,7 @@
 ---
 title: Matlab
 layout: page
-permalink: matlab
+permalink: matlab.html
 ---
 ## Requirements:
 AT is compatible with:

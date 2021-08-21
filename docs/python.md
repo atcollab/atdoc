@@ -1,6 +1,7 @@
 ---
 title: PyAT
 layout: page
+permalink: python.html
 ---
 pyAT is a Python interface to Accelerator Toolbox. It uses the 'pass methods' defined in Accelerator Toolbox, implemented by compiling the C code used in the AT 'integrators' into a Python extension. These pass methods are used by higher-level functions to provide physics results.
 
