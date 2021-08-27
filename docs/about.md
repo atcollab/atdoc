@@ -1,7 +1,8 @@
 ---
 title: About
 layout: page
-# permalink: /about/
+permalink: about.html
+hide_sidebar: true
 ---
 
 ## History
