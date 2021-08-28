@@ -1,7 +1,7 @@
 ---
 title: Matlab
 layout: page
-permalink: matlab.html
+permalink: /matlab.html
 sidebar: matlab_sidebar
 ---
 ## Requirements:

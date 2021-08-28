@@ -29,6 +29,7 @@ plugins:
 kramdown:
   math_engine: mathjax
 
+site_title: Accelerator Toolbox
+topnav_title: Accelerator Toolbox
 feedback_disable: true
 company_name: atcollab
-site_title: Accelerator Toolbox

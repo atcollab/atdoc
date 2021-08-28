@@ -5,12 +5,12 @@ topnav:
   items:
     - title: GitHub
       external_url: https://github.com/atcollab/at
-    - title: About
-      url: /about.html
     - title: Python
       url: /python.html
     - title: Matlab
       url: /matlab.html
+    - title: About
+      url: /about.html
 
 #Topnav dropdowns
 #topnav_dropdowns:
